@@ -1,4 +1,8 @@
 # Authress SDK for Rust
+
+![Authress SDK on crates.io](https://img.shields.io/crates/v/authress.svg) ![GitHub action status](https://github.com/authress/authress-sdk.rs/actions/workflows/build.yml/badge.svg)
+
+
 This is the Authress SDK used to integrate with the authorization as a service provider Authress at https://authress.io.
 
 

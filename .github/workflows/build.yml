@@ -1,4 +1,5 @@
-name: Build & Deploy
+# Displays in the badge in Readme.md
+name: Latest SDK Build
 
 on:
   push:

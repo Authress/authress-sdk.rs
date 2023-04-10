@@ -5,7 +5,7 @@ edition = "2021"
 authors = ["Authress Developers <developers@authress.io>"]
 rust-version = "1.56"
 
-description = "The Authress SDK for RUST - provides authorization as a service with fully compatible REST apis"
+description = "The Authress SDK for RUST - provides authorization as a service with fully compatible REST apis. Authentication / Authorization / User Identity Roles / Permissions / Policies"
 documentation = "https://authress.io/app/#/api"
 homepage = "https://authress.io"
 repository = "https://github.com/Authress/authress-sdk.rs"

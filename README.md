@@ -1,15 +1,22 @@
-# authress-sdk.js
+# Authress SDK for Rust
 This is the Authress SDK used to integrate with the authorization as a service provider Authress at https://authress.io.
 
-[![npm version](https://badge.fury.io/js/authress-sdk.svg)](https://badge.fury.io/js/authress-sdk)
-[![Build Status](https://travis-ci.com/authress/authress-sdk.js.svg?branch=master)](https://travis-ci.com/authress/authress-sdk.js)
 
+## How to use the SDK
 
-## Usage
+### Install
 
 ```sh
-npm install authress-sdk
+cargo add authress
 ```
+
+### Reference Guide
+
+See the SDK reference guide for a examples of commonly executed blocks with descriptions.
+
+[SDK Reference Guide](./examples)
+
+<!--
 
 Then required the package:
 ```js
@@ -124,3 +131,4 @@ try {
 * Remove any unnecessary validations from object and parameter injection, often there are some even when properties are allowed to be null
 * The service client code to generate a JWT from private key needs to be added
 * Top level tags from the API should accessible from the base class: `authressClient.accessRecords.getRecords(...)`
+-->

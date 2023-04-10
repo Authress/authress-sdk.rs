@@ -15,13 +15,13 @@ env:
 
 jobs:
   rust:
-    name: Rust project - latest
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
       - run: rustup update stable && rustup default stable
-      - run: cargo build --verbose
+      - run: cargo build --verbose --frozen
       - run: cargo test --verbose
       - run: cargo publish --dry-run
 
@@ -40,3 +40,5 @@ jobs:
         if: github.repository_owner == 'Authress' && github.ref != 'refs/heads/main' && github.event_name == 'push'
         # We allow dirty because we will be including the dynamic version in the publishing
         run: cargo publish --allow-dirty
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}

@@ -10,7 +10,7 @@ documentation = "https://authress.io/app/#/api"
 homepage = "https://authress.io"
 repository = "https://github.com/Authress/authress-sdk.rs"
 license = "Apache-2.0"
-keywords = ["auth", "authentication", "authorization", "authress", "authress-sdk", "api", "api-security", "oauth", "saml", "permissions", "user-security", "polar", "policy", "policy-engine"]
+keywords = ["authentication", "authorization", "roles", "permission-policy", "oauth-openid-saml"]
 categories = ["authentication", "api-bindings", "config", "database", "development-tools"]
 
 # Cargo.toml reference guide: https://doc.rust-lang.org/cargo/reference/manifest.html

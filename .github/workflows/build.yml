@@ -22,7 +22,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: rustup update stable && rustup default stable
-      - run: cargo build --verbose --frozen
+      - run: cargo -V
+      - run: cargo build # --verbose --frozen
       - run: cargo test --verbose
       - run: cargo publish --dry-run
 

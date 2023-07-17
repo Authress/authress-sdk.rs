@@ -28,7 +28,13 @@ cargo add authress
 
 See the SDK reference guide for a examples of commonly executed blocks with descriptions.
 
-[SDK Reference Guide](./examples)
+[SDK Documentation](./docs/README.md)
+
+[SDK reference examples](./docs/examples)
+
+### Contribution Guide
+
+[Developing for the Rust SDK](./contributing.md)
 
 <!--
 
@@ -138,11 +144,4 @@ try {
 }
 ```
 
-## Contribution
-
-### Common review items
-* Urlencode all url inputs, frequently the generator doesn't do that
-* Remove any unnecessary validations from object and parameter injection, often there are some even when properties are allowed to be null
-* The service client code to generate a JWT from private key needs to be added
-* Top level tags from the API should accessible from the base class: `authressClient.accessRecords.getRecords(...)`
 -->

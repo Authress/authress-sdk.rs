@@ -1,14 +1,10 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+#[macro_use]
+extern crate serde_derive;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+extern crate serde;
+extern crate serde_json;
+extern crate url;
+extern crate reqwest;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+pub mod apis;
+pub mod models;

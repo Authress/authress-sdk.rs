@@ -147,7 +147,7 @@ Returns all clients that the user has access to in the account.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**limit** | Option<**i32**> | Max number of results to return |  |[default to 20]
+**limit** | Option<**u32**> | Max number of results to return |  |[default to 20]
 **cursor** | Option<**String**> | Continuation cursor for paging. |  |
 
 ### Return type

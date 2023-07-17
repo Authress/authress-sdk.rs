@@ -8,21 +8,21 @@ use super::{Error, configuration};
 #[derive(Clone, Debug)]
 pub struct DeleteUserParams {
     /// The user identifier.
-    pub user_id: UserId
+    pub user_id: String
 }
 
 /// struct for passing parameters to the method [`get_user`]
 #[derive(Clone, Debug)]
 pub struct GetUserParams {
     /// The user identifier.
-    pub user_id: UserId
+    pub user_id: String
 }
 
 /// struct for passing parameters to the method [`get_users`]
 #[derive(Clone, Debug)]
 pub struct GetUsersParams {
     /// Max number of results to return
-    pub limit: Option<i32>,
+    pub limit: Option<u32>,
     /// Continuation cursor for paging
     pub cursor: Option<String>,
     /// Filter to search users by. This is a case insensitive search through every text field.

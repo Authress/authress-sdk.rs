@@ -37,7 +37,7 @@ pub struct GetClientParams {
 #[derive(Clone, Debug)]
 pub struct GetClientsParams {
     /// Max number of results to return
-    pub limit: Option<i32>,
+    pub limit: Option<u32>,
     /// Continuation cursor for paging.
     pub cursor: Option<String>
 }

@@ -10,7 +10,7 @@ pub struct DelegateUserLoginParams {
     /// The application to have the user log into.
     pub application_id: String,
     /// The user.
-    pub user_id: UserId
+    pub user_id: String
 }
 
 

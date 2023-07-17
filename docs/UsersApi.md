@@ -82,7 +82,7 @@ Returns a paginated user list for the account. The data returned by this endpoin
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**limit** | Option<**i32**> | Max number of results to return |  |[default to 100]
+**limit** | Option<**u32**> | Max number of results to return |  |[default to 100]
 **cursor** | Option<**String**> | Continuation cursor for paging |  |
 **filter** | Option<**String**> | Filter to search users by. This is a case insensitive search through every text field. |  |
 **tenant_id** | Option<**String**> | Return only users that are part of the specified tenant. Users can only be part of one tenant, using this parameter will limit returned users that have logged into this tenant. |  |

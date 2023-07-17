@@ -11,12 +11,12 @@ pub struct Invite {
     #[serde(rename = "statements")]
     pub statements: Vec<crate::models::Statement>,
     #[serde(rename = "links")]
-    pub links: Box<crate::models::AccountLinks>,
+    pub links: Box<crate::models::Links>,
 }
 
 impl Invite {
     /// The user invite used to invite users to your application or to Authress as an admin.
-    pub fn new(invite_id: String, statements: Vec<crate::models::Statement>, links: crate::models::AccountLinks) -> Invite {
+    pub fn new(invite_id: String, statements: Vec<crate::models::Statement>, links: crate::models::Links) -> Invite {
         Invite {
             invite_id,
             statements,

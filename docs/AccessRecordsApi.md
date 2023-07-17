@@ -273,7 +273,7 @@ Returns a paginated records list for the account. Only records the user has acce
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**limit** | Option<**i32**> | Max number of results to return |  |[default to 20]
+**limit** | Option<**u32**> | Max number of results to return |  |[default to 20]
 **cursor** | Option<**String**> | Continuation cursor for paging |  |
 **filter** | Option<**String**> | Filter to search records by. This is a case insensitive search through every text field. |  |
 **status** | Option<**String**> | Filter records by their current status. |  |
@@ -336,7 +336,7 @@ Returns a paginated request list. Only requests the user has access to are retur
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**limit** | Option<**i32**> | Max number of results to return |  |[default to 20]
+**limit** | Option<**u32**> | Max number of results to return |  |[default to 20]
 **cursor** | Option<**String**> | Continuation cursor for paging |  |
 **status** | Option<**String**> | Filter requests by their current status. |  |
 

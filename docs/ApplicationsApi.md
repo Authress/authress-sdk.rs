@@ -21,7 +21,7 @@ Redirect the user to an external application to login them in. Authress uses Ope
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **application_id** | **String** | The application to have the user log into. | [required] |
-**user_id** | [**UserId**](.md) | The user. | [required] |
+**user_id** | **String** | The user. | [required] |
 
 ### Return type
 

@@ -90,7 +90,7 @@ Name | Type | Description  | Required | Notes
 **resource_uri** | Option<**String**> | The top level uri path of a resource to query for. Will only match explicit or nested sub-resources. Will not partial match resource names. |  |
 **collection_configuration** | Option<**String**> | `TOP_LEVEL_ONLY` - returns only directly nested resources under the resourceUri. A query to `resourceUri=Collection` will return `Collection/resource_1`.<br>`INCLUDE_NESTED` - will return all sub-resources as well as deeply nested resources that the user has the specified permission to. A query to `resourceUri=Collection` will return `Collection/namespaces/ns/resources/resource_1`.<br><br>To return matching resources for nested resources, set this parameter to `INCLUDE_NESTED`. |  |[default to TOP_LEVEL_ONLY]
 **permissions** | Option<[**Action**](.md)> | Permission to check, '*' and scoped permissions can also be checked here. By default if the user has any permission explicitly to a resource, it will be included in the list. |  |
-**limit** | Option<**i32**> | Max number of results to return |  |[default to 20]
+**limit** | Option<**u32**> | Max number of results to return |  |[default to 20]
 **cursor** | Option<**String**> | Continuation cursor for paging |  |
 
 ### Return type

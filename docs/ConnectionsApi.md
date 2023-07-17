@@ -116,7 +116,7 @@ Get the credentials for the user that were generated as part of the latest user 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **connection_id** | **String** | The connection identifier. | [required] |
-**user_id** | [**UserId**](.md) | The connection user. | [required] |
+**user_id** | **String** | The connection user. | [required] |
 
 ### Return type
 

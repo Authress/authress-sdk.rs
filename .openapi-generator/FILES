@@ -4,7 +4,6 @@
 Cargo.toml
 README.md
 docs/AccessRecord.md
-docs/AccessRecordAccount.md
 docs/AccessRecordCollection.md
 docs/AccessRecordsApi.md
 docs/AccessRequest.md
@@ -13,7 +12,6 @@ docs/AccessRequestResponse.md
 docs/AccessTemplate.md
 docs/Account.md
 docs/AccountCollection.md
-docs/AccountLinks.md
 docs/AccountsApi.md
 docs/ApplicationDelegation.md
 docs/ApplicationsApi.md
@@ -49,9 +47,8 @@ docs/OAuthAuthorizeResponse.md
 docs/OAuthTokenRequest.md
 docs/OAuthTokenResponse.md
 docs/Pagination.md
-docs/PaginationNext.md
+docs/PaginationCursor.md
 docs/PermissionCollection.md
-docs/PermissionCollectionAccount.md
 docs/PermissionObject.md
 docs/PermissionedResource.md
 docs/PermissionedResourceCollection.md
@@ -131,7 +128,6 @@ src/models/link.rs
 src/models/linked_group.rs
 src/models/links.rs
 src/models/metadata_object.rs
-src/models/metadata_object_account.rs
 src/models/mod.rs
 src/models/oauth_authorize_response.rs
 src/models/oauth_token_request.rs

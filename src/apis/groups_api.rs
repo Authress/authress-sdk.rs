@@ -28,7 +28,7 @@ pub struct GetGroupParams {
 #[derive(Clone, Debug)]
 pub struct GetGroupsParams {
     /// Max number of results to return
-    pub limit: Option<i32>,
+    pub limit: Option<u32>,
     /// Continuation cursor for paging
     pub cursor: Option<String>,
     /// Filter to search groups by. This is a case insensitive search through every text field.

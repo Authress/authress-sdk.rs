@@ -8,18 +8,18 @@ use super::{Error, configuration};
 #[derive(Clone, Debug)]
 pub struct AuthorizeUserParams {
     /// The user to check permissions on
-    pub user_id: UserId,
+    pub user_id: String,
     /// The uri path of a resource to validate, must be URL encoded, uri segments are allowed, the resource must be a full path.
     pub resource_uri: String,
     /// Permission to check, '*' and scoped permissions can also be checked here.
-    pub permission: Action
+    pub permission: String
 }
 
 /// struct for passing parameters to the method [`get_user_permissions_for_resource`]
 #[derive(Clone, Debug)]
 pub struct GetUserPermissionsForResourceParams {
     /// The user to check permissions on
-    pub user_id: UserId,
+    pub user_id: String,
     /// The uri path of a resource to validate, must be URL encoded, uri segments are allowed.
     pub resource_uri: String
 }
@@ -28,15 +28,15 @@ pub struct GetUserPermissionsForResourceParams {
 #[derive(Clone, Debug)]
 pub struct GetUserResourcesParams {
     /// The user to check permissions on
-    pub user_id: UserId,
+    pub user_id: String,
     /// The top level uri path of a resource to query for. Will only match explicit or nested sub-resources. Will not partial match resource names.
     pub resource_uri: Option<String>,
     /// `TOP_LEVEL_ONLY` - returns only directly nested resources under the resourceUri. A query to `resourceUri=Collection` will return `Collection/resource_1`.<br>`INCLUDE_NESTED` - will return all sub-resources as well as deeply nested resources that the user has the specified permission to. A query to `resourceUri=Collection` will return `Collection/namespaces/ns/resources/resource_1`.<br><br>To return matching resources for nested resources, set this parameter to `INCLUDE_NESTED`.
     pub collection_configuration: Option<String>,
     /// Permission to check, '*' and scoped permissions can also be checked here. By default if the user has any permission explicitly to a resource, it will be included in the list.
-    pub permissions: Option<Action>,
+    pub permissions: Option<String>,
     /// Max number of results to return
-    pub limit: Option<i32>,
+    pub limit: Option<u32>,
     /// Continuation cursor for paging
     pub cursor: Option<String>
 }
@@ -45,7 +45,7 @@ pub struct GetUserResourcesParams {
 #[derive(Clone, Debug)]
 pub struct GetUserRolesForResourceParams {
     /// The user to get roles for.
-    pub user_id: UserId,
+    pub user_id: String,
     /// The uri path of a resource to get roles for, must be URL encoded. Checks for explicit resource roles, roles attached to parent resources are not returned.
     pub resource_uri: String
 }

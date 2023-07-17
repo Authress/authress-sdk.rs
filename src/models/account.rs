@@ -12,11 +12,11 @@ pub struct Account {
     #[serde(rename = "company")]
     pub company: serde_json::Value,
     #[serde(rename = "links")]
-    pub links: Box<crate::models::AccountLinks>,
+    pub links: Box<crate::models::Links>,
 }
 
 impl Account {
-    pub fn new(account_id: String, created_time: String, company: serde_json::Value, links: crate::models::AccountLinks) -> Account {
+    pub fn new(account_id: String, created_time: String, company: serde_json::Value, links: crate::models::Links) -> Account {
         Account {
             account_id,
             created_time,

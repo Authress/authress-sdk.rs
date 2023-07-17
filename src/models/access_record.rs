@@ -22,8 +22,6 @@ pub struct AccessRecord {
     /// Current status of the access record.
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<Status>,
-    #[serde(rename = "account")]
-    pub account: Box<crate::models::AccessRecordAccount>,
     /// The list of users this record applies to
     #[serde(rename = "users", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub users: Option<Option<Vec<crate::models::User>>>,
@@ -37,7 +35,7 @@ pub struct AccessRecord {
     #[serde(rename = "statements")]
     pub statements: Vec<crate::models::Statement>,
     #[serde(rename = "links")]
-    pub links: Box<crate::models::AccountLinks>,
+    pub links: Box<crate::models::Links>,
     /// The tags associated with this resource, this property is an map. { key1: value1, key2: value2 }
     #[serde(rename = "tags", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Option<::std::collections::HashMap<String, String>>>,
@@ -45,7 +43,7 @@ pub struct AccessRecord {
 
 impl AccessRecord {
     /// The access record which links users to roles.
-    pub fn new(name: String, account: crate::models::AccessRecordAccount, statements: Vec<crate::models::Statement>, links: crate::models::AccountLinks) -> AccessRecord {
+    pub fn new(name: String, statements: Vec<crate::models::Statement>, links: crate::models::Links) -> AccessRecord {
         AccessRecord {
             record_id: None,
             name,
@@ -53,7 +51,6 @@ impl AccessRecord {
             capacity: None,
             last_updated: None,
             status: None,
-            account: Box::new(account),
             users: None,
             admins: None,
             groups: None,

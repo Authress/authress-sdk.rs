@@ -27,7 +27,7 @@ pub enum SupportedContentType {
     #[serde(rename = "application/json")]
     Json,
     #[serde(rename = "application/x-www-form-urlencoded")]
-    XWwwFormUrlencoded,
+    FormUrlEncoded,
 }
 
 impl Default for SupportedContentType {

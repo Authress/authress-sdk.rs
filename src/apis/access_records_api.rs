@@ -60,7 +60,7 @@ pub struct GetRecordParams {
 #[derive(Clone, Debug)]
 pub struct GetRecordsParams {
     /// Max number of results to return
-    pub limit: Option<i32>,
+    pub limit: Option<u32>,
     /// Continuation cursor for paging
     pub cursor: Option<String>,
     /// Filter to search records by. This is a case insensitive search through every text field.
@@ -80,7 +80,7 @@ pub struct GetRequestParams {
 #[derive(Clone, Debug)]
 pub struct GetRequestsParams {
     /// Max number of results to return
-    pub limit: Option<i32>,
+    pub limit: Option<u32>,
     /// Continuation cursor for paging
     pub cursor: Option<String>,
     /// Filter requests by their current status.

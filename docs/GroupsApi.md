@@ -114,7 +114,7 @@ Returns a paginated groups list for the account. Only groups the user has access
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**limit** | Option<**i32**> | Max number of results to return |  |[default to 20]
+**limit** | Option<**u32**> | Max number of results to return |  |[default to 20]
 **cursor** | Option<**String**> | Continuation cursor for paging |  |
 **filter** | Option<**String**> | Filter to search groups by. This is a case insensitive search through every text field. |  |
 

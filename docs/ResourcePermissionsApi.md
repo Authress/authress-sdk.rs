@@ -81,7 +81,7 @@ Get the resource users with explicit access to the resource. This result is a li
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **resource_uri** | **String** | The uri path of a resource to validate, must be URL encoded, uri segments are allowed. | [required] |
-**limit** | Option<**i32**> | Max number of results to return |  |[default to 20]
+**limit** | Option<**u32**> | Max number of results to return |  |[default to 20]
 **cursor** | Option<**String**> | Continuation cursor for paging |  |
 
 ### Return type

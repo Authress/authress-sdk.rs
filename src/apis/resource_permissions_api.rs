@@ -17,7 +17,7 @@ pub struct GetResourceUsersParams {
     /// The uri path of a resource to validate, must be URL encoded, uri segments are allowed.
     pub resource_uri: String,
     /// Max number of results to return
-    pub limit: Option<i32>,
+    pub limit: Option<u32>,
     /// Continuation cursor for paging
     pub cursor: Option<String>
 }

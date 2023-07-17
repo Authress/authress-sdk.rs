@@ -30,7 +30,7 @@ pub struct GetConnectionCredentialsParams {
     /// The connection identifier.
     pub connection_id: String,
     /// The connection user.
-    pub user_id: UserId
+    pub user_id: String
 }
 
 /// struct for passing parameters to the method [`update_connection`]

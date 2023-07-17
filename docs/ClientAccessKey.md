@@ -10,6 +10,6 @@ Name | Type | Description | Notes
 **client_secret** | Option<**String**> | The unencoded OAuth client secret used with the OAuth endpoints to request a JWT using the `client_credentials` grant type. Pass the clientId and the clientSecret to the documented /tokens endpoint. | [optional][readonly]
 **access_key** | Option<**String**> | An encoded access key which contains identifying information for client access token creation. For direct use with the Authress SDKs. This private access key must be saved on first creation as it is discarded afterwards. Authress only saves the corresponding public key to verify the private access key. | [optional][readonly]
 
-[[Back to Model list]](./README.md#documentation-for-models) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to README]](./README.md)
+[[API Models]](./README.md#documentation-for-models) ☆ [[API Endpoints]](./README.md#documentation-for-api-endpoints) ☆ [[Back to Repo]](./README.md)
 
 

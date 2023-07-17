@@ -7,6 +7,6 @@ Name | Type | Description | Notes
 **action** | **String** |  | 
 **allow** | **bool** |  | 
 
-[[Back to Model list]](./README.md#documentation-for-models) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to README]](./README.md)
+[[API Models]](./README.md#documentation-for-models) ☆ [[API Endpoints]](./README.md#documentation-for-api-endpoints) ☆ [[Back to Repo]](./README.md)
 
 

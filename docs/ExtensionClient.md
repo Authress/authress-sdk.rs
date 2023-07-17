@@ -7,6 +7,6 @@ Name | Type | Description | Notes
 **client_id** | **String** | The unique ID of the client. | [readonly]
 **links** | [**crate::models::Links**](Links.md) |  | 
 
-[[Back to Model list]](./README.md#documentation-for-models) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to README]](./README.md)
+[[API Models]](./README.md#documentation-for-models) ☆ [[API Endpoints]](./README.md#documentation-for-api-endpoints) ☆ [[Back to Repo]](./README.md)
 
 

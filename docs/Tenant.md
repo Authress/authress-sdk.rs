@@ -10,6 +10,6 @@ Name | Type | Description | Notes
 **connection** | Option<[**crate::models::TenantConnection**](Tenant_connection.md)> |  | [optional]
 **created_time** | Option<**String**> |  | [optional][readonly]
 
-[[Back to Model list]](./README.md#documentation-for-models) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to README]](./README.md)
+[[API Models]](./README.md#documentation-for-models) ☆ [[API Endpoints]](./README.md#documentation-for-api-endpoints) ☆ [[Back to Repo]](./README.md)
 
 

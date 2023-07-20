@@ -251,532 +251,439 @@ pub enum UpdateRecordError {
     UnknownValue(serde_json::Value),
 }
 
-
-/// Claim a resource by allowing a user to pick an identifier and receive admin access to that resource if it hasn't already been claimed. This only works for resources specifically marked as <strong>CLAIM</strong>. The result will be a new access record listing that user as the admin for this resource. The resourceUri will be appended to the collection resource uri using a '/' (forward slash) automatically.
-pub async fn create_claim(configuration: &configuration::Configuration, params: CreateClaimParams) -> Result<serde_json::Value, Error<CreateClaimError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let claim_request = params.claim_request;
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/v1/claims", local_var_configuration.base_path);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&claim_request);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<CreateClaimError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
+pub struct AccessRecordApi {
+    pub configuration: configuration::Configuration
 }
 
-/// Invites are used to easily assign permissions to users that have not been created in your identity provider yet. 1. This generates an invite record. 2. Send the invite ID to the user. 3. Log the user in. 4. As the user PATCH the /invite/{inviteId} endpoint 5. This accepts the invite.         When the user accepts the invite they will automatically receive the permissions assigned in the Invite. Invites automatically expire after 7 days.
-pub async fn create_invite(configuration: &configuration::Configuration, params: CreateInviteParams) -> Result<crate::models::Invite, Error<CreateInviteError>> {
-    let local_var_configuration = configuration;
+impl AccessRecordApi {
+    /// Claim a resource by allowing a user to pick an identifier and receive admin access to that resource if it hasn't already been claimed. This only works for resources specifically marked as <strong>CLAIM</strong>. The result will be a new access record listing that user as the admin for this resource. The resourceUri will be appended to the collection resource uri using a '/' (forward slash) automatically.
+    pub async fn create_claim(&self, params: CreateClaimParams) -> Result<serde_json::Value, Error<CreateClaimError>> {
+        let local_var_configuration = &self.configuration;
 
-    // unbox the parameters
-    let invite = params.invite;
+        // unbox the parameters
+        let claim_request = params.claim_request;
 
 
-    let local_var_client = &local_var_configuration.client;
+        let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v1/invites", local_var_configuration.base_path);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+        let local_var_uri_str = format!("{}/v1/claims", "");
+        let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::POST, local_var_uri_str);
+        local_var_req_builder = local_var_req_builder.json(&claim_request);
 
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<CreateClaimError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&invite);
 
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    /// Invites are used to easily assign permissions to users that have not been created in your identity provider yet. 1. This generates an invite record. 2. Send the invite ID to the user. 3. Log the user in. 4. As the user PATCH the /invite/{inviteId} endpoint 5. This accepts the invite.         When the user accepts the invite they will automatically receive the permissions assigned in the Invite. Invites automatically expire after 7 days.
+    pub async fn create_invite(&self, params: CreateInviteParams) -> Result<crate::models::Invite, Error<CreateInviteError>> {
+        let local_var_configuration = &self.configuration;
 
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+        // unbox the parameters
+        let invite = params.invite;
 
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<CreateInviteError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/v1/invites", "");
+        let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::POST, local_var_uri_str);
+        local_var_req_builder = local_var_req_builder.json(&invite);
+
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<CreateInviteError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
-}
 
-/// Specify user roles for specific resources. (Records have a maximum size of ~100KB)
-pub async fn create_record(configuration: &configuration::Configuration, params: CreateRecordParams) -> Result<crate::models::AccessRecord, Error<CreateRecordError>> {
-    let local_var_configuration = configuration;
+    /// Specify user roles for specific resources. (Records have a maximum size of ~100KB)
+    pub async fn create_record(&self, params: CreateRecordParams) -> Result<crate::models::AccessRecord, Error<CreateRecordError>> {
+        let local_var_configuration = &self.configuration;
 
-    // unbox the parameters
-    let access_record = params.access_record;
+        // unbox the parameters
+        let access_record = params.access_record;
 
 
-    let local_var_client = &local_var_configuration.client;
+        let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v1/records", local_var_configuration.base_path);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+        let local_var_uri_str = format!("{}/v1/records", "");
+        let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::POST, local_var_uri_str);
+        local_var_req_builder = local_var_req_builder.json(&access_record);
 
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<CreateRecordError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&access_record);
 
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    /// Specify a request in the form of an access record that an admin can approve.
+    pub async fn create_request(&self, params: CreateRequestParams) -> Result<crate::models::AccessRequest, Error<CreateRequestError>> {
+        let local_var_configuration = &self.configuration;
 
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+        // unbox the parameters
+        let access_request = params.access_request;
 
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<CreateRecordError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/v1/requests", "");
+        let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::POST, local_var_uri_str);
+        local_var_req_builder = local_var_req_builder.json(&access_request);
+
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<CreateRequestError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
-}
 
-/// Specify a request in the form of an access record that an admin can approve.
-pub async fn create_request(configuration: &configuration::Configuration, params: CreateRequestParams) -> Result<crate::models::AccessRequest, Error<CreateRequestError>> {
-    let local_var_configuration = configuration;
+    /// Deletes an invite.
+    pub async fn delete_invite(&self, params: DeleteInviteParams) -> Result<(), Error<DeleteInviteError>> {
+        let local_var_configuration = &self.configuration;
 
-    // unbox the parameters
-    let access_request = params.access_request;
+        // unbox the parameters
+        let invite_id = params.invite_id;
 
 
-    let local_var_client = &local_var_configuration.client;
+        let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v1/requests", local_var_configuration.base_path);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+        let local_var_uri_str = format!("{}/v1/invites/{inviteId}", "", inviteId=crate::apis::urlencode(invite_id));
+        let local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::DELETE, local_var_uri_str);
 
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            Ok(())
+        } else {
+            let local_var_entity: Option<DeleteInviteError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&access_request);
 
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    /// Remove an access record, removing associated permissions from all users in record. If a user has a permission from another record, that permission will not be removed. (Note: This disables the record by changing the status to <strong>DELETED</strong> but not completely remove the record for tracking purposes.
+    pub async fn delete_record(&self, params: DeleteRecordParams) -> Result<(), Error<DeleteRecordError>> {
+        let local_var_configuration = &self.configuration;
 
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+        // unbox the parameters
+        let record_id = params.record_id;
 
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<CreateRequestError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/v1/records/{recordId}", "", recordId=crate::apis::urlencode(record_id));
+        let local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::DELETE, local_var_uri_str);
+
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            Ok(())
+        } else {
+            let local_var_entity: Option<DeleteRecordError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
-}
 
-/// Deletes an invite.
-pub async fn delete_invite(configuration: &configuration::Configuration, params: DeleteInviteParams) -> Result<(), Error<DeleteInviteError>> {
-    let local_var_configuration = configuration;
+    /// Remove an access request.
+    pub async fn delete_request(&self, params: DeleteRequestParams) -> Result<(), Error<DeleteRequestError>> {
+        let local_var_configuration = &self.configuration;
 
-    // unbox the parameters
-    let invite_id = params.invite_id;
+        // unbox the parameters
+        let request_id = params.request_id;
 
 
-    let local_var_client = &local_var_configuration.client;
+        let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v1/invites/{inviteId}", local_var_configuration.base_path, inviteId=crate::apis::urlencode(invite_id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
+        let local_var_uri_str = format!("{}/v1/requests/{requestId}", "", requestId=crate::apis::urlencode(request_id));
+        let local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::DELETE, local_var_uri_str);
 
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            Ok(())
+        } else {
+            let local_var_entity: Option<DeleteRequestError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
 
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    /// Access records contain information assigning permissions to users for resources.
+    pub async fn get_record(&self, params: GetRecordParams) -> Result<crate::models::AccessRecord, Error<GetRecordError>> {
+        let local_var_configuration = &self.configuration;
 
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+        // unbox the parameters
+        let record_id = params.record_id;
 
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
-    } else {
-        let local_var_entity: Option<DeleteInviteError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/v1/records/{recordId}", "", recordId=crate::apis::urlencode(record_id));
+        let local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
+
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<GetRecordError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
-}
 
-/// Remove an access record, removing associated permissions from all users in record. If a user has a permission from another record, that permission will not be removed. (Note: This disables the record by changing the status to <strong>DELETED</strong> but not completely remove the record for tracking purposes.
-pub async fn delete_record(configuration: &configuration::Configuration, params: DeleteRecordParams) -> Result<(), Error<DeleteRecordError>> {
-    let local_var_configuration = configuration;
+    /// Returns a paginated records list for the account. Only records the user has access to are returned. This query resource is meant for administrative actions only, therefore has a lower rate limit tier than user permissions related resources. Additionally, the results from a query to Access Records may be delayed up to 5 minutes.
+    pub async fn get_records(&self, params: GetRecordsParams) -> Result<crate::models::AccessRecordCollection, Error<GetRecordsError>> {
+        let local_var_configuration = &self.configuration;
 
-    // unbox the parameters
-    let record_id = params.record_id;
+        // unbox the parameters
+        let limit = params.limit;
+        let cursor = params.cursor;
+        let filter = params.filter;
+        let status = params.status;
 
 
-    let local_var_client = &local_var_configuration.client;
+        let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v1/records/{recordId}", local_var_configuration.base_path, recordId=crate::apis::urlencode(record_id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
+        let local_var_uri_str = format!("{}/v1/records", "");
+        let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
 
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+        if let Some(ref local_var_str) = limit {
+            local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+        }
+        if let Some(ref local_var_str) = cursor {
+            local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
+        }
+        if let Some(ref local_var_str) = filter {
+            local_var_req_builder = local_var_req_builder.query(&[("filter", &local_var_str.to_string())]);
+        }
+        if let Some(ref local_var_str) = status {
+            local_var_req_builder = local_var_req_builder.query(&[("status", &local_var_str.to_string())]);
+        }
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<GetRecordsError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
 
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    /// Access request contain information requesting permissions for users to resources.
+    pub async fn get_request(&self, params: GetRequestParams) -> Result<crate::models::AccessRequest, Error<GetRequestError>> {
+        let local_var_configuration = &self.configuration;
 
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+        // unbox the parameters
+        let request_id = params.request_id;
 
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
-    } else {
-        let local_var_entity: Option<DeleteRecordError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/v1/requests/{requestId}", "", requestId=crate::apis::urlencode(request_id));
+        let local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
+
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<GetRequestError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
-}
 
-/// Remove an access request.
-pub async fn delete_request(configuration: &configuration::Configuration, params: DeleteRequestParams) -> Result<(), Error<DeleteRequestError>> {
-    let local_var_configuration = configuration;
+    /// Returns a paginated request list. Only requests the user has access to are returned. This query resource is meant for administrative actions only, therefore has a lower rate limit tier than user permissions related resources.
+    pub async fn get_requests(&self, params: GetRequestsParams) -> Result<crate::models::AccessRequestCollection, Error<GetRequestsError>> {
+        let local_var_configuration = &self.configuration;
 
-    // unbox the parameters
-    let request_id = params.request_id;
+        // unbox the parameters
+        let limit = params.limit;
+        let cursor = params.cursor;
+        let status = params.status;
 
 
-    let local_var_client = &local_var_configuration.client;
+        let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v1/requests/{requestId}", local_var_configuration.base_path, requestId=crate::apis::urlencode(request_id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
+        let local_var_uri_str = format!("{}/v1/requests", "");
+        let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
 
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+        if let Some(ref local_var_str) = limit {
+            local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+        }
+        if let Some(ref local_var_str) = cursor {
+            local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
+        }
+        if let Some(ref local_var_str) = status {
+            local_var_req_builder = local_var_req_builder.query(&[("status", &local_var_str.to_string())]);
+        }
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<GetRequestsError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
 
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    /// Updates an access request, approving it or denying it.
+    pub async fn respond_to_access_request(&self, params: RespondToAccessRequestParams) -> Result<crate::models::AccessRequest, Error<RespondToAccessRequestError>> {
+        let local_var_configuration = &self.configuration;
 
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+        // unbox the parameters
+        let request_id = params.request_id;
+        let access_request_response = params.access_request_response;
 
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
-    } else {
-        let local_var_entity: Option<DeleteRequestError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/v1/requests/{requestId}", "", requestId=crate::apis::urlencode(request_id));
+        let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::PATCH, local_var_uri_str);
+        local_var_req_builder = local_var_req_builder.json(&access_request_response);
+
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<RespondToAccessRequestError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
-}
 
-/// Access records contain information assigning permissions to users for resources.
-pub async fn get_record(configuration: &configuration::Configuration, params: GetRecordParams) -> Result<crate::models::AccessRecord, Error<GetRecordError>> {
-    let local_var_configuration = configuration;
+    /// Accepts an invite by claiming this invite by this user. The user access token used for this request will gain the permissions associated with the invite.
+    pub async fn respond_to_invite(&self, params: RespondToInviteParams) -> Result<crate::models::Account, Error<RespondToInviteError>> {
+        let local_var_configuration = &self.configuration;
 
-    // unbox the parameters
-    let record_id = params.record_id;
+        // unbox the parameters
+        let invite_id = params.invite_id;
 
 
-    let local_var_client = &local_var_configuration.client;
+        let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v1/records/{recordId}", local_var_configuration.base_path, recordId=crate::apis::urlencode(record_id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+        let local_var_uri_str = format!("{}/v1/invites/{inviteId}", "", inviteId=crate::apis::urlencode(invite_id));
+        let local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::PATCH, local_var_uri_str);
 
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<RespondToInviteError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
 
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    /// Updates an access record adding or removing user permissions to resources. (Records have a maximum size of ~100KB)
+    pub async fn update_record(&self, params: UpdateRecordParams) -> Result<(), Error<UpdateRecordError>> {
+        let local_var_configuration = &self.configuration;
 
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<GetRecordError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// Returns a paginated records list for the account. Only records the user has access to are returned. This query resource is meant for administrative actions only, therefore has a lower rate limit tier than user permissions related resources. Additionally, the results from a query to Access Records may be delayed up to 5 minutes.
-pub async fn get_records(configuration: &configuration::Configuration, params: GetRecordsParams) -> Result<crate::models::AccessRecordCollection, Error<GetRecordsError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let limit = params.limit;
-    let cursor = params.cursor;
-    let filter = params.filter;
-    let status = params.status;
+        // unbox the parameters
+        let record_id = params.record_id;
+        let access_record = params.access_record;
+        let if_unmodified_since = params.if_unmodified_since;
 
 
-    let local_var_client = &local_var_configuration.client;
+        let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v1/records", local_var_configuration.base_path);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+        let local_var_uri_str = format!("{}/v1/records/{recordId}", "", recordId=crate::apis::urlencode(record_id));
+        let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::PUT, local_var_uri_str);
 
-    if let Some(ref local_var_str) = limit {
-        local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = cursor {
-        local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = filter {
-        local_var_req_builder = local_var_req_builder.query(&[("filter", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = status {
-        local_var_req_builder = local_var_req_builder.query(&[("status", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
+        if let Some(local_var_param_value) = if_unmodified_since {
+            local_var_req_builder = local_var_req_builder.header("If-Unmodified-Since", local_var_param_value.to_string());
+        }
+        local_var_req_builder = local_var_req_builder.json(&access_record);
 
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
 
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
 
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<GetRecordsError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// Access request contain information requesting permissions for users to resources.
-pub async fn get_request(configuration: &configuration::Configuration, params: GetRequestParams) -> Result<crate::models::AccessRequest, Error<GetRequestError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let request_id = params.request_id;
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/v1/requests/{requestId}", local_var_configuration.base_path, requestId=crate::apis::urlencode(request_id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<GetRequestError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// Returns a paginated request list. Only requests the user has access to are returned. This query resource is meant for administrative actions only, therefore has a lower rate limit tier than user permissions related resources.
-pub async fn get_requests(configuration: &configuration::Configuration, params: GetRequestsParams) -> Result<crate::models::AccessRequestCollection, Error<GetRequestsError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let limit = params.limit;
-    let cursor = params.cursor;
-    let status = params.status;
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/v1/requests", local_var_configuration.base_path);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_str) = limit {
-        local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = cursor {
-        local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = status {
-        local_var_req_builder = local_var_req_builder.query(&[("status", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<GetRequestsError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// Updates an access request, approving it or denying it.
-pub async fn respond_to_access_request(configuration: &configuration::Configuration, params: RespondToAccessRequestParams) -> Result<crate::models::AccessRequest, Error<RespondToAccessRequestError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let request_id = params.request_id;
-    let access_request_response = params.access_request_response;
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/v1/requests/{requestId}", local_var_configuration.base_path, requestId=crate::apis::urlencode(request_id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&access_request_response);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<RespondToAccessRequestError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// Accepts an invite by claiming this invite by this user. The user access token used for this request will gain the permissions associated with the invite.
-pub async fn respond_to_invite(configuration: &configuration::Configuration, params: RespondToInviteParams) -> Result<crate::models::Account, Error<RespondToInviteError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let invite_id = params.invite_id;
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/v1/invites/{inviteId}", local_var_configuration.base_path, inviteId=crate::apis::urlencode(invite_id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<RespondToInviteError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            Ok(())
+        } else {
+            let local_var_entity: Option<UpdateRecordError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
 }
-
-/// Updates an access record adding or removing user permissions to resources. (Records have a maximum size of ~100KB)
-pub async fn update_record(configuration: &configuration::Configuration, params: UpdateRecordParams) -> Result<(), Error<UpdateRecordError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let record_id = params.record_id;
-    let access_record = params.access_record;
-    let if_unmodified_since = params.if_unmodified_since;
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/v1/records/{recordId}", local_var_configuration.base_path, recordId=crate::apis::urlencode(record_id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(local_var_param_value) = if_unmodified_since {
-        local_var_req_builder = local_var_req_builder.header("If-Unmodified-Since", local_var_param_value.to_string());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&access_record);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
-    } else {
-        let local_var_entity: Option<UpdateRecordError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-

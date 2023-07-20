@@ -119,255 +119,220 @@ pub enum UpdateExtensionError {
     UnknownValue(serde_json::Value),
 }
 
-
-/// Specify the extension details for a new developer extension. Creating the extension enables developers to build applications that can log in to your platform and interact with your users' data.
-pub async fn create_extension(configuration: &configuration::Configuration, params: CreateExtensionParams) -> Result<crate::models::Extension, Error<CreateExtensionError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let extension = params.extension;
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/v1/extensions", local_var_configuration.base_path);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&extension);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<CreateExtensionError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
+pub struct ExtensionsApi {
+    pub configuration: configuration::Configuration
 }
 
-/// Deletes the specified extension. When deleted an extension can no longer be accessed. Additionally users cannot use that extension to log in, nor can the service client associated with the extension be used to access data secured by Authress. The related Access Records will automatically be deleted.
-pub async fn delete_extension(configuration: &configuration::Configuration, params: DeleteExtensionParams) -> Result<(), Error<DeleteExtensionError>> {
-    let local_var_configuration = configuration;
+impl ExtensionsApi {
+    /// Specify the extension details for a new developer extension. Creating the extension enables developers to build applications that can log in to your platform and interact with your users' data.
+    pub async fn create_extension(&self, params: CreateExtensionParams) -> Result<crate::models::Extension, Error<CreateExtensionError>> {
+        let local_var_configuration = &self.configuration;
 
-    // unbox the parameters
-    let extension_id = params.extension_id;
+        // unbox the parameters
+        let extension = params.extension;
 
 
-    let local_var_client = &local_var_configuration.client;
+        let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v1/extensions/{extensionId}", local_var_configuration.base_path, extensionId=crate::apis::urlencode(extension_id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
+        let local_var_uri_str = format!("{}/v1/extensions", "");
+        let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::POST, local_var_uri_str);
+        local_var_req_builder = local_var_req_builder.json(&extension);
 
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<CreateExtensionError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
 
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    /// Deletes the specified extension. When deleted an extension can no longer be accessed. Additionally users cannot use that extension to log in, nor can the service client associated with the extension be used to access data secured by Authress. The related Access Records will automatically be deleted.
+    pub async fn delete_extension(&self, params: DeleteExtensionParams) -> Result<(), Error<DeleteExtensionError>> {
+        let local_var_configuration = &self.configuration;
 
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+        // unbox the parameters
+        let extension_id = params.extension_id;
 
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
-    } else {
-        let local_var_entity: Option<DeleteExtensionError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/v1/extensions/{extensionId}", "", extensionId=crate::apis::urlencode(extension_id));
+        let local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::DELETE, local_var_uri_str);
+
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            Ok(())
+        } else {
+            let local_var_entity: Option<DeleteExtensionError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
+    }
+
+    /// Gets the platform extension details for the existing extension.
+    pub async fn get_extension(&self, params: GetExtensionParams) -> Result<crate::models::Extension, Error<GetExtensionError>> {
+        let local_var_configuration = &self.configuration;
+
+        // unbox the parameters
+        let extension_id = params.extension_id;
+
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/v1/extensions/{extensionId}", "", extensionId=crate::apis::urlencode(extension_id));
+        let local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
+
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<GetExtensionError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
+    }
+
+    /// Lists the platform extensions. Extensions are the applications that developers of your platform have created for your users to interact with. Returns a paginated extension list for the account. Only extensions the user has access to are returned.
+    pub async fn get_extensions(&self) -> Result<crate::models::ExtensionCollection, Error<GetExtensionsError>> {
+        let local_var_configuration = &self.configuration;
+
+        // unbox the parameters
+
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/v1/extensions", "");
+        let local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
+
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<GetExtensionsError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
+    }
+
+/*
+    /// *Note*: This endpoint is only to be used for [Authress Platform Extensions](https://authress.io/knowledge-base/docs/extensions/). If you are not building an app marketplace, then tokens can be directly requested for Service Clients, using the relevant [SDK](https://authress.io/app/#/api).<br><br>Start the OAuth login by redirecting the user to the OAuth Authorize endpoint. This generates a JWT for the user using the configured application, client ID, and connection.<br><br>The OAuth 2.1 authorization request that follows [RFC 6749](https://www.rfc-editor.org/rfc/rfc6749). Enables users to request a JWT signed by Authress and Returns an OAuth JWT containing the relevant user claims. Tokens generated must be verified before usage by validating the `sub`, `iss`, and `aud` properties in the JWT. Please note, that the properties in the request and response use snake_case to explicitly follow the standard.<br><br>The ExtensionClient in the [@authress/login](https://github.com/Authress/authress-login.js#platform-extension-login) npm package provides all the necessary logic to make this easy.
+    pub async fn login(&self, params: LoginParams) -> Result<crate::models::OAuthAuthorizeResponse, Error<LoginError>> {
+        let local_var_configuration = &self.configuration;
+
+        // unbox the parameters
+        let client_id = params.client_id;
+        let code_challenge = params.code_challenge;
+        let redirect_uri = params.redirect_uri;
+        let code_challenge_method = params.code_challenge_method;
+
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/", "");
+        let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
+
+        local_var_req_builder = local_var_req_builder.query(&[("client_id", &client_id.to_string())]);
+        local_var_req_builder = local_var_req_builder.query(&[("code_challenge", &code_challenge.to_string())]);
+        if let Some(ref local_var_str) = code_challenge_method {
+            local_var_req_builder = local_var_req_builder.query(&[("code_challenge_method", &local_var_str.to_string())]);
+        }
+        local_var_req_builder = local_var_req_builder.query(&[("redirect_uri", &redirect_uri.to_string())]);
+
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<LoginError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
+    }
+
+    /// *Note*: This endpoint is only to be used for [Authress Platform Extensions](https://authress.io/knowledge-base/docs/extensions/). If you are not building an app marketplace, then tokens can be directly requested for Service Clients, using the relevant [SDK](https://authress.io/app/#/api).<br><br>Request an OAuth JWT. Can either be called with service client credentials or as the second part of the user authorize login flow.<br>When using the `password` grant_type, service client authentication must be used via the Authress SDKs, and requires the `Authress:AuthenticateUser` role.<br><br>The OAuth 2.1 token request that follows [RFC 6749](https://www.rfc-editor.org/rfc/rfc6749). Enables users to request a JWT signed by Authress, and returns an OAuth JWT containing the relevant user claims. Tokens generated must be verified before usage by validating the `sub`, `iss`, and `aud` properties in the JWT. Please note, that the properties in the request and response use snake_case to explicitly follow the standard.<br><br>The ExtensionClient in the [@authress/login](https://github.com/Authress/authress-login.js#platform-extension-login) npm package provides all the necessary logic to make this easy.
+    pub async fn request_token(&self, params: RequestTokenParams) -> Result<crate::models::OAuthTokenResponse, Error<RequestTokenError>> {
+        let local_var_configuration = &self.configuration;
+
+        // unbox the parameters
+        let oauth_token_request = params.oauth_token_request;
+
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/api/authentication/oauth/tokens", "");
+        let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::POST, local_var_uri_str);
+
+        local_var_req_builder = local_var_req_builder.json(&oauth_token_request);
+
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<RequestTokenError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
+    }
+
+*/
+    /// Specify the updated extension. The extension will be updated and these changes will be reflected to the access control and user authentication associated with the extension.
+    pub async fn update_extension(&self, params: UpdateExtensionParams) -> Result<crate::models::Extension, Error<UpdateExtensionError>> {
+        let local_var_configuration = &self.configuration;
+
+        // unbox the parameters
+        let extension_id = params.extension_id;
+        let extension = params.extension;
+
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/v1/extensions/{extensionId}", "", extensionId=crate::apis::urlencode(extension_id));
+        let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::PUT, local_var_uri_str);
+        local_var_req_builder = local_var_req_builder.json(&extension);
+
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<UpdateExtensionError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
 }
-
-/// Gets the platform extension details for the existing extension.
-pub async fn get_extension(configuration: &configuration::Configuration, params: GetExtensionParams) -> Result<crate::models::Extension, Error<GetExtensionError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let extension_id = params.extension_id;
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/v1/extensions/{extensionId}", local_var_configuration.base_path, extensionId=crate::apis::urlencode(extension_id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<GetExtensionError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// Lists the platform extensions. Extensions are the applications that developers of your platform have created for your users to interact with. Returns a paginated extension list for the account. Only extensions the user has access to are returned.
-pub async fn get_extensions(configuration: &configuration::Configuration) -> Result<crate::models::ExtensionCollection, Error<GetExtensionsError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/v1/extensions", local_var_configuration.base_path);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<GetExtensionsError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// *Note*: This endpoint is only to be used for [Authress Platform Extensions](https://authress.io/knowledge-base/docs/extensions/). If you are not building an app marketplace, then tokens can be directly requested for Service Clients, using the relevant [SDK](https://authress.io/app/#/api).<br><br>Start the OAuth login by redirecting the user to the OAuth Authorize endpoint. This generates a JWT for the user using the configured application, client ID, and connection.<br><br>The OAuth 2.1 authorization request that follows [RFC 6749](https://www.rfc-editor.org/rfc/rfc6749). Enables users to request a JWT signed by Authress and Returns an OAuth JWT containing the relevant user claims. Tokens generated must be verified before usage by validating the `sub`, `iss`, and `aud` properties in the JWT. Please note, that the properties in the request and response use snake_case to explicitly follow the standard.<br><br>The ExtensionClient in the [@authress/login](https://github.com/Authress/authress-login.js#platform-extension-login) npm package provides all the necessary logic to make this easy.
-pub async fn login(configuration: &configuration::Configuration, params: LoginParams) -> Result<crate::models::OAuthAuthorizeResponse, Error<LoginError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let client_id = params.client_id;
-    let code_challenge = params.code_challenge;
-    let redirect_uri = params.redirect_uri;
-    let code_challenge_method = params.code_challenge_method;
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/", local_var_configuration.base_path);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    local_var_req_builder = local_var_req_builder.query(&[("client_id", &client_id.to_string())]);
-    local_var_req_builder = local_var_req_builder.query(&[("code_challenge", &code_challenge.to_string())]);
-    if let Some(ref local_var_str) = code_challenge_method {
-        local_var_req_builder = local_var_req_builder.query(&[("code_challenge_method", &local_var_str.to_string())]);
-    }
-    local_var_req_builder = local_var_req_builder.query(&[("redirect_uri", &redirect_uri.to_string())]);
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<LoginError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// *Note*: This endpoint is only to be used for [Authress Platform Extensions](https://authress.io/knowledge-base/docs/extensions/). If you are not building an app marketplace, then tokens can be directly requested for Service Clients, using the relevant [SDK](https://authress.io/app/#/api).<br><br>Request an OAuth JWT. Can either be called with service client credentials or as the second part of the user authorize login flow.<br>When using the `password` grant_type, service client authentication must be used via the Authress SDKs, and requires the `Authress:AuthenticateUser` role.<br><br>The OAuth 2.1 token request that follows [RFC 6749](https://www.rfc-editor.org/rfc/rfc6749). Enables users to request a JWT signed by Authress, and returns an OAuth JWT containing the relevant user claims. Tokens generated must be verified before usage by validating the `sub`, `iss`, and `aud` properties in the JWT. Please note, that the properties in the request and response use snake_case to explicitly follow the standard.<br><br>The ExtensionClient in the [@authress/login](https://github.com/Authress/authress-login.js#platform-extension-login) npm package provides all the necessary logic to make this easy.
-pub async fn request_token(configuration: &configuration::Configuration, params: RequestTokenParams) -> Result<crate::models::OAuthTokenResponse, Error<RequestTokenError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let oauth_token_request = params.oauth_token_request;
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/api/authentication/oauth/tokens", local_var_configuration.base_path);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    local_var_req_builder = local_var_req_builder.json(&oauth_token_request);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<RequestTokenError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// Specify the updated extension. The extension will be updated and these changes will be reflected to the access control and user authentication associated with the extension.
-pub async fn update_extension(configuration: &configuration::Configuration, params: UpdateExtensionParams) -> Result<crate::models::Extension, Error<UpdateExtensionError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let extension_id = params.extension_id;
-    let extension = params.extension;
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/v1/extensions/{extensionId}", local_var_configuration.base_path, extensionId=crate::apis::urlencode(extension_id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&extension);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<UpdateExtensionError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-

@@ -61,124 +61,107 @@ pub enum GetUsersError {
     UnknownValue(serde_json::Value),
 }
 
-
-/// Removes the user, all access the user has been granted through Authress access records, and any related user data. This action is completed asynchronously.
-pub async fn delete_user(configuration: &configuration::Configuration, params: DeleteUserParams) -> Result<(), Error<DeleteUserError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let user_id = params.user_id;
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/v1/users/{userId}", local_var_configuration.base_path, userId=user_id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
-    } else {
-        let local_var_entity: Option<DeleteUserError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
+pub struct UsersApi {
+    pub configuration: configuration::Configuration
 }
 
-/// Get the user data associated with a user. The data returned by this endpoint is highly variable based on the source OAuth provider. Avoid depending on undocumented properties.
-pub async fn get_user(configuration: &configuration::Configuration, params: GetUserParams) -> Result<crate::models::UserIdentity, Error<GetUserError>> {
-    let local_var_configuration = configuration;
+impl UsersApi {
+    /// Removes the user, all access the user has been granted through Authress access records, and any related user data. This action is completed asynchronously.
+    pub async fn delete_user(&self, params: DeleteUserParams) -> Result<(), Error<DeleteUserError>> {
+        let local_var_configuration = &self.configuration;
 
-    // unbox the parameters
-    let user_id = params.user_id;
+        // unbox the parameters
+        let user_id = params.user_id;
 
 
-    let local_var_client = &local_var_configuration.client;
+        let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v1/users/{userId}", local_var_configuration.base_path, userId=user_id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+        let local_var_uri_str = format!("{}/v1/users/{userId}", "", userId=user_id);
+        let local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::DELETE, local_var_uri_str);
 
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            Ok(())
+        } else {
+            let local_var_entity: Option<DeleteUserError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
 
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    /// Get the user data associated with a user. The data returned by this endpoint is highly variable based on the source OAuth provider. Avoid depending on undocumented properties.
+    pub async fn get_user(&self, params: GetUserParams) -> Result<crate::models::UserIdentity, Error<GetUserError>> {
+        let local_var_configuration = &self.configuration;
 
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+        // unbox the parameters
+        let user_id = params.user_id;
 
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<GetUserError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/v1/users/{userId}", "", userId=user_id);
+        let local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
+
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<GetUserError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
+    }
+
+    /// Returns a paginated user list for the account. The data returned by this endpoint is highly variable based on the source OAuth provider. Avoid depending on undocumented properties.
+    pub async fn get_users(&self, params: GetUsersParams) -> Result<crate::models::UserIdentityCollection, Error<GetUsersError>> {
+        let local_var_configuration = &self.configuration;
+
+        // unbox the parameters
+        let limit = params.limit;
+        let cursor = params.cursor;
+        let filter = params.filter;
+        let tenant_id = params.tenant_id;
+
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/v1/users", "");
+        let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
+
+        if let Some(ref local_var_str) = limit {
+            local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+        }
+        if let Some(ref local_var_str) = cursor {
+            local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
+        }
+        if let Some(ref local_var_str) = filter {
+            local_var_req_builder = local_var_req_builder.query(&[("filter", &local_var_str.to_string())]);
+        }
+        if let Some(ref local_var_str) = tenant_id {
+            local_var_req_builder = local_var_req_builder.query(&[("tenantId", &local_var_str.to_string())]);
+        }
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<GetUsersError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
 }
-
-/// Returns a paginated user list for the account. The data returned by this endpoint is highly variable based on the source OAuth provider. Avoid depending on undocumented properties.
-pub async fn get_users(configuration: &configuration::Configuration, params: GetUsersParams) -> Result<crate::models::UserIdentityCollection, Error<GetUsersError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let limit = params.limit;
-    let cursor = params.cursor;
-    let filter = params.filter;
-    let tenant_id = params.tenant_id;
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/v1/users", local_var_configuration.base_path);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_str) = limit {
-        local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = cursor {
-        local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = filter {
-        local_var_req_builder = local_var_req_builder.query(&[("filter", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = tenant_id {
-        local_var_req_builder = local_var_req_builder.query(&[("tenantId", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<GetUsersError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-

@@ -87,168 +87,144 @@ pub enum GetUserRolesForResourceError {
     UnknownValue(serde_json::Value),
 }
 
-
-/// Performs the user authorization check. Does the user have the specified permission to the resource?
-pub async fn authorize_user(configuration: &configuration::Configuration, params: AuthorizeUserParams) -> Result<(), Error<AuthorizeUserError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let user_id = params.user_id;
-    let resource_uri = params.resource_uri;
-    let permission = params.permission;
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/v1/users/{userId}/resources/{resourceUri}/permissions/{permission}", local_var_configuration.base_path, userId=user_id, resourceUri=crate::apis::urlencode(resource_uri), permission=permission);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
-    } else {
-        let local_var_entity: Option<AuthorizeUserError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
+pub struct UserPermissionsApi {
+    pub configuration: configuration::Configuration
 }
 
-/// Get a summary of the permissions a user has to a particular resource.
-pub async fn get_user_permissions_for_resource(configuration: &configuration::Configuration, params: GetUserPermissionsForResourceParams) -> Result<crate::models::PermissionCollection, Error<GetUserPermissionsForResourceError>> {
-    let local_var_configuration = configuration;
+impl UserPermissionsApi {
+    /// Performs the user authorization check. Does the user have the specified permission to the resource?
+    pub async fn authorize_user(&self, params: AuthorizeUserParams) -> Result<(), Error<AuthorizeUserError>> {
+        let local_var_configuration = &self.configuration;
 
-    // unbox the parameters
-    let user_id = params.user_id;
-    let resource_uri = params.resource_uri;
+        // unbox the parameters
+        let user_id = params.user_id;
+        let resource_uri = params.resource_uri;
+        let permission = params.permission;
 
 
-    let local_var_client = &local_var_configuration.client;
+        let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v1/users/{userId}/resources/{resourceUri}/permissions", local_var_configuration.base_path, userId=user_id, resourceUri=crate::apis::urlencode(resource_uri));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+        let local_var_uri_str = format!("{}/v1/users/{userId}/resources/{resourceUri}/permissions/{permission}", "", userId=user_id, resourceUri=crate::apis::urlencode(resource_uri), permission=permission);
+        let local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
 
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            Ok(())
+        } else {
+            let local_var_entity: Option<AuthorizeUserError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
 
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    /// Get a summary of the permissions a user has to a particular resource.
+    pub async fn get_user_permissions_for_resource(&self, params: GetUserPermissionsForResourceParams) -> Result<crate::models::PermissionCollection, Error<GetUserPermissionsForResourceError>> {
+        let local_var_configuration = &self.configuration;
 
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+        // unbox the parameters
+        let user_id = params.user_id;
+        let resource_uri = params.resource_uri;
 
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<GetUserPermissionsForResourceError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/v1/users/{userId}/resources/{resourceUri}/permissions", "", userId=user_id, resourceUri=crate::apis::urlencode(resource_uri));
+        let local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
+
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<GetUserPermissionsForResourceError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
+    }
+
+    /// Get the users resources. This result is a list of resource uris that a user has an permission to. By default only the top level matching resources are returned. To get a user's list of deeply nested resources, set the `collectionConfiguration` to be `INCLUDE_NESTED`. This collection is paginated.
+    pub async fn get_user_resources(&self, params: GetUserResourcesParams) -> Result<crate::models::UserResources, Error<GetUserResourcesError>> {
+        let local_var_configuration = &self.configuration;
+
+        // unbox the parameters
+        let user_id = params.user_id;
+        let resource_uri = params.resource_uri;
+        let collection_configuration = params.collection_configuration;
+        let permissions = params.permissions;
+        let limit = params.limit;
+        let cursor = params.cursor;
+
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/v1/users/{userId}/resources", "", userId=user_id);
+        let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
+
+        if let Some(ref local_var_str) = resource_uri {
+            local_var_req_builder = local_var_req_builder.query(&[("resourceUri", &local_var_str.to_string())]);
+        }
+        if let Some(ref local_var_str) = collection_configuration {
+            local_var_req_builder = local_var_req_builder.query(&[("collectionConfiguration", &local_var_str.to_string())]);
+        }
+        if let Some(ref local_var_str) = permissions {
+            local_var_req_builder = local_var_req_builder.query(&[("permissions", &local_var_str.to_string())]);
+        }
+        if let Some(ref local_var_str) = limit {
+            local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+        }
+        if let Some(ref local_var_str) = cursor {
+            local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
+        }
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<GetUserResourcesError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
+    }
+
+    /// Get a summary of the roles a user has to a particular resource. Users can be assigned roles from multiple access records, this may cause the same role to appear in the list more than once.
+    pub async fn get_user_roles_for_resource(&self, params: GetUserRolesForResourceParams) -> Result<crate::models::UserRoleCollection, Error<GetUserRolesForResourceError>> {
+        let local_var_configuration = &self.configuration;
+
+        // unbox the parameters
+        let user_id = params.user_id;
+        let resource_uri = params.resource_uri;
+
+
+        let local_var_client = &local_var_configuration.client;
+
+        let local_var_uri_str = format!("{}/v1/users/{userId}/resources/{resourceUri}/roles", "", userId=user_id, resourceUri=crate::apis::urlencode(resource_uri));
+        let local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
+
+        let local_var_req = local_var_req_builder.build()?;
+        let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+        let local_var_status = local_var_resp.status();
+        let local_var_content = local_var_resp.text().await?;
+
+        if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+            serde_json::from_str(&local_var_content).map_err(Error::from)
+        } else {
+            let local_var_entity: Option<GetUserRolesForResourceError> = serde_json::from_str(&local_var_content).ok();
+            let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+            Err(Error::ResponseError(local_var_error))
+        }
     }
 }
-
-/// Get the users resources. This result is a list of resource uris that a user has an permission to. By default only the top level matching resources are returned. To get a user's list of deeply nested resources, set the `collectionConfiguration` to be `INCLUDE_NESTED`. This collection is paginated.
-pub async fn get_user_resources(configuration: &configuration::Configuration, params: GetUserResourcesParams) -> Result<crate::models::UserResources, Error<GetUserResourcesError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let user_id = params.user_id;
-    let resource_uri = params.resource_uri;
-    let collection_configuration = params.collection_configuration;
-    let permissions = params.permissions;
-    let limit = params.limit;
-    let cursor = params.cursor;
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/v1/users/{userId}/resources", local_var_configuration.base_path, userId=user_id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_str) = resource_uri {
-        local_var_req_builder = local_var_req_builder.query(&[("resourceUri", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = collection_configuration {
-        local_var_req_builder = local_var_req_builder.query(&[("collectionConfiguration", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = permissions {
-        local_var_req_builder = local_var_req_builder.query(&[("permissions", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = limit {
-        local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = cursor {
-        local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<GetUserResourcesError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// Get a summary of the roles a user has to a particular resource. Users can be assigned roles from multiple access records, this may cause the same role to appear in the list more than once.
-pub async fn get_user_roles_for_resource(configuration: &configuration::Configuration, params: GetUserRolesForResourceParams) -> Result<crate::models::UserRoleCollection, Error<GetUserRolesForResourceError>> {
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let user_id = params.user_id;
-    let resource_uri = params.resource_uri;
-
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/v1/users/{userId}/resources/{resourceUri}/roles", local_var_configuration.base_path, userId=user_id, resourceUri=crate::apis::urlencode(resource_uri));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<GetUserRolesForResourceError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-

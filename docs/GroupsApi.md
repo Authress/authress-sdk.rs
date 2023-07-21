@@ -1,7 +1,4 @@
 # \GroupsApi
-
-All URIs are relative to *http://localhost*
-
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_group**](GroupsApi.md#create_group) | **POST** /v1/groups | Create group

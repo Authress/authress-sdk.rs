@@ -1,7 +1,4 @@
 # \ExtensionsApi
-
-All URIs are relative to *http://localhost*
-
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_extension**](ExtensionsApi.md#create_extension) | **POST** /v1/extensions | Create extension

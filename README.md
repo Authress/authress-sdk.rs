@@ -30,8 +30,6 @@ See the SDK reference guide for a examples of commonly executed blocks with desc
 
 [SDK Documentation](./docs/README.md)
 
-[SDK reference examples](./docs/examples/README.md)
-
 ### Contribution Guide
 
 [Developing for the Rust SDK](./contributing.md)

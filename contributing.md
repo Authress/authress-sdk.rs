@@ -32,9 +32,12 @@ podman stop $CID && podman rm $CID
 
 ### Common review items
 * Add authentication to the configuration class.
+* Update documentation
+  * Make sure markdown is valid
+  * Remove unnecessary links
+  * Add first class examples to readme.md + api documentation
 * Url encode all url inputs, frequently the generator doesn't do that
 * Remove any unnecessary validations from object and parameter injection, often there are some even when properties are allowed to be null
 * The service client code to generate a JWT from private key needs to be added
 * Top level tags from the API should accessible from the base class: `authressClient.accessRecords.getRecords(...)`
-* Add first class examples to readme.md
 * Test

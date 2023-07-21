@@ -20,9 +20,9 @@ Performs the user authorization check. Does the user have the specified permissi
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | [**UserId**](.md) | The user to check permissions on | [required] |
+**user_id** | **String** | The user to check permissions on | [required] |
 **resource_uri** | **String** | The uri path of a resource to validate, must be URL encoded, uri segments are allowed, the resource must be a full path. | [required] |
-**permission** | [**Action**](.md) | Permission to check, '*' and scoped permissions can also be checked here. | [required] |
+**permission** | **String** | Permission to check, '*' and scoped permissions can also be checked here. | [required] |
 
 ### Return type
 
@@ -44,7 +44,7 @@ Get a summary of the permissions a user has to a particular resource.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | [**UserId**](.md) | The user to check permissions on | [required] |
+**user_id** | **String** | The user to check permissions on | [required] |
 **resource_uri** | **String** | The uri path of a resource to validate, must be URL encoded, uri segments are allowed. | [required] |
 
 ### Return type
@@ -67,10 +67,10 @@ Get the users resources. This result is a list of resource uris that a user has 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | [**UserId**](.md) | The user to check permissions on | [required] |
+**user_id** | **String** | The user to check permissions on | [required] |
 **resource_uri** | Option<**String**> | The top level uri path of a resource to query for. Will only match explicit or nested sub-resources. Will not partial match resource names. |  |
 **collection_configuration** | Option<**String**> | `TOP_LEVEL_ONLY` - returns only directly nested resources under the resourceUri. A query to `resourceUri=Collection` will return `Collection/resource_1`.<br>`INCLUDE_NESTED` - will return all sub-resources as well as deeply nested resources that the user has the specified permission to. A query to `resourceUri=Collection` will return `Collection/namespaces/ns/resources/resource_1`.<br><br>To return matching resources for nested resources, set this parameter to `INCLUDE_NESTED`. |  |[default to TOP_LEVEL_ONLY]
-**permissions** | Option<[**Action**](.md)> | Permission to check, '*' and scoped permissions can also be checked here. By default if the user has any permission explicitly to a resource, it will be included in the list. |  |
+**permissions** | Option<**String**> | Permission to check, '*' and scoped permissions can also be checked here. By default if the user has any permission explicitly to a resource, it will be included in the list. |  |
 **limit** | Option<**u32**> | Max number of results to return |  |[default to 20]
 **cursor** | Option<**String**> | Continuation cursor for paging |  |
 
@@ -94,7 +94,7 @@ Get a summary of the roles a user has to a particular resource. Users can be ass
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | [**UserId**](.md) | The user to get roles for. | [required] |
+**user_id** | **String** | The user to get roles for. | [required] |
 **resource_uri** | **String** | The uri path of a resource to get roles for, must be URL encoded. Checks for explicit resource roles, roles attached to parent resources are not returned. | [required] |
 
 ### Return type

@@ -19,7 +19,7 @@ Removes the user, all access the user has been granted through Authress access r
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | [**UserId**](.md) | The user identifier. | [required] |
+**user_id** | **String** | The user identifier. | [required] |
 
 ### Return type
 

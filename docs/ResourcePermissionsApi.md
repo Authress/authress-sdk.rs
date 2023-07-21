@@ -1,10 +1,10 @@
-# \ResourcePermissionsApi
+# ResourcePermissions
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_permissioned_resource**](ResourcePermissionsApi.md#get_permissioned_resource) | **GET** /v1/resources/{resourceUri} | Retrieve resource configuration
-[**get_permissioned_resources**](ResourcePermissionsApi.md#get_permissioned_resources) | **GET** /v1/resources | List all resource configurations
-[**get_resource_users**](ResourcePermissionsApi.md#get_resource_users) | **GET** /v1/resources/{resourceUri}/users | List users with resource access
-[**update_permissioned_resource**](ResourcePermissionsApi.md#update_permissioned_resource) | **PUT** /v1/resources/{resourceUri} | Update resource configuration
+[**get_permissioned_resource**](#get_permissioned_resource) | **GET** /v1/resources/{resourceUri} | Retrieve resource configuration
+[**get_permissioned_resources**](#get_permissioned_resources) | **GET** /v1/resources | List all resource configurations
+[**get_resource_users**](#get_resource_users) | **GET** /v1/resources/{resourceUri}/users | List users with resource access
+[**update_permissioned_resource**](#update_permissioned_resource) | **PUT** /v1/resources/{resourceUri} | Update resource configuration
 
 
 
@@ -26,14 +26,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::PermissionedResource**](PermissionedResource.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -53,14 +45,6 @@ This endpoint does not need any parameter.
 
 [**crate::models::PermissionedResourceCollection**](PermissionedResourceCollection.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -85,14 +69,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::ResourceUsersCollection**](ResourceUsersCollection.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -115,15 +91,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
  (empty response body)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 

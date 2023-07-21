@@ -1,10 +1,10 @@
-# \UserPermissionsApi
+# UserPermissions
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**authorize_user**](UserPermissionsApi.md#authorize_user) | **GET** /v1/users/{userId}/resources/{resourceUri}/permissions/{permission} | Verify user authorization
-[**get_user_permissions_for_resource**](UserPermissionsApi.md#get_user_permissions_for_resource) | **GET** /v1/users/{userId}/resources/{resourceUri}/permissions | Get user permissions for resource
-[**get_user_resources**](UserPermissionsApi.md#get_user_resources) | **GET** /v1/users/{userId}/resources | List user resources
-[**get_user_roles_for_resource**](UserPermissionsApi.md#get_user_roles_for_resource) | **GET** /v1/users/{userId}/resources/{resourceUri}/roles | Get user roles for resource
+[**authorize_user**](#authorize_user) | **GET** /v1/users/{userId}/resources/{resourceUri}/permissions/{permission} | Verify user authorization
+[**get_user_permissions_for_resource**](#get_user_permissions_for_resource) | **GET** /v1/users/{userId}/resources/{resourceUri}/permissions | Get user permissions for resource
+[**get_user_resources**](#get_user_resources) | **GET** /v1/users/{userId}/resources | List user resources
+[**get_user_roles_for_resource**](#get_user_roles_for_resource) | **GET** /v1/users/{userId}/resources/{resourceUri}/roles | Get user roles for resource
 
 
 
@@ -28,14 +28,6 @@ Name | Type | Description  | Required | Notes
 
  (empty response body)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -59,14 +51,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::PermissionCollection**](PermissionCollection.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -94,14 +78,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::UserResources**](UserResources.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -125,14 +101,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::UserRoleCollection**](UserRoleCollection.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 

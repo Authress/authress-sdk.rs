@@ -1,11 +1,11 @@
-# \RolesApi
+# Roles
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_role**](RolesApi.md#create_role) | **POST** /v1/roles | Create role
-[**delete_role**](RolesApi.md#delete_role) | **DELETE** /v1/roles/{roleId} | Deletes role
-[**get_role**](RolesApi.md#get_role) | **GET** /v1/roles/{roleId} | Retrieve role
-[**get_roles**](RolesApi.md#get_roles) | **GET** /v1/roles | List roles
-[**update_role**](RolesApi.md#update_role) | **PUT** /v1/roles/{roleId} | Update role
+[**create_role**](#create_role) | **POST** /v1/roles | Create role
+[**delete_role**](#delete_role) | **DELETE** /v1/roles/{roleId} | Deletes role
+[**get_role**](#get_role) | **GET** /v1/roles/{roleId} | Retrieve role
+[**get_roles**](#get_roles) | **GET** /v1/roles | List roles
+[**update_role**](#update_role) | **PUT** /v1/roles/{roleId} | Update role
 
 
 
@@ -26,15 +26,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Role**](Role.md)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -57,14 +48,6 @@ Name | Type | Description  | Required | Notes
 
  (empty response body)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -87,14 +70,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Role**](Role.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -114,14 +89,6 @@ This endpoint does not need any parameter.
 
 [**crate::models::RoleCollection**](RoleCollection.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -144,15 +111,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Role**](Role.md)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 

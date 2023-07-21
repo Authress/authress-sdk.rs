@@ -1,7 +1,7 @@
-# \ApplicationsApi
+# Applications
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delegate_user_login**](ApplicationsApi.md#delegate_user_login) | **POST** /v1/applications/{applicationId}/users/{userId}/delegation | Log user into third-party application
+[**delegate_user_login**](#delegate_user_login) | **POST** /v1/applications/{applicationId}/users/{userId}/delegation | Log user into third-party application
 
 
 
@@ -24,14 +24,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::ApplicationDelegation**](ApplicationDelegation.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 

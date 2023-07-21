@@ -1,13 +1,13 @@
-# \ExtensionsApi
+# Extensions
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_extension**](ExtensionsApi.md#create_extension) | **POST** /v1/extensions | Create extension
-[**delete_extension**](ExtensionsApi.md#delete_extension) | **DELETE** /v1/extensions/{extensionId} | Delete extension
-[**get_extension**](ExtensionsApi.md#get_extension) | **GET** /v1/extensions/{extensionId} | Retrieve extension
-[**get_extensions**](ExtensionsApi.md#get_extensions) | **GET** /v1/extensions | List extensions
-[**login**](ExtensionsApi.md#login) | **GET** / | OAuth Authorize
-[**request_token**](ExtensionsApi.md#request_token) | **POST** /api/authentication/oauth/tokens | OAuth Token
-[**update_extension**](ExtensionsApi.md#update_extension) | **PUT** /v1/extensions/{extensionId} | Update extension
+[**create_extension**](#create_extension) | **POST** /v1/extensions | Create extension
+[**delete_extension**](#delete_extension) | **DELETE** /v1/extensions/{extensionId} | Delete extension
+[**get_extension**](#get_extension) | **GET** /v1/extensions/{extensionId} | Retrieve extension
+[**get_extensions**](#get_extensions) | **GET** /v1/extensions | List extensions
+[**login**](#login) | **GET** / | OAuth Authorize
+[**request_token**](#request_token) | **POST** /api/authentication/oauth/tokens | OAuth Token
+[**update_extension**](#update_extension) | **PUT** /v1/extensions/{extensionId} | Update extension
 
 
 
@@ -28,15 +28,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Extension**](Extension.md)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -59,14 +50,6 @@ Name | Type | Description  | Required | Notes
 
  (empty response body)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -89,14 +72,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Extension**](Extension.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -116,14 +91,6 @@ This endpoint does not need any parameter.
 
 [**crate::models::ExtensionCollection**](ExtensionCollection.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -153,11 +120,6 @@ Name | Type | Description  | Required | Notes
 
 No authorization required
 
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
-
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
 
@@ -183,10 +145,7 @@ Name | Type | Description  | Required | Notes
 
 No authorization required
 
-### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -209,15 +168,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Extension**](Extension.md)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 

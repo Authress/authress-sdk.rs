@@ -1,11 +1,11 @@
-# \TenantsApi
+# Tenants
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_tenant**](TenantsApi.md#create_tenant) | **POST** /v1/tenants | Create tenant
-[**delete_tenant**](TenantsApi.md#delete_tenant) | **DELETE** /v1/tenants/{tenantId} | Delete tenant
-[**get_tenant**](TenantsApi.md#get_tenant) | **GET** /v1/tenants/{tenantId} | Retrieve tenant
-[**get_tenants**](TenantsApi.md#get_tenants) | **GET** /v1/tenants | List tenants
-[**update_tenant**](TenantsApi.md#update_tenant) | **PUT** /v1/tenants/{tenantId} | Update tenant
+[**create_tenant**](#create_tenant) | **POST** /v1/tenants | Create tenant
+[**delete_tenant**](#delete_tenant) | **DELETE** /v1/tenants/{tenantId} | Delete tenant
+[**get_tenant**](#get_tenant) | **GET** /v1/tenants/{tenantId} | Retrieve tenant
+[**get_tenants**](#get_tenants) | **GET** /v1/tenants | List tenants
+[**update_tenant**](#update_tenant) | **PUT** /v1/tenants/{tenantId} | Update tenant
 
 
 
@@ -26,15 +26,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Tenant**](Tenant.md)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -57,14 +48,6 @@ Name | Type | Description  | Required | Notes
 
  (empty response body)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -87,14 +70,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Tenant**](Tenant.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -114,14 +89,6 @@ This endpoint does not need any parameter.
 
 [**crate::models::TenantCollection**](TenantCollection.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -144,15 +111,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Tenant**](Tenant.md)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 

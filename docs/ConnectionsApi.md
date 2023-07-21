@@ -1,12 +1,12 @@
-# \ConnectionsApi
+# Connections
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_connection**](ConnectionsApi.md#create_connection) | **POST** /v1/connections | Create SSO connection
-[**delete_connection**](ConnectionsApi.md#delete_connection) | **DELETE** /v1/connections/{connectionId} | Delete SSO connection
-[**get_connection**](ConnectionsApi.md#get_connection) | **GET** /v1/connections/{connectionId} | Retrieve SSO connection
-[**get_connection_credentials**](ConnectionsApi.md#get_connection_credentials) | **GET** /v1/connections/{connectionId}/users/{userId}/credentials | Retrieve user connection credentials
-[**get_connections**](ConnectionsApi.md#get_connections) | **GET** /v1/connections | List SSO connections
-[**update_connection**](ConnectionsApi.md#update_connection) | **PUT** /v1/connections/{connectionId} | Update SSO connection
+[**create_connection**](#create_connection) | **POST** /v1/connections | Create SSO connection
+[**delete_connection**](#delete_connection) | **DELETE** /v1/connections/{connectionId} | Delete SSO connection
+[**get_connection**](#get_connection) | **GET** /v1/connections/{connectionId} | Retrieve SSO connection
+[**get_connection_credentials**](#get_connection_credentials) | **GET** /v1/connections/{connectionId}/users/{userId}/credentials | Retrieve user connection credentials
+[**get_connections**](#get_connections) | **GET** /v1/connections | List SSO connections
+[**update_connection**](#update_connection) | **PUT** /v1/connections/{connectionId} | Update SSO connection
 
 
 
@@ -27,15 +27,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Connection**](Connection.md)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -58,14 +49,6 @@ Name | Type | Description  | Required | Notes
 
  (empty response body)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -88,14 +71,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Connection**](Connection.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -119,14 +94,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::UserConnectionCredentials**](UserConnectionCredentials.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -146,14 +113,6 @@ This endpoint does not need any parameter.
 
 [**crate::models::ConnectionCollection**](ConnectionCollection.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -176,15 +135,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Connection**](Connection.md)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 

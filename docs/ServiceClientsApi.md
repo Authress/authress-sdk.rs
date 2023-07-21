@@ -1,13 +1,13 @@
-# \ServiceClientsApi
+# ServiceClients
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_client**](ServiceClientsApi.md#create_client) | **POST** /v1/clients | Create service client
-[**delete_access_key**](ServiceClientsApi.md#delete_access_key) | **DELETE** /v1/clients/{clientId}/access-keys/{keyId} | Delete service client access key
-[**delete_client**](ServiceClientsApi.md#delete_client) | **DELETE** /v1/clients/{clientId} | Delete service client
-[**get_client**](ServiceClientsApi.md#get_client) | **GET** /v1/clients/{clientId} | Retrieve service client
-[**get_clients**](ServiceClientsApi.md#get_clients) | **GET** /v1/clients | List service clients
-[**request_access_key**](ServiceClientsApi.md#request_access_key) | **POST** /v1/clients/{clientId}/access-keys | Generate service client access key
-[**update_client**](ServiceClientsApi.md#update_client) | **PUT** /v1/clients/{clientId} | Update service client
+[**create_client**](#create_client) | **POST** /v1/clients | Create service client
+[**delete_access_key**](#delete_access_key) | **DELETE** /v1/clients/{clientId}/access-keys/{keyId} | Delete service client access key
+[**delete_client**](#delete_client) | **DELETE** /v1/clients/{clientId} | Delete service client
+[**get_client**](#get_client) | **GET** /v1/clients/{clientId} | Retrieve service client
+[**get_clients**](#get_clients) | **GET** /v1/clients | List service clients
+[**request_access_key**](#request_access_key) | **POST** /v1/clients/{clientId}/access-keys | Generate service client access key
+[**update_client**](#update_client) | **PUT** /v1/clients/{clientId} | Update service client
 
 
 
@@ -28,15 +28,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Client**](Client.md)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -60,14 +51,6 @@ Name | Type | Description  | Required | Notes
 
  (empty response body)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -90,14 +73,6 @@ Name | Type | Description  | Required | Notes
 
  (empty response body)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -120,14 +95,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Client**](Client.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -151,14 +118,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::ClientCollection**](ClientCollection.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -181,14 +140,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::ClientAccessKey**](ClientAccessKey.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -211,15 +162,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Client**](Client.md)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 

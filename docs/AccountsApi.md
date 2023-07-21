@@ -1,10 +1,10 @@
-# \AccountsApi
+# Accounts
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delegate_authentication**](AccountsApi.md#delegate_authentication) | **POST** /v1/identities | Link external provider
-[**get_account**](AccountsApi.md#get_account) | **GET** /v1/accounts/{accountId} | Retrieve account information
-[**get_account_identities**](AccountsApi.md#get_account_identities) | **GET** /v1/identities | List linked external providers
-[**get_accounts**](AccountsApi.md#get_accounts) | **GET** /v1/accounts | List user Authress accounts
+[**delegate_authentication**](#delegate_authentication) | **POST** /v1/identities | Link external provider
+[**get_account**](#get_account) | **GET** /v1/accounts/{accountId} | Retrieve account information
+[**get_account_identities**](#get_account_identities) | **GET** /v1/identities | List linked external providers
+[**get_accounts**](#get_accounts) | **GET** /v1/accounts | List user Authress accounts
 
 
 
@@ -25,15 +25,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
  (empty response body)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -56,14 +47,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Account**](Account.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -83,14 +66,6 @@ This endpoint does not need any parameter.
 
 [**crate::models::IdentityCollection**](IdentityCollection.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -113,14 +88,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::AccountCollection**](AccountCollection.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 

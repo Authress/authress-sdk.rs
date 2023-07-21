@@ -1,9 +1,9 @@
-# \UsersApi
+# Users
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_user**](UsersApi.md#delete_user) | **DELETE** /v1/users/{userId} | Delete a user
-[**get_user**](UsersApi.md#get_user) | **GET** /v1/users/{userId} | Retrieve a user
-[**get_users**](UsersApi.md#get_users) | **GET** /v1/users | List users
+[**delete_user**](#delete_user) | **DELETE** /v1/users/{userId} | Delete a user
+[**get_user**](#get_user) | **GET** /v1/users/{userId} | Retrieve a user
+[**get_users**](#get_users) | **GET** /v1/users | List users
 
 
 
@@ -25,14 +25,6 @@ Name | Type | Description  | Required | Notes
 
  (empty response body)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -55,14 +47,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::UserIdentity**](UserIdentity.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -88,14 +72,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::UserIdentityCollection**](UserIdentityCollection.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 

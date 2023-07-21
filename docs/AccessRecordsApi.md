@@ -1,20 +1,20 @@
-# \AccessRecordsApi
+# AccessRecords
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_claim**](AccessRecordsApi.md#create_claim) | **POST** /v1/claims | Create resource Claim
-[**create_invite**](AccessRecordsApi.md#create_invite) | **POST** /v1/invites | Create user invite
-[**create_record**](AccessRecordsApi.md#create_record) | **POST** /v1/records | Create access record
-[**create_request**](AccessRecordsApi.md#create_request) | **POST** /v1/requests | Create access request
-[**delete_invite**](AccessRecordsApi.md#delete_invite) | **DELETE** /v1/invites/{inviteId} | Delete invite
-[**delete_record**](AccessRecordsApi.md#delete_record) | **DELETE** /v1/records/{recordId} | Deletes access record
-[**delete_request**](AccessRecordsApi.md#delete_request) | **DELETE** /v1/requests/{requestId} | Deletes access request
-[**get_record**](AccessRecordsApi.md#get_record) | **GET** /v1/records/{recordId} | Retrieve access record
-[**get_records**](AccessRecordsApi.md#get_records) | **GET** /v1/records | List access records
-[**get_request**](AccessRecordsApi.md#get_request) | **GET** /v1/requests/{requestId} | Retrieve access request
-[**get_requests**](AccessRecordsApi.md#get_requests) | **GET** /v1/requests | List access requests
-[**respond_to_access_request**](AccessRecordsApi.md#respond_to_access_request) | **PATCH** /v1/requests/{requestId} | Approve or deny access request
-[**respond_to_invite**](AccessRecordsApi.md#respond_to_invite) | **PATCH** /v1/invites/{inviteId} | Accept invite
-[**update_record**](AccessRecordsApi.md#update_record) | **PUT** /v1/records/{recordId} | Update access record
+[**create_claim**](#create_claim) | **POST** /v1/claims | Create resource Claim
+[**create_invite**](#create_invite) | **POST** /v1/invites | Create user invite
+[**create_record**](#create_record) | **POST** /v1/records | Create access record
+[**create_request**](#create_request) | **POST** /v1/requests | Create access request
+[**delete_invite**](#delete_invite) | **DELETE** /v1/invites/{inviteId} | Delete invite
+[**delete_record**](#delete_record) | **DELETE** /v1/records/{recordId} | Deletes access record
+[**delete_request**](#delete_request) | **DELETE** /v1/requests/{requestId} | Deletes access request
+[**get_record**](#get_record) | **GET** /v1/records/{recordId} | Retrieve access record
+[**get_records**](#get_records) | **GET** /v1/records | List access records
+[**get_request**](#get_request) | **GET** /v1/requests/{requestId} | Retrieve access request
+[**get_requests**](#get_requests) | **GET** /v1/requests | List access requests
+[**respond_to_access_request**](#respond_to_access_request) | **PATCH** /v1/requests/{requestId} | Approve or deny access request
+[**respond_to_invite**](#respond_to_invite) | **PATCH** /v1/invites/{inviteId} | Accept invite
+[**update_record**](#update_record) | **PUT** /v1/records/{recordId} | Update access record
 
 
 
@@ -35,15 +35,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**serde_json::Value**](serde_json::Value.md)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -66,15 +57,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Invite**](Invite.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
-
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
 
@@ -95,15 +77,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::AccessRecord**](AccessRecord.md)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -126,15 +99,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::AccessRequest**](AccessRequest.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
-
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
 
@@ -156,14 +120,6 @@ Name | Type | Description  | Required | Notes
 
  (empty response body)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -186,14 +142,6 @@ Name | Type | Description  | Required | Notes
 
  (empty response body)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -216,14 +164,6 @@ Name | Type | Description  | Required | Notes
 
  (empty response body)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -246,14 +186,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::AccessRecord**](AccessRecord.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -279,14 +211,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::AccessRecordCollection**](AccessRecordCollection.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -309,14 +233,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::AccessRequest**](AccessRequest.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -341,14 +257,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::AccessRequestCollection**](AccessRequestCollection.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -372,15 +280,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::AccessRequest**](AccessRequest.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
-
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
 
@@ -402,14 +301,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Account**](Account.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -433,15 +324,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
  (empty response body)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 

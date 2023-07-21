@@ -1,11 +1,11 @@
-# \GroupsApi
+# Groups
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_group**](GroupsApi.md#create_group) | **POST** /v1/groups | Create group
-[**delete_group**](GroupsApi.md#delete_group) | **DELETE** /v1/groups/{groupId} | Deletes group
-[**get_group**](GroupsApi.md#get_group) | **GET** /v1/groups/{groupId} | Retrieve group
-[**get_groups**](GroupsApi.md#get_groups) | **GET** /v1/groups | List groups
-[**update_group**](GroupsApi.md#update_group) | **PUT** /v1/groups/{groupId} | Update a group
+[**create_group**](#create_group) | **POST** /v1/groups | Create group
+[**delete_group**](#delete_group) | **DELETE** /v1/groups/{groupId} | Deletes group
+[**get_group**](#get_group) | **GET** /v1/groups/{groupId} | Retrieve group
+[**get_groups**](#get_groups) | **GET** /v1/groups | List groups
+[**update_group**](#update_group) | **PUT** /v1/groups/{groupId} | Update a group
 
 
 
@@ -26,15 +26,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Group**](Group.md)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -57,14 +48,6 @@ Name | Type | Description  | Required | Notes
 
  (empty response body)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -87,14 +70,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Group**](Group.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -119,14 +94,6 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::GroupCollection**](GroupCollection.md)
 
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 
@@ -149,15 +116,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Group**](Group.md)
-
-### Authorization
-
-[oauth2](./README.md#oauth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/links+json
 
 [[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
 

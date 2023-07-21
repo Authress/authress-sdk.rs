@@ -36,7 +36,7 @@ Name | Type | Description  | Required | Notes
 
 [**serde_json::Value**](serde_json::Value.md)
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## create_invite
@@ -57,7 +57,7 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Invite**](Invite.md)
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## create_record
@@ -78,7 +78,7 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::AccessRecord**](AccessRecord.md)
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## create_request
@@ -99,7 +99,7 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::AccessRequest**](AccessRequest.md)
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## delete_invite
@@ -121,7 +121,7 @@ Name | Type | Description  | Required | Notes
  (empty response body)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## delete_record
@@ -143,7 +143,7 @@ Name | Type | Description  | Required | Notes
  (empty response body)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## delete_request
@@ -165,7 +165,7 @@ Name | Type | Description  | Required | Notes
  (empty response body)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_record
@@ -187,7 +187,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::AccessRecord**](AccessRecord.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_records
@@ -212,7 +212,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::AccessRecordCollection**](AccessRecordCollection.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_request
@@ -234,7 +234,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::AccessRequest**](AccessRequest.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_requests
@@ -258,7 +258,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::AccessRequestCollection**](AccessRequestCollection.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## respond_to_access_request
@@ -280,7 +280,7 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::AccessRequest**](AccessRequest.md)
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## respond_to_invite
@@ -302,7 +302,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::Account**](Account.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## update_record
@@ -325,5 +325,5 @@ Name | Type | Description  | Required | Notes
 
  (empty response body)
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 

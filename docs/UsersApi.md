@@ -26,7 +26,7 @@ Name | Type | Description  | Required | Notes
  (empty response body)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_user
@@ -48,7 +48,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::UserIdentity**](UserIdentity.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_users
@@ -73,5 +73,5 @@ Name | Type | Description  | Required | Notes
 [**crate::models::UserIdentityCollection**](UserIdentityCollection.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 

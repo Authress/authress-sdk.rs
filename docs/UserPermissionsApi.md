@@ -29,7 +29,7 @@ Name | Type | Description  | Required | Notes
  (empty response body)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_user_permissions_for_resource
@@ -52,7 +52,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::PermissionCollection**](PermissionCollection.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_user_resources
@@ -79,7 +79,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::UserResources**](UserResources.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_user_roles_for_resource
@@ -102,5 +102,5 @@ Name | Type | Description  | Required | Notes
 [**crate::models::UserRoleCollection**](UserRoleCollection.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 

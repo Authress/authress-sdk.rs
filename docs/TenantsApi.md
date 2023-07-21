@@ -27,7 +27,7 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Tenant**](Tenant.md)
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## delete_tenant
@@ -49,7 +49,7 @@ Name | Type | Description  | Required | Notes
  (empty response body)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_tenant
@@ -71,7 +71,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::Tenant**](Tenant.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_tenants
@@ -90,7 +90,7 @@ This endpoint does not need any parameter.
 [**crate::models::TenantCollection**](TenantCollection.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## update_tenant
@@ -112,5 +112,5 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Tenant**](Tenant.md)
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 

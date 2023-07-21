@@ -29,7 +29,7 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Extension**](Extension.md)
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## delete_extension
@@ -51,7 +51,7 @@ Name | Type | Description  | Required | Notes
  (empty response body)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_extension
@@ -73,7 +73,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::Extension**](Extension.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_extensions
@@ -92,7 +92,7 @@ This endpoint does not need any parameter.
 [**crate::models::ExtensionCollection**](ExtensionCollection.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## login
@@ -120,7 +120,7 @@ Name | Type | Description  | Required | Notes
 
 No authorization required
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## request_token
@@ -147,7 +147,7 @@ No authorization required
 
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## update_extension
@@ -169,5 +169,5 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Extension**](Extension.md)
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 

@@ -27,7 +27,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::PermissionedResource**](PermissionedResource.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_permissioned_resources
@@ -46,7 +46,7 @@ This endpoint does not need any parameter.
 [**crate::models::PermissionedResourceCollection**](PermissionedResourceCollection.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_resource_users
@@ -70,7 +70,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::ResourceUsersCollection**](ResourceUsersCollection.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## update_permissioned_resource
@@ -92,5 +92,5 @@ Name | Type | Description  | Required | Notes
 
  (empty response body)
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 

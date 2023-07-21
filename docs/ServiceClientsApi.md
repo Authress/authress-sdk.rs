@@ -29,7 +29,7 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Client**](Client.md)
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## delete_access_key
@@ -52,7 +52,7 @@ Name | Type | Description  | Required | Notes
  (empty response body)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## delete_client
@@ -74,7 +74,7 @@ Name | Type | Description  | Required | Notes
  (empty response body)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_client
@@ -96,7 +96,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::Client**](Client.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_clients
@@ -119,7 +119,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::ClientCollection**](ClientCollection.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## request_access_key
@@ -141,7 +141,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::ClientAccessKey**](ClientAccessKey.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## update_client
@@ -163,5 +163,5 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Client**](Client.md)
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 

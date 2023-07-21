@@ -26,7 +26,7 @@ Name | Type | Description  | Required | Notes
 
  (empty response body)
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_account
@@ -48,7 +48,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::Account**](Account.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_account_identities
@@ -67,7 +67,7 @@ This endpoint does not need any parameter.
 [**crate::models::IdentityCollection**](IdentityCollection.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_accounts
@@ -89,5 +89,5 @@ Name | Type | Description  | Required | Notes
 [**crate::models::AccountCollection**](AccountCollection.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 

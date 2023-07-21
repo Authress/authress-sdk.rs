@@ -27,7 +27,7 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Group**](Group.md)
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## delete_group
@@ -49,7 +49,7 @@ Name | Type | Description  | Required | Notes
  (empty response body)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_group
@@ -71,7 +71,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::Group**](Group.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## get_groups
@@ -95,7 +95,7 @@ Name | Type | Description  | Required | Notes
 [**crate::models::GroupCollection**](GroupCollection.md)
 
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 
 
 ## update_group
@@ -117,5 +117,5 @@ Name | Type | Description  | Required | Notes
 
 [**crate::models::Group**](Group.md)
 
-[[Back to top]](#) [[Back to API list]](./README.md#documentation-for-api-endpoints) [[Back to Model list]](./README.md#documentation-for-models) [[Back to README]](./README.md)
+---
 

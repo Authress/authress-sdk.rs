@@ -41,7 +41,7 @@ Get the user data associated with a user. The data returned by this endpoint is 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | [**UserId**](.md) | The user identifier. | [required] |
+**user_id** | **String** | The user identifier. | [required] |
 
 ### Return type
 

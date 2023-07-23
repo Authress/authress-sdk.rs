@@ -32,6 +32,8 @@ podman stop $CID && podman rm $CID
 
 ### Common review items
 * Add authentication to the configuration class.
+* Change configuration class name to be consistent
+  * Specify all the inputs to be consistent across languages
 * Update documentation
   * Make sure markdown is valid
   * Remove unnecessary links

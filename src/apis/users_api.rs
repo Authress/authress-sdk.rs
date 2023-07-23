@@ -4,20 +4,6 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method [`delete_user`]
-#[derive(Clone, Debug)]
-pub struct DeleteUserParams {
-    /// The user identifier.
-    pub user_id: String
-}
-
-/// struct for passing parameters to the method [`get_user`]
-#[derive(Clone, Debug)]
-pub struct GetUserParams {
-    /// The user identifier.
-    pub user_id: String
-}
-
 /// struct for passing parameters to the method [`get_users`]
 #[derive(Clone, Debug)]
 pub struct GetUsersParams {
@@ -67,12 +53,8 @@ pub struct UsersApi {
 
 impl UsersApi {
     /// Removes the user, all access the user has been granted through Authress access records, and any related user data. This action is completed asynchronously.
-    pub async fn delete_user(&self, params: DeleteUserParams) -> Result<(), Error<DeleteUserError>> {
+    pub async fn delete_user(&self, user_id: String) -> Result<(), Error<DeleteUserError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let user_id = params.user_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -95,12 +77,8 @@ impl UsersApi {
     }
 
     /// Get the user data associated with a user. The data returned by this endpoint is highly variable based on the source OAuth provider. Avoid depending on undocumented properties.
-    pub async fn get_user(&self, params: GetUserParams) -> Result<crate::models::UserIdentity, Error<GetUserError>> {
+    pub async fn get_user(&self, user_id: String) -> Result<crate::models::UserIdentity, Error<GetUserError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let user_id = params.user_id;
-
 
         let local_var_client = &local_var_configuration.client;
 

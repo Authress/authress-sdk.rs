@@ -4,19 +4,6 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method [`delegate_authentication`]
-#[derive(Clone, Debug)]
-pub struct DelegateAuthenticationParams {
-    pub identity_request: Option<crate::models::IdentityRequest>
-}
-
-/// struct for passing parameters to the method [`get_account`]
-#[derive(Clone, Debug)]
-pub struct GetAccountParams {
-    /// The unique identifier for the account
-    pub account_id: String
-}
-
 /// struct for passing parameters to the method [`get_accounts`]
 #[derive(Clone, Debug)]
 pub struct GetAccountsParams {
@@ -67,11 +54,8 @@ pub struct AccountsApi {
 
 impl AccountsApi {
     /// An identity is a JWT subscriber *sub* and issuer *iss*. Only one account my be linked to a particular JWT combination. Allows calling the API with a federated token directly instead of using a client access key.
-    pub async fn delegate_authentication(&self, params: DelegateAuthenticationParams) -> Result<(), Error<DelegateAuthenticationError>> {
+    pub async fn delegate_authentication(&self, identity_request: crate::models::IdentityRequest) -> Result<(), Error<DelegateAuthenticationError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let identity_request = params.identity_request;
 
 
         let local_var_client = &local_var_configuration.client;
@@ -96,12 +80,8 @@ impl AccountsApi {
     }
 
     /// Includes the original configuration information.
-    pub async fn get_account(&self, params: GetAccountParams) -> Result<crate::models::Account, Error<GetAccountError>> {
+    pub async fn get_account(&self, account_id: String) -> Result<crate::models::Account, Error<GetAccountError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let account_id = params.account_id;
-
 
         let local_var_client = &local_var_configuration.client;
 

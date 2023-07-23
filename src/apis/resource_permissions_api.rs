@@ -4,33 +4,14 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method [`get_permissioned_resource`]
-#[derive(Clone, Debug)]
-pub struct GetPermissionedResourceParams {
-    /// The uri path of a resource to validate, must be URL encoded, uri segments are allowed.
-    pub resource_uri: String
-}
-
 /// struct for passing parameters to the method [`get_resource_users`]
 #[derive(Clone, Debug)]
 pub struct GetResourceUsersParams {
-    /// The uri path of a resource to validate, must be URL encoded, uri segments are allowed.
-    pub resource_uri: String,
     /// Max number of results to return
     pub limit: Option<u32>,
     /// Continuation cursor for paging
     pub cursor: Option<String>
 }
-
-/// struct for passing parameters to the method [`update_permissioned_resource`]
-#[derive(Clone, Debug)]
-pub struct UpdatePermissionedResourceParams {
-    /// The uri path of a resource to validate, must be URL encoded, uri segments are allowed.
-    pub resource_uri: String,
-    /// The contents of the permission to set on the resource. Overwrites existing data.
-    pub permissioned_resource: crate::models::PermissionedResource
-}
-
 
 /// struct for typed errors of method [`get_permissioned_resource`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -73,12 +54,8 @@ pub struct ResourcePermissionsApi {
 
 impl ResourcePermissionsApi {
     /// Permissions can be set globally at a resource level. This will apply to all users in an account.
-    pub async fn get_permissioned_resource(&self, params: GetPermissionedResourceParams) -> Result<crate::models::PermissionedResource, Error<GetPermissionedResourceError>> {
+    pub async fn get_permissioned_resource(&self, resource_uri: String) -> Result<crate::models::PermissionedResource, Error<GetPermissionedResourceError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let resource_uri = params.resource_uri;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -104,9 +81,6 @@ impl ResourcePermissionsApi {
     pub async fn get_permissioned_resources(&self) -> Result<crate::models::PermissionedResourceCollection, Error<GetPermissionedResourcesError>> {
         let local_var_configuration = &self.configuration;
 
-        // unbox the parameters
-
-
         let local_var_client = &local_var_configuration.client;
 
         let local_var_uri_str = format!("{}/v1/resources", "");
@@ -128,11 +102,10 @@ impl ResourcePermissionsApi {
     }
 
     /// Get the resource users with explicit access to the resource. This result is a list of users that have some permission to the resource. Users with access to parent resources and users with access only to a sub-resource will not be returned in this result. In the case that the resource has multiple users, the list will be paginated.
-    pub async fn get_resource_users(&self, params: GetResourceUsersParams) -> Result<crate::models::ResourceUsersCollection, Error<GetResourceUsersError>> {
+    pub async fn get_resource_users(&self, resource_uri: String, params: GetResourceUsersParams) -> Result<crate::models::ResourceUsersCollection, Error<GetResourceUsersError>> {
         let local_var_configuration = &self.configuration;
 
         // unbox the parameters
-        let resource_uri = params.resource_uri;
         let limit = params.limit;
         let cursor = params.cursor;
 
@@ -164,13 +137,8 @@ impl ResourcePermissionsApi {
     }
 
     /// Updates the global permissions on a resource. This applies to all users in an account.
-    pub async fn update_permissioned_resource(&self, params: UpdatePermissionedResourceParams) -> Result<(), Error<UpdatePermissionedResourceError>> {
+    pub async fn update_permissioned_resource(&self, resource_uri: String, permissioned_resource: crate::models::PermissionedResource) -> Result<(), Error<UpdatePermissionedResourceError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let resource_uri = params.resource_uri;
-        let permissioned_resource = params.permissioned_resource;
-
 
         let local_var_client = &local_var_configuration.client;
 

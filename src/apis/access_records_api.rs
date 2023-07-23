@@ -1,60 +1,8 @@
 
 use reqwest;
 
-use crate::apis::ResponseContent;
+use crate::{apis::ResponseContent};
 use super::{Error, configuration};
-
-/// struct for passing parameters to the method [`create_claim`]
-#[derive(Clone, Debug)]
-pub struct CreateClaimParams {
-    pub claim_request: crate::models::ClaimRequest
-}
-
-/// struct for passing parameters to the method [`create_invite`]
-#[derive(Clone, Debug)]
-pub struct CreateInviteParams {
-    pub invite: crate::models::Invite
-}
-
-/// struct for passing parameters to the method [`create_record`]
-#[derive(Clone, Debug)]
-pub struct CreateRecordParams {
-    pub access_record: crate::models::AccessRecord
-}
-
-/// struct for passing parameters to the method [`create_request`]
-#[derive(Clone, Debug)]
-pub struct CreateRequestParams {
-    pub access_request: crate::models::AccessRequest
-}
-
-/// struct for passing parameters to the method [`delete_invite`]
-#[derive(Clone, Debug)]
-pub struct DeleteInviteParams {
-    /// The identifier of the invite.
-    pub invite_id: String
-}
-
-/// struct for passing parameters to the method [`delete_record`]
-#[derive(Clone, Debug)]
-pub struct DeleteRecordParams {
-    /// The identifier of the access record.
-    pub record_id: String
-}
-
-/// struct for passing parameters to the method [`delete_request`]
-#[derive(Clone, Debug)]
-pub struct DeleteRequestParams {
-    /// The identifier of the access request.
-    pub request_id: String
-}
-
-/// struct for passing parameters to the method [`get_record`]
-#[derive(Clone, Debug)]
-pub struct GetRecordParams {
-    /// The identifier of the access record.
-    pub record_id: String
-}
 
 /// struct for passing parameters to the method [`get_records`]
 #[derive(Clone, Debug)]
@@ -69,13 +17,6 @@ pub struct GetRecordsParams {
     pub status: Option<String>
 }
 
-/// struct for passing parameters to the method [`get_request`]
-#[derive(Clone, Debug)]
-pub struct GetRequestParams {
-    /// The identifier of the access request.
-    pub request_id: String
-}
-
 /// struct for passing parameters to the method [`get_requests`]
 #[derive(Clone, Debug)]
 pub struct GetRequestsParams {
@@ -87,27 +28,14 @@ pub struct GetRequestsParams {
     pub status: Option<String>
 }
 
-/// struct for passing parameters to the method [`respond_to_access_request`]
-#[derive(Clone, Debug)]
-pub struct RespondToAccessRequestParams {
-    /// The identifier of the access request.
-    pub request_id: String,
-    pub access_request_response: crate::models::AccessRequestResponse
-}
-
 /// struct for passing parameters to the method [`respond_to_invite`]
 #[derive(Clone, Debug)]
 pub struct RespondToInviteParams {
-    /// The identifier of the invite.
-    pub invite_id: String
 }
 
 /// struct for passing parameters to the method [`update_record`]
 #[derive(Clone, Debug)]
 pub struct UpdateRecordParams {
-    /// The identifier of the access record.
-    pub record_id: String,
-    pub access_record: crate::models::AccessRecord,
     /// The expected last time the record was modified. (<a href=\"https://tools.ietf.org/html/rfc7231#section-7.1.1.1\" target=\"_blank\">format</a>)
     pub if_unmodified_since: Option<String>
 }
@@ -257,11 +185,8 @@ pub struct AccessRecordApi {
 
 impl AccessRecordApi {
     /// Claim a resource by allowing a user to pick an identifier and receive admin access to that resource if it hasn't already been claimed. This only works for resources specifically marked as <strong>CLAIM</strong>. The result will be a new access record listing that user as the admin for this resource. The resourceUri will be appended to the collection resource uri using a '/' (forward slash) automatically.
-    pub async fn create_claim(&self, params: CreateClaimParams) -> Result<serde_json::Value, Error<CreateClaimError>> {
+    pub async fn create_claim(&self, claim_request: crate::models::ClaimRequest) -> Result<serde_json::Value, Error<CreateClaimError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let claim_request = params.claim_request;
 
 
         let local_var_client = &local_var_configuration.client;
@@ -286,12 +211,8 @@ impl AccessRecordApi {
     }
 
     /// Invites are used to easily assign permissions to users that have not been created in your identity provider yet. 1. This generates an invite record. 2. Send the invite ID to the user. 3. Log the user in. 4. As the user PATCH the /invite/{inviteId} endpoint 5. This accepts the invite.         When the user accepts the invite they will automatically receive the permissions assigned in the Invite. Invites automatically expire after 7 days.
-    pub async fn create_invite(&self, params: CreateInviteParams) -> Result<crate::models::Invite, Error<CreateInviteError>> {
+    pub async fn create_invite(&self, invite: crate::models::Invite) -> Result<crate::models::Invite, Error<CreateInviteError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let invite = params.invite;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -315,12 +236,8 @@ impl AccessRecordApi {
     }
 
     /// Specify user roles for specific resources. (Records have a maximum size of ~100KB)
-    pub async fn create_record(&self, params: CreateRecordParams) -> Result<crate::models::AccessRecord, Error<CreateRecordError>> {
+    pub async fn create_record(&self, access_record: crate::models::AccessRecord) -> Result<crate::models::AccessRecord, Error<CreateRecordError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let access_record = params.access_record;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -344,12 +261,8 @@ impl AccessRecordApi {
     }
 
     /// Specify a request in the form of an access record that an admin can approve.
-    pub async fn create_request(&self, params: CreateRequestParams) -> Result<crate::models::AccessRequest, Error<CreateRequestError>> {
+    pub async fn create_request(&self, access_request: crate::models::AccessRequest) -> Result<crate::models::AccessRequest, Error<CreateRequestError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let access_request = params.access_request;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -373,12 +286,8 @@ impl AccessRecordApi {
     }
 
     /// Deletes an invite.
-    pub async fn delete_invite(&self, params: DeleteInviteParams) -> Result<(), Error<DeleteInviteError>> {
+    pub async fn delete_invite(&self, invite_id: String) -> Result<(), Error<DeleteInviteError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let invite_id = params.invite_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -401,12 +310,8 @@ impl AccessRecordApi {
     }
 
     /// Remove an access record, removing associated permissions from all users in record. If a user has a permission from another record, that permission will not be removed. (Note: This disables the record by changing the status to <strong>DELETED</strong> but not completely remove the record for tracking purposes.
-    pub async fn delete_record(&self, params: DeleteRecordParams) -> Result<(), Error<DeleteRecordError>> {
+    pub async fn delete_record(&self, record_id: String) -> Result<(), Error<DeleteRecordError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let record_id = params.record_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -429,12 +334,8 @@ impl AccessRecordApi {
     }
 
     /// Remove an access request.
-    pub async fn delete_request(&self, params: DeleteRequestParams) -> Result<(), Error<DeleteRequestError>> {
+    pub async fn delete_request(&self, request_id: String) -> Result<(), Error<DeleteRequestError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let request_id = params.request_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -457,12 +358,8 @@ impl AccessRecordApi {
     }
 
     /// Access records contain information assigning permissions to users for resources.
-    pub async fn get_record(&self, params: GetRecordParams) -> Result<crate::models::AccessRecord, Error<GetRecordError>> {
+    pub async fn get_record(&self, record_id: String) -> Result<crate::models::AccessRecord, Error<GetRecordError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let record_id = params.record_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -528,12 +425,8 @@ impl AccessRecordApi {
     }
 
     /// Access request contain information requesting permissions for users to resources.
-    pub async fn get_request(&self, params: GetRequestParams) -> Result<crate::models::AccessRequest, Error<GetRequestError>> {
+    pub async fn get_request(&self, request_id: String) -> Result<crate::models::AccessRequest, Error<GetRequestError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let request_id = params.request_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -595,13 +488,8 @@ impl AccessRecordApi {
     }
 
     /// Updates an access request, approving it or denying it.
-    pub async fn respond_to_access_request(&self, params: RespondToAccessRequestParams) -> Result<crate::models::AccessRequest, Error<RespondToAccessRequestError>> {
+    pub async fn respond_to_access_request(&self, request_id: String, access_request_response: crate::models::AccessRequestResponse) -> Result<crate::models::AccessRequest, Error<RespondToAccessRequestError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let request_id = params.request_id;
-        let access_request_response = params.access_request_response;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -625,12 +513,8 @@ impl AccessRecordApi {
     }
 
     /// Accepts an invite by claiming this invite by this user. The user access token used for this request will gain the permissions associated with the invite.
-    pub async fn respond_to_invite(&self, params: RespondToInviteParams) -> Result<crate::models::Account, Error<RespondToInviteError>> {
+    pub async fn respond_to_invite(&self, invite_id: String) -> Result<crate::models::Account, Error<RespondToInviteError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let invite_id = params.invite_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -653,12 +537,10 @@ impl AccessRecordApi {
     }
 
     /// Updates an access record adding or removing user permissions to resources. (Records have a maximum size of ~100KB)
-    pub async fn update_record(&self, params: UpdateRecordParams) -> Result<(), Error<UpdateRecordError>> {
+    pub async fn update_record(&self, record_id: String, access_record: crate::models::AccessRecord, params: UpdateRecordParams) -> Result<(), Error<UpdateRecordError>> {
         let local_var_configuration = &self.configuration;
 
         // unbox the parameters
-        let record_id = params.record_id;
-        let access_record = params.access_record;
         let if_unmodified_since = params.if_unmodified_since;
 
 

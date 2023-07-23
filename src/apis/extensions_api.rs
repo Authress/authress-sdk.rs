@@ -4,26 +4,6 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method [`create_extension`]
-#[derive(Clone, Debug)]
-pub struct CreateExtensionParams {
-    pub extension: crate::models::Extension
-}
-
-/// struct for passing parameters to the method [`delete_extension`]
-#[derive(Clone, Debug)]
-pub struct DeleteExtensionParams {
-    /// The extension identifier.
-    pub extension_id: String
-}
-
-/// struct for passing parameters to the method [`get_extension`]
-#[derive(Clone, Debug)]
-pub struct GetExtensionParams {
-    /// The extension identifier.
-    pub extension_id: String
-}
-
 /// struct for passing parameters to the method [`login`]
 #[derive(Clone, Debug)]
 pub struct LoginParams {
@@ -43,15 +23,6 @@ pub struct RequestTokenParams {
     /// The contents of an OAuth token request.
     pub oauth_token_request: crate::models::OAuthTokenRequest
 }
-
-/// struct for passing parameters to the method [`update_extension`]
-#[derive(Clone, Debug)]
-pub struct UpdateExtensionParams {
-    /// The extension identifier.
-    pub extension_id: String,
-    pub extension: crate::models::Extension
-}
-
 
 /// struct for typed errors of method [`create_extension`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -125,12 +96,8 @@ pub struct ExtensionsApi {
 
 impl ExtensionsApi {
     /// Specify the extension details for a new developer extension. Creating the extension enables developers to build applications that can log in to your platform and interact with your users' data.
-    pub async fn create_extension(&self, params: CreateExtensionParams) -> Result<crate::models::Extension, Error<CreateExtensionError>> {
+    pub async fn create_extension(&self, extension: crate::models::Extension) -> Result<crate::models::Extension, Error<CreateExtensionError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let extension = params.extension;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -154,12 +121,8 @@ impl ExtensionsApi {
     }
 
     /// Deletes the specified extension. When deleted an extension can no longer be accessed. Additionally users cannot use that extension to log in, nor can the service client associated with the extension be used to access data secured by Authress. The related Access Records will automatically be deleted.
-    pub async fn delete_extension(&self, params: DeleteExtensionParams) -> Result<(), Error<DeleteExtensionError>> {
+    pub async fn delete_extension(&self, extension_id: String) -> Result<(), Error<DeleteExtensionError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let extension_id = params.extension_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -182,12 +145,8 @@ impl ExtensionsApi {
     }
 
     /// Gets the platform extension details for the existing extension.
-    pub async fn get_extension(&self, params: GetExtensionParams) -> Result<crate::models::Extension, Error<GetExtensionError>> {
+    pub async fn get_extension(&self, extension_id: String) -> Result<crate::models::Extension, Error<GetExtensionError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let extension_id = params.extension_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -212,9 +171,6 @@ impl ExtensionsApi {
     /// Lists the platform extensions. Extensions are the applications that developers of your platform have created for your users to interact with. Returns a paginated extension list for the account. Only extensions the user has access to are returned.
     pub async fn get_extensions(&self) -> Result<crate::models::ExtensionCollection, Error<GetExtensionsError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -307,13 +263,8 @@ impl ExtensionsApi {
 
 */
     /// Specify the updated extension. The extension will be updated and these changes will be reflected to the access control and user authentication associated with the extension.
-    pub async fn update_extension(&self, params: UpdateExtensionParams) -> Result<crate::models::Extension, Error<UpdateExtensionError>> {
+    pub async fn update_extension(&self, extension_id: String, extension: crate::models::Extension) -> Result<crate::models::Extension, Error<UpdateExtensionError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let extension_id = params.extension_id;
-        let extension = params.extension;
-
 
         let local_var_client = &local_var_configuration.client;
 

@@ -4,44 +4,6 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method [`create_connection`]
-#[derive(Clone, Debug)]
-pub struct CreateConnectionParams {
-    pub connection: crate::models::Connection
-}
-
-/// struct for passing parameters to the method [`delete_connection`]
-#[derive(Clone, Debug)]
-pub struct DeleteConnectionParams {
-    /// The connection identifier.
-    pub connection_id: String
-}
-
-/// struct for passing parameters to the method [`get_connection`]
-#[derive(Clone, Debug)]
-pub struct GetConnectionParams {
-    /// The connection identifier.
-    pub connection_id: String
-}
-
-/// struct for passing parameters to the method [`get_connection_credentials`]
-#[derive(Clone, Debug)]
-pub struct GetConnectionCredentialsParams {
-    /// The connection identifier.
-    pub connection_id: String,
-    /// The connection user.
-    pub user_id: String
-}
-
-/// struct for passing parameters to the method [`update_connection`]
-#[derive(Clone, Debug)]
-pub struct UpdateConnectionParams {
-    /// The connection identifier.
-    pub connection_id: String,
-    pub connection: crate::models::Connection
-}
-
-
 /// struct for typed errors of method [`create_connection`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -106,12 +68,8 @@ pub struct ConnectionsApi {
 
 impl ConnectionsApi {
     /// Specify identity connection details for Authress identity aggregation.
-    pub async fn create_connection(&self, params: CreateConnectionParams) -> Result<crate::models::Connection, Error<CreateConnectionError>> {
+    pub async fn create_connection(&self, connection: crate::models::Connection) -> Result<crate::models::Connection, Error<CreateConnectionError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let connection = params.connection;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -135,12 +93,8 @@ impl ConnectionsApi {
     }
 
     /// Delete an identity connection details for Authress identity aggregation.
-    pub async fn delete_connection(&self, params: DeleteConnectionParams) -> Result<(), Error<DeleteConnectionError>> {
+    pub async fn delete_connection(&self, connection_id: String) -> Result<(), Error<DeleteConnectionError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let connection_id = params.connection_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -163,12 +117,8 @@ impl ConnectionsApi {
     }
 
     /// Get the identity connection details for Authress identity aggregation.
-    pub async fn get_connection(&self, params: GetConnectionParams) -> Result<crate::models::Connection, Error<GetConnectionError>> {
+    pub async fn get_connection(&self, connection_id: String) -> Result<crate::models::Connection, Error<GetConnectionError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let connection_id = params.connection_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -191,13 +141,8 @@ impl ConnectionsApi {
     }
 
     /// Get the credentials for the user that were generated as part of the latest user login flow. Returns an access token that can be used with originating connection provider, based on the original scopes and approved permissions by that service.
-    pub async fn get_connection_credentials(&self, params: GetConnectionCredentialsParams) -> Result<crate::models::UserConnectionCredentials, Error<GetConnectionCredentialsError>> {
+    pub async fn get_connection_credentials(&self, connection_id: String, user_id: String) -> Result<crate::models::UserConnectionCredentials, Error<GetConnectionCredentialsError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let connection_id = params.connection_id;
-        let user_id = params.user_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -223,9 +168,6 @@ impl ConnectionsApi {
     pub async fn get_connections(&self) -> Result<crate::models::ConnectionCollection, Error<GetConnectionsError>> {
         let local_var_configuration = &self.configuration;
 
-        // unbox the parameters
-
-
         let local_var_client = &local_var_configuration.client;
 
         let local_var_uri_str = format!("{}/v1/connections", "");
@@ -247,13 +189,8 @@ impl ConnectionsApi {
     }
 
     /// Specify identity connection details for Authress identity aggregation.
-    pub async fn update_connection(&self, params: UpdateConnectionParams) -> Result<crate::models::Connection, Error<UpdateConnectionError>> {
+    pub async fn update_connection(&self, connection_id: String, connection: crate::models::Connection) -> Result<crate::models::Connection, Error<UpdateConnectionError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let connection_id = params.connection_id;
-        let connection = params.connection;
-
 
         let local_var_client = &local_var_configuration.client;
 

@@ -4,35 +4,6 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method [`create_role`]
-#[derive(Clone, Debug)]
-pub struct CreateRoleParams {
-    pub role: crate::models::Role
-}
-
-/// struct for passing parameters to the method [`delete_role`]
-#[derive(Clone, Debug)]
-pub struct DeleteRoleParams {
-    /// The identifier of the role.
-    pub role_id: String
-}
-
-/// struct for passing parameters to the method [`get_role`]
-#[derive(Clone, Debug)]
-pub struct GetRoleParams {
-    /// The identifier of the role.
-    pub role_id: String
-}
-
-/// struct for passing parameters to the method [`update_role`]
-#[derive(Clone, Debug)]
-pub struct UpdateRoleParams {
-    /// The identifier of the role.
-    pub role_id: String,
-    pub role: crate::models::Role
-}
-
-
 /// struct for typed errors of method [`create_role`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -88,12 +59,8 @@ pub struct RolesApi {
 
 impl RolesApi {
     /// Creates a role with permissions.
-    pub async fn create_role(&self, params: CreateRoleParams) -> Result<crate::models::Role, Error<CreateRoleError>> {
+    pub async fn create_role(&self, role: crate::models::Role) -> Result<crate::models::Role, Error<CreateRoleError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let role = params.role;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -117,12 +84,8 @@ impl RolesApi {
     }
 
     /// Remove a role. If a record references the role, that record will not be modified.
-    pub async fn delete_role(&self, params: DeleteRoleParams) -> Result<(), Error<DeleteRoleError>> {
+    pub async fn delete_role(&self, role_id: String) -> Result<(), Error<DeleteRoleError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let role_id = params.role_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -145,12 +108,8 @@ impl RolesApi {
     }
 
     /// Roles contain a list of permissions that will be applied to any user or resource
-    pub async fn get_role(&self, params: GetRoleParams) -> Result<crate::models::Role, Error<GetRoleError>> {
+    pub async fn get_role(&self, role_id: String) -> Result<crate::models::Role, Error<GetRoleError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let role_id = params.role_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -176,9 +135,6 @@ impl RolesApi {
     pub async fn get_roles(&self) -> Result<crate::models::RoleCollection, Error<GetRolesError>> {
         let local_var_configuration = &self.configuration;
 
-        // unbox the parameters
-
-
         let local_var_client = &local_var_configuration.client;
 
         let local_var_uri_str = format!("{}/v1/roles", "");
@@ -200,13 +156,8 @@ impl RolesApi {
     }
 
     /// Updates a role adding or removing permissions.
-    pub async fn update_role(&self, params: UpdateRoleParams) -> Result<crate::models::Role, Error<UpdateRoleError>> {
+    pub async fn update_role(&self, role_id: String, role: crate::models::Role) -> Result<crate::models::Role, Error<UpdateRoleError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let role_id = params.role_id;
-        let role = params.role;
-
 
         let local_var_client = &local_var_configuration.client;
 

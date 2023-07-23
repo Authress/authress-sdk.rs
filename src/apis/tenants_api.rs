@@ -4,35 +4,6 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method [`create_tenant`]
-#[derive(Clone, Debug)]
-pub struct CreateTenantParams {
-    pub tenant: crate::models::Tenant
-}
-
-/// struct for passing parameters to the method [`delete_tenant`]
-#[derive(Clone, Debug)]
-pub struct DeleteTenantParams {
-    /// The tenantId.
-    pub tenant_id: String
-}
-
-/// struct for passing parameters to the method [`get_tenant`]
-#[derive(Clone, Debug)]
-pub struct GetTenantParams {
-    /// The tenantId.
-    pub tenant_id: String
-}
-
-/// struct for passing parameters to the method [`update_tenant`]
-#[derive(Clone, Debug)]
-pub struct UpdateTenantParams {
-    /// The tenantId.
-    pub tenant_id: String,
-    pub tenant: crate::models::Tenant
-}
-
-
 /// struct for typed errors of method [`create_tenant`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -87,12 +58,8 @@ pub struct TenantsApi {
 
 impl TenantsApi {
     /// Specify tenant identity details for tenant tracking, separation, and user management. Tenant identifiers are persisted to access tokens created by Authress.
-    pub async fn create_tenant(&self, params: CreateTenantParams) -> Result<crate::models::Tenant, Error<CreateTenantError>> {
+    pub async fn create_tenant(&self, tenant: crate::models::Tenant) -> Result<crate::models::Tenant, Error<CreateTenantError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let tenant = params.tenant;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -116,12 +83,8 @@ impl TenantsApi {
     }
 
     /// Delete a tenant. If a connection was created for the tenant then it is deleted as well.
-    pub async fn delete_tenant(&self, params: DeleteTenantParams) -> Result<(), Error<DeleteTenantError>> {
+    pub async fn delete_tenant(&self, tenant_id: String) -> Result<(), Error<DeleteTenantError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let tenant_id = params.tenant_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -144,12 +107,8 @@ impl TenantsApi {
     }
 
     /// Get the tenant details for an Authress tenant.
-    pub async fn get_tenant(&self, params: GetTenantParams) -> Result<crate::models::Tenant, Error<GetTenantError>> {
+    pub async fn get_tenant(&self, tenant_id: String) -> Result<crate::models::Tenant, Error<GetTenantError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let tenant_id = params.tenant_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -175,9 +134,6 @@ impl TenantsApi {
     pub async fn get_tenants(&self) -> Result<crate::models::TenantCollection, Error<GetTenantsError>> {
         let local_var_configuration = &self.configuration;
 
-        // unbox the parameters
-
-
         let local_var_client = &local_var_configuration.client;
 
         let local_var_uri_str = format!("{}/v1/tenants", "");
@@ -199,13 +155,8 @@ impl TenantsApi {
     }
 
     /// Updates the tenants information and linked tenant if it exists.
-    pub async fn update_tenant(&self, params: UpdateTenantParams) -> Result<crate::models::Tenant, Error<UpdateTenantError>> {
+    pub async fn update_tenant(&self, tenant_id: String, tenant: crate::models::Tenant) -> Result<crate::models::Tenant, Error<UpdateTenantError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let tenant_id = params.tenant_id;
-        let tenant = params.tenant;
-
 
         let local_var_client = &local_var_configuration.client;
 

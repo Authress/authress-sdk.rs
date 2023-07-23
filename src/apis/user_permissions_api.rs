@@ -4,33 +4,9 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method [`authorize_user`]
-#[derive(Clone, Debug)]
-pub struct AuthorizeUserParams {
-    /// The user to check permissions on
-    pub user_id: String,
-    /// The uri path of a resource to validate, must be URL encoded, uri segments are allowed, the resource must be a full path.
-    pub resource_uri: String,
-    /// Permission to check, '*' and scoped permissions can also be checked here.
-    pub permission: String
-}
-
-/// struct for passing parameters to the method [`get_user_permissions_for_resource`]
-#[derive(Clone, Debug)]
-pub struct GetUserPermissionsForResourceParams {
-    /// The user to check permissions on
-    pub user_id: String,
-    /// The uri path of a resource to validate, must be URL encoded, uri segments are allowed.
-    pub resource_uri: String
-}
-
 /// struct for passing parameters to the method [`get_user_resources`]
 #[derive(Clone, Debug)]
 pub struct GetUserResourcesParams {
-    /// The user to check permissions on
-    pub user_id: String,
-    /// The top level uri path of a resource to query for. Will only match explicit or nested sub-resources. Will not partial match resource names.
-    pub resource_uri: Option<String>,
     /// `TOP_LEVEL_ONLY` - returns only directly nested resources under the resourceUri. A query to `resourceUri=Collection` will return `Collection/resource_1`.<br>`INCLUDE_NESTED` - will return all sub-resources as well as deeply nested resources that the user has the specified permission to. A query to `resourceUri=Collection` will return `Collection/namespaces/ns/resources/resource_1`.<br><br>To return matching resources for nested resources, set this parameter to `INCLUDE_NESTED`.
     pub collection_configuration: Option<String>,
     /// Permission to check, '*' and scoped permissions can also be checked here. By default if the user has any permission explicitly to a resource, it will be included in the list.
@@ -40,16 +16,6 @@ pub struct GetUserResourcesParams {
     /// Continuation cursor for paging
     pub cursor: Option<String>
 }
-
-/// struct for passing parameters to the method [`get_user_roles_for_resource`]
-#[derive(Clone, Debug)]
-pub struct GetUserRolesForResourceParams {
-    /// The user to get roles for.
-    pub user_id: String,
-    /// The uri path of a resource to get roles for, must be URL encoded. Checks for explicit resource roles, roles attached to parent resources are not returned.
-    pub resource_uri: String
-}
-
 
 /// struct for typed errors of method [`authorize_user`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -93,14 +59,8 @@ pub struct UserPermissionsApi {
 
 impl UserPermissionsApi {
     /// Performs the user authorization check. Does the user have the specified permission to the resource?
-    pub async fn authorize_user(&self, params: AuthorizeUserParams) -> Result<(), Error<AuthorizeUserError>> {
+    pub async fn authorize_user(&self, user_id: String, resource_uri: String, permission: String) -> Result<(), Error<AuthorizeUserError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let user_id = params.user_id;
-        let resource_uri = params.resource_uri;
-        let permission = params.permission;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -123,13 +83,8 @@ impl UserPermissionsApi {
     }
 
     /// Get a summary of the permissions a user has to a particular resource.
-    pub async fn get_user_permissions_for_resource(&self, params: GetUserPermissionsForResourceParams) -> Result<crate::models::PermissionCollection, Error<GetUserPermissionsForResourceError>> {
+    pub async fn get_user_permissions_for_resource(&self, user_id: String, resource_uri: String) -> Result<crate::models::PermissionCollection, Error<GetUserPermissionsForResourceError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let user_id = params.user_id;
-        let resource_uri = params.resource_uri;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -152,12 +107,10 @@ impl UserPermissionsApi {
     }
 
     /// Get the users resources. This result is a list of resource uris that a user has an permission to. By default only the top level matching resources are returned. To get a user's list of deeply nested resources, set the `collectionConfiguration` to be `INCLUDE_NESTED`. This collection is paginated.
-    pub async fn get_user_resources(&self, params: GetUserResourcesParams) -> Result<crate::models::UserResources, Error<GetUserResourcesError>> {
+    pub async fn get_user_resources(&self, user_id: String, resource_uri: Option<String>, params: GetUserResourcesParams) -> Result<crate::models::UserResources, Error<GetUserResourcesError>> {
         let local_var_configuration = &self.configuration;
 
         // unbox the parameters
-        let user_id = params.user_id;
-        let resource_uri = params.resource_uri;
         let collection_configuration = params.collection_configuration;
         let permissions = params.permissions;
         let limit = params.limit;
@@ -200,13 +153,8 @@ impl UserPermissionsApi {
     }
 
     /// Get a summary of the roles a user has to a particular resource. Users can be assigned roles from multiple access records, this may cause the same role to appear in the list more than once.
-    pub async fn get_user_roles_for_resource(&self, params: GetUserRolesForResourceParams) -> Result<crate::models::UserRoleCollection, Error<GetUserRolesForResourceError>> {
+    pub async fn get_user_roles_for_resource(&self, user_id: String, resource_uri: String) -> Result<crate::models::UserRoleCollection, Error<GetUserRolesForResourceError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let user_id = params.user_id;
-        let resource_uri = params.resource_uri;
-
 
         let local_var_client = &local_var_configuration.client;
 

@@ -4,16 +4,6 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method [`delegate_user_login`]
-#[derive(Clone, Debug)]
-pub struct DelegateUserLoginParams {
-    /// The application to have the user log into.
-    pub application_id: String,
-    /// The user.
-    pub user_id: String
-}
-
-
 /// struct for typed errors of method [`delegate_user_login`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -30,13 +20,8 @@ pub struct ApplicationsApi {
 
 impl ApplicationsApi {
     /// Redirect the user to an external application to login them in. Authress uses OpenID and SAML configuration to securely pass the user's login session in your platform to an external platform. The user will then be logged into that platform.
-    pub async fn delegate_user_login(&self, params: DelegateUserLoginParams) -> Result<crate::models::ApplicationDelegation, Error<DelegateUserLoginError>> {
+    pub async fn delegate_user_login(&self, application_id: String, user_id: String) -> Result<crate::models::ApplicationDelegation, Error<DelegateUserLoginError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let application_id = params.application_id;
-        let user_id = params.user_id;
-
 
         let local_var_client = &local_var_configuration.client;
 

@@ -4,26 +4,6 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method [`create_group`]
-#[derive(Clone, Debug)]
-pub struct CreateGroupParams {
-    pub group: crate::models::Group
-}
-
-/// struct for passing parameters to the method [`delete_group`]
-#[derive(Clone, Debug)]
-pub struct DeleteGroupParams {
-    /// The identifier of the group.
-    pub group_id: String
-}
-
-/// struct for passing parameters to the method [`get_group`]
-#[derive(Clone, Debug)]
-pub struct GetGroupParams {
-    /// The identifier of the group.
-    pub group_id: String
-}
-
 /// struct for passing parameters to the method [`get_groups`]
 #[derive(Clone, Debug)]
 pub struct GetGroupsParams {
@@ -34,15 +14,6 @@ pub struct GetGroupsParams {
     /// Filter to search groups by. This is a case insensitive search through every text field.
     pub filter: Option<String>
 }
-
-/// struct for passing parameters to the method [`update_group`]
-#[derive(Clone, Debug)]
-pub struct UpdateGroupParams {
-    /// The identifier of the group.
-    pub group_id: String,
-    pub group: crate::models::Group
-}
-
 
 /// struct for typed errors of method [`create_group`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -99,12 +70,8 @@ pub struct GroupsApi {
 
 impl GroupsApi {
     /// Specify users to be included in a new group. (Groups have a maximum size of ~100KB)
-    pub async fn create_group(&self, params: CreateGroupParams) -> Result<crate::models::Group, Error<CreateGroupError>> {
+    pub async fn create_group(&self, group: crate::models::Group) -> Result<crate::models::Group, Error<CreateGroupError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let group = params.group;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -128,12 +95,8 @@ impl GroupsApi {
     }
 
     /// Remove a group, users will lose any role that was assigned through membership of this group. This action cannot be undone.
-    pub async fn delete_group(&self, params: DeleteGroupParams) -> Result<(), Error<DeleteGroupError>> {
+    pub async fn delete_group(&self, group_id: String) -> Result<(), Error<DeleteGroupError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let group_id = params.group_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -156,12 +119,8 @@ impl GroupsApi {
     }
 
     /// A group contains multiple users which can be added to an access record, and should be assigned the same roles at the same time.
-    pub async fn get_group(&self, params: GetGroupParams) -> Result<crate::models::Group, Error<GetGroupError>> {
+    pub async fn get_group(&self, group_id: String) -> Result<crate::models::Group, Error<GetGroupError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let group_id = params.group_id;
-
 
         let local_var_client = &local_var_configuration.client;
 
@@ -223,14 +182,9 @@ impl GroupsApi {
     }
 
     /// Updates a group adding or removing user. Change a group updates the permissions and roles the users have access to. (Groups have a maximum size of ~100KB)
-    pub async fn update_group(&self, params: UpdateGroupParams) -> Result<crate::models::Group, Error<UpdateGroupError>> {
+    pub async fn update_group(&self, group_id: String, group: crate::models::Group) -> Result<crate::models::Group, Error<UpdateGroupError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let group_id = params.group_id;
-        let group = params.group;
-
-
+        
         let local_var_client = &local_var_configuration.client;
 
         let local_var_uri_str = format!("{}/v1/groups/{groupId}", "", groupId=crate::apis::urlencode(group_id));

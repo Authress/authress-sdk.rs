@@ -1,8 +1,8 @@
 
 use reqwest;
 
-use crate::apis::ResponseContent;
-use super::{Error, configuration};
+use crate::{apis::ResponseContent, AuthressSettings};
+use super::{Error};
 
 /// struct for passing parameters to the method [`login`]
 #[derive(Clone, Debug)]
@@ -91,7 +91,7 @@ pub enum UpdateExtensionError {
 }
 
 pub struct ExtensionsApi {
-    pub configuration: configuration::Configuration
+    pub configuration: AuthressSettings
 }
 
 impl ExtensionsApi {

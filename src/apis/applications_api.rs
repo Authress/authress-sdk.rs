@@ -1,8 +1,8 @@
 
 use reqwest;
 
-use crate::apis::ResponseContent;
-use super::{Error, configuration};
+use crate::{apis::ResponseContent, AuthressSettings};
+use super::{Error};
 
 /// struct for typed errors of method [`delegate_user_login`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -15,7 +15,7 @@ pub enum DelegateUserLoginError {
 }
 
 pub struct ApplicationsApi {
-    pub configuration: configuration::Configuration
+    pub configuration: AuthressSettings
 }
 
 impl ApplicationsApi {

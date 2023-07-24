@@ -9,6 +9,37 @@ extern crate reqwest;
 pub mod apis;
 pub mod models;
 
+use reqwest::RequestBuilder;
+
+#[derive(Debug, Clone)]
+pub struct AuthressSettings {
+    pub client: reqwest::Client,
+
+    pub base_url: String,
+    pub service_client_access_key: String
+}
+
+impl AuthressSettings {
+    pub fn new(base_url: String, service_client_access_key: String) -> AuthressSettings {
+        AuthressSettings {
+            client: reqwest::Client::new(),
+
+            base_url: base_url.to_owned(),
+            service_client_access_key: service_client_access_key            
+        }
+    }
+
+    pub fn get_request_builder(&self, method: reqwest::Method, path_uri: String) -> RequestBuilder {
+        let local_var_uri_str = format!("{}{}", self.base_url, path_uri);
+        
+        return self.client
+            .request(method, local_var_uri_str)
+            .header(reqwest::header::USER_AGENT, "Authress Rust SDK")
+            .bearer_auth(self.service_client_access_key.to_owned());
+    }
+}
+
+
 pub struct AuthressClient {
     pub access_records: apis::access_records_api::AccessRecordApi,
     pub accounts: apis::accounts_api::AccountsApi,
@@ -25,7 +56,7 @@ pub struct AuthressClient {
 }
 
 impl AuthressClient {
-    pub fn new(configuration: &apis::configuration::Configuration) -> Self {
+    pub fn new(configuration: &AuthressSettings) -> Self {
         Self {
             access_records: apis::access_records_api::AccessRecordApi { configuration: configuration.clone() },
             accounts: apis::accounts_api::AccountsApi { configuration: configuration.clone() },

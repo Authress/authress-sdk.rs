@@ -1,9 +1,8 @@
 
 use reqwest;
 
-use crate::apis::ResponseContent;
-use super::{Error, configuration};
-
+use crate::{apis::ResponseContent, AuthressSettings};
+use super::{Error};
 /// struct for passing parameters to the method [`get_clients`]
 #[derive(Clone, Debug)]
 pub struct GetClientsParams {
@@ -80,7 +79,7 @@ pub enum UpdateClientError {
 }
 
 pub struct ServiceClientsApi {
-    pub configuration: configuration::Configuration
+    pub configuration: AuthressSettings
 }
 
 impl ServiceClientsApi {
@@ -182,24 +181,20 @@ impl ServiceClientsApi {
     }
 
     /// Returns all clients that the user has access to in the account.
-    pub async fn get_clients(&self, params: GetClientsParams) -> Result<crate::models::ClientCollection, Error<GetClientsError>> {
+    pub async fn get_clients(&self, params: Option<GetClientsParams>) -> Result<crate::models::ClientCollection, Error<GetClientsError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let limit = params.limit;
-        let cursor = params.cursor;
-
-
         let local_var_client = &local_var_configuration.client;
 
         let local_var_uri_str = format!("{}/v1/clients", "");
         let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
 
-        if let Some(ref local_var_str) = limit {
-            local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
-        }
-        if let Some(ref local_var_str) = cursor {
-            local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
+        if let Some(ref parsed_params) = params {
+            if let Some(ref local_var_str) = parsed_params.limit {
+                local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+            }
+            if let Some(ref local_var_str) = parsed_params.cursor {
+                local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
+            }
         }
         let local_var_req = local_var_req_builder.build()?;
         let local_var_resp = local_var_client.execute(local_var_req).await?;

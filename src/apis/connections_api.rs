@@ -1,8 +1,8 @@
 
 use reqwest;
 
-use crate::apis::ResponseContent;
-use super::{Error, configuration};
+use crate::{apis::ResponseContent, AuthressSettings};
+use super::{Error};
 
 /// struct for typed errors of method [`create_connection`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -63,7 +63,7 @@ pub enum UpdateConnectionError {
 }
 
 pub struct ConnectionsApi {
-    pub configuration: configuration::Configuration
+    pub configuration: AuthressSettings
 }
 
 impl ConnectionsApi {

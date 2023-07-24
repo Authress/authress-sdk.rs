@@ -1,8 +1,8 @@
 
 use reqwest;
 
-use crate::{apis::ResponseContent};
-use super::{Error, configuration};
+use crate::{apis::ResponseContent, AuthressSettings};
+use super::{Error};
 
 /// struct for passing parameters to the method [`get_records`]
 #[derive(Clone, Debug)]
@@ -180,7 +180,7 @@ pub enum UpdateRecordError {
 }
 
 pub struct AccessRecordApi {
-    pub configuration: configuration::Configuration
+    pub configuration: AuthressSettings
 }
 
 impl AccessRecordApi {
@@ -382,32 +382,27 @@ impl AccessRecordApi {
     }
 
     /// Returns a paginated records list for the account. Only records the user has access to are returned. This query resource is meant for administrative actions only, therefore has a lower rate limit tier than user permissions related resources. Additionally, the results from a query to Access Records may be delayed up to 5 minutes.
-    pub async fn get_records(&self, params: GetRecordsParams) -> Result<crate::models::AccessRecordCollection, Error<GetRecordsError>> {
+    pub async fn get_records(&self, params: Option<GetRecordsParams>) -> Result<crate::models::AccessRecordCollection, Error<GetRecordsError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let limit = params.limit;
-        let cursor = params.cursor;
-        let filter = params.filter;
-        let status = params.status;
-
 
         let local_var_client = &local_var_configuration.client;
 
         let local_var_uri_str = format!("{}/v1/records", "");
         let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
 
-        if let Some(ref local_var_str) = limit {
-            local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
-        }
-        if let Some(ref local_var_str) = cursor {
-            local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
-        }
-        if let Some(ref local_var_str) = filter {
-            local_var_req_builder = local_var_req_builder.query(&[("filter", &local_var_str.to_string())]);
-        }
-        if let Some(ref local_var_str) = status {
-            local_var_req_builder = local_var_req_builder.query(&[("status", &local_var_str.to_string())]);
+        if let Some(ref parsed_params) = params {
+            if let Some(ref local_var_str) = parsed_params.limit {
+                local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+            }
+            if let Some(ref local_var_str) = parsed_params.cursor {
+                local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
+            }
+            if let Some(ref local_var_str) = parsed_params.filter {
+                local_var_req_builder = local_var_req_builder.query(&[("filter", &local_var_str.to_string())]);
+            }
+            if let Some(ref local_var_str) = parsed_params.status {
+                local_var_req_builder = local_var_req_builder.query(&[("status", &local_var_str.to_string())]);
+            }
         }
         let local_var_req = local_var_req_builder.build()?;
         let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -449,28 +444,24 @@ impl AccessRecordApi {
     }
 
     /// Returns a paginated request list. Only requests the user has access to are returned. This query resource is meant for administrative actions only, therefore has a lower rate limit tier than user permissions related resources.
-    pub async fn get_requests(&self, params: GetRequestsParams) -> Result<crate::models::AccessRequestCollection, Error<GetRequestsError>> {
+    pub async fn get_requests(&self, params: Option<GetRequestsParams>) -> Result<crate::models::AccessRequestCollection, Error<GetRequestsError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let limit = params.limit;
-        let cursor = params.cursor;
-        let status = params.status;
-
 
         let local_var_client = &local_var_configuration.client;
 
         let local_var_uri_str = format!("{}/v1/requests", "");
         let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
 
-        if let Some(ref local_var_str) = limit {
-            local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
-        }
-        if let Some(ref local_var_str) = cursor {
-            local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
-        }
-        if let Some(ref local_var_str) = status {
-            local_var_req_builder = local_var_req_builder.query(&[("status", &local_var_str.to_string())]);
+        if let Some(ref parsed_params) = params {
+            if let Some(ref local_var_str) = parsed_params.limit {
+                local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+            }
+            if let Some(ref local_var_str) = parsed_params.cursor {
+                local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
+            }
+            if let Some(ref local_var_str) = parsed_params.status {
+                local_var_req_builder = local_var_req_builder.query(&[("status", &local_var_str.to_string())]);
+            }
         }
         let local_var_req = local_var_req_builder.build()?;
         let local_var_resp = local_var_client.execute(local_var_req).await?;

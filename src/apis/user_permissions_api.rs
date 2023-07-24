@@ -1,9 +1,8 @@
 
 use reqwest;
 
-use crate::apis::ResponseContent;
-use super::{Error, configuration};
-
+use crate::{apis::ResponseContent, AuthressSettings};
+use super::{Error};
 /// struct for passing parameters to the method [`get_user_resources`]
 #[derive(Clone, Debug)]
 pub struct GetUserResourcesParams {
@@ -54,7 +53,7 @@ pub enum GetUserRolesForResourceError {
 }
 
 pub struct UserPermissionsApi {
-    pub configuration: configuration::Configuration
+    pub configuration: AuthressSettings
 }
 
 impl UserPermissionsApi {
@@ -107,16 +106,8 @@ impl UserPermissionsApi {
     }
 
     /// Get the users resources. This result is a list of resource uris that a user has an permission to. By default only the top level matching resources are returned. To get a user's list of deeply nested resources, set the `collectionConfiguration` to be `INCLUDE_NESTED`. This collection is paginated.
-    pub async fn get_user_resources(&self, user_id: String, resource_uri: Option<String>, params: GetUserResourcesParams) -> Result<crate::models::UserResources, Error<GetUserResourcesError>> {
+    pub async fn get_user_resources(&self, user_id: String, resource_uri: Option<String>, params: Option<GetUserResourcesParams>) -> Result<crate::models::UserResources, Error<GetUserResourcesError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let collection_configuration = params.collection_configuration;
-        let permissions = params.permissions;
-        let limit = params.limit;
-        let cursor = params.cursor;
-
-
         let local_var_client = &local_var_configuration.client;
 
         let local_var_uri_str = format!("{}/v1/users/{userId}/resources", "", userId=user_id);
@@ -125,17 +116,20 @@ impl UserPermissionsApi {
         if let Some(ref local_var_str) = resource_uri {
             local_var_req_builder = local_var_req_builder.query(&[("resourceUri", &local_var_str.to_string())]);
         }
-        if let Some(ref local_var_str) = collection_configuration {
-            local_var_req_builder = local_var_req_builder.query(&[("collectionConfiguration", &local_var_str.to_string())]);
-        }
-        if let Some(ref local_var_str) = permissions {
-            local_var_req_builder = local_var_req_builder.query(&[("permissions", &local_var_str.to_string())]);
-        }
-        if let Some(ref local_var_str) = limit {
-            local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
-        }
-        if let Some(ref local_var_str) = cursor {
-            local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
+
+        if let Some(ref parsed_params) = params {
+            if let Some(ref local_var_str) = parsed_params.collection_configuration {
+                local_var_req_builder = local_var_req_builder.query(&[("collectionConfiguration", &local_var_str.to_string())]);
+            }
+            if let Some(ref local_var_str) = parsed_params.permissions {
+                local_var_req_builder = local_var_req_builder.query(&[("permissions", &local_var_str.to_string())]);
+            }
+            if let Some(ref local_var_str) = parsed_params.limit {
+                local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+            }
+            if let Some(ref local_var_str) = parsed_params.cursor {
+                local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
+            }
         }
         let local_var_req = local_var_req_builder.build()?;
         let local_var_resp = local_var_client.execute(local_var_req).await?;

@@ -1,9 +1,8 @@
 
 use reqwest;
 
-use crate::apis::ResponseContent;
-use super::{Error, configuration};
-
+use crate::{apis::ResponseContent, AuthressSettings};
+use super::{Error};
 /// struct for passing parameters to the method [`get_users`]
 #[derive(Clone, Debug)]
 pub struct GetUsersParams {
@@ -48,7 +47,7 @@ pub enum GetUsersError {
 }
 
 pub struct UsersApi {
-    pub configuration: configuration::Configuration
+    pub configuration: AuthressSettings
 }
 
 impl UsersApi {
@@ -101,32 +100,26 @@ impl UsersApi {
     }
 
     /// Returns a paginated user list for the account. The data returned by this endpoint is highly variable based on the source OAuth provider. Avoid depending on undocumented properties.
-    pub async fn get_users(&self, params: GetUsersParams) -> Result<crate::models::UserIdentityCollection, Error<GetUsersError>> {
+    pub async fn get_users(&self, params: Option<GetUsersParams>) -> Result<crate::models::UserIdentityCollection, Error<GetUsersError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let limit = params.limit;
-        let cursor = params.cursor;
-        let filter = params.filter;
-        let tenant_id = params.tenant_id;
-
-
         let local_var_client = &local_var_configuration.client;
 
         let local_var_uri_str = format!("{}/v1/users", "");
         let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
 
-        if let Some(ref local_var_str) = limit {
-            local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
-        }
-        if let Some(ref local_var_str) = cursor {
-            local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
-        }
-        if let Some(ref local_var_str) = filter {
-            local_var_req_builder = local_var_req_builder.query(&[("filter", &local_var_str.to_string())]);
-        }
-        if let Some(ref local_var_str) = tenant_id {
-            local_var_req_builder = local_var_req_builder.query(&[("tenantId", &local_var_str.to_string())]);
+        if let Some(ref parsed_params) = params {
+            if let Some(ref local_var_str) = parsed_params.limit {
+                local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+            }
+            if let Some(ref local_var_str) = parsed_params.cursor {
+                local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
+            }
+            if let Some(ref local_var_str) = parsed_params.filter {
+                local_var_req_builder = local_var_req_builder.query(&[("filter", &local_var_str.to_string())]);
+            }
+            if let Some(ref local_var_str) = parsed_params.tenant_id {
+                local_var_req_builder = local_var_req_builder.query(&[("tenantId", &local_var_str.to_string())]);
+            }
         }
         let local_var_req = local_var_req_builder.build()?;
         let local_var_resp = local_var_client.execute(local_var_req).await?;

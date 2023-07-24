@@ -3,15 +3,15 @@ use reqwest::RequestBuilder;
 
 
 #[derive(Debug, Clone)]
-pub struct Configuration {
+pub struct AuthressSettings {
     pub base_path: String,
     pub client: reqwest::Client,
     pub service_client_access_key: String
 }
 
-impl Configuration {
-    pub fn new(authress_base_url: String, service_client_access_key: String) -> Configuration {
-        Configuration {
+impl AuthressSettings {
+    pub fn new(authress_base_url: String, service_client_access_key: String) -> AuthressSettings {
+        AuthressSettings {
             base_path: authress_base_url.to_owned(),
             service_client_access_key: service_client_access_key,
             client: reqwest::Client::new()

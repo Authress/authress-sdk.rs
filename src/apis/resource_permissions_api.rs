@@ -1,8 +1,8 @@
 
 use reqwest;
 
-use crate::apis::ResponseContent;
-use super::{Error, configuration};
+use crate::{apis::ResponseContent, AuthressSettings};
+use super::{Error};
 
 /// struct for passing parameters to the method [`get_resource_users`]
 #[derive(Clone, Debug)]
@@ -49,7 +49,7 @@ pub enum UpdatePermissionedResourceError {
 }
 
 pub struct ResourcePermissionsApi {
-    pub configuration: configuration::Configuration
+    pub configuration: AuthressSettings
 }
 
 impl ResourcePermissionsApi {
@@ -102,24 +102,20 @@ impl ResourcePermissionsApi {
     }
 
     /// Get the resource users with explicit access to the resource. This result is a list of users that have some permission to the resource. Users with access to parent resources and users with access only to a sub-resource will not be returned in this result. In the case that the resource has multiple users, the list will be paginated.
-    pub async fn get_resource_users(&self, resource_uri: String, params: GetResourceUsersParams) -> Result<crate::models::ResourceUsersCollection, Error<GetResourceUsersError>> {
+    pub async fn get_resource_users(&self, resource_uri: String, params: Option<GetResourceUsersParams>) -> Result<crate::models::ResourceUsersCollection, Error<GetResourceUsersError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let limit = params.limit;
-        let cursor = params.cursor;
-
-
         let local_var_client = &local_var_configuration.client;
 
         let local_var_uri_str = format!("{}/v1/resources/{resourceUri}/users", "", resourceUri=crate::apis::urlencode(resource_uri));
         let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
 
-        if let Some(ref local_var_str) = limit {
-            local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
-        }
-        if let Some(ref local_var_str) = cursor {
-            local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
+        if let Some(ref parsed_params) = params {
+            if let Some(ref local_var_str) = parsed_params.limit {
+                local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+            }
+            if let Some(ref local_var_str) = parsed_params.cursor {
+                local_var_req_builder = local_var_req_builder.query(&[("cursor", &local_var_str.to_string())]);
+            }
         }
         let local_var_req = local_var_req_builder.build()?;
         let local_var_resp = local_var_client.execute(local_var_req).await?;

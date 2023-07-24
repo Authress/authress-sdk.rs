@@ -1,8 +1,8 @@
 
 use reqwest;
 
-use crate::apis::ResponseContent;
-use super::{Error, configuration};
+use crate::{apis::ResponseContent, AuthressSettings};
+use super::{Error};
 
 /// struct for passing parameters to the method [`get_accounts`]
 #[derive(Clone, Debug)]
@@ -49,7 +49,7 @@ pub enum GetAccountsError {
 
 
 pub struct AccountsApi {
-    pub configuration: configuration::Configuration
+    pub configuration: AuthressSettings
 }
 
 impl AccountsApi {
@@ -131,20 +131,17 @@ impl AccountsApi {
     }
 
     /// Returns a list of accounts that the user has access to.
-    pub async fn get_accounts(&self, params: GetAccountsParams) -> Result<crate::models::AccountCollection, Error<GetAccountsError>> {
+    pub async fn get_accounts(&self, params: Option<GetAccountsParams>) -> Result<crate::models::AccountCollection, Error<GetAccountsError>> {
         let local_var_configuration = &self.configuration;
-
-        // unbox the parameters
-        let earliest_cache_time = params.earliest_cache_time;
-
-
         let local_var_client = &local_var_configuration.client;
 
         let local_var_uri_str = format!("{}/v1/accounts", "");
         let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::GET, local_var_uri_str);
 
-        if let Some(ref local_var_str) = earliest_cache_time {
-            local_var_req_builder = local_var_req_builder.query(&[("earliestCacheTime", &local_var_str.to_string())]);
+        if let Some(ref parsed_params) = params {
+            if let Some(ref local_var_str) = parsed_params.earliest_cache_time {
+                local_var_req_builder = local_var_req_builder.query(&[("earliestCacheTime", &local_var_str.to_string())]);
+            }
         }
         let local_var_req = local_var_req_builder.build()?;
         let local_var_resp = local_var_client.execute(local_var_req).await?;

@@ -102,5 +102,3 @@ pub mod service_clients_api;
 pub mod tenants_api;
 pub mod user_permissions_api;
 pub mod users_api;
-
-pub mod configuration;

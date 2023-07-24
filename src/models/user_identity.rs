@@ -1,6 +1,4 @@
-/// UserIdentity : The user composite user identity stored in Authress sourced by the customer SSO/SAML/OAuth IdP.
-
-
+/// UserIdentity : The composite user identity stored in Authress sourced by the customer SSO/SAML/OAuth IdP.
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UserIdentity {
@@ -19,7 +17,7 @@ pub struct UserIdentity {
 }
 
 impl UserIdentity {
-    /// The user composite user identity stored in Authress sourced by the customer SSO/SAML/OAuth IdP.
+    /// The composite user identity stored in Authress sourced by the customer SSO/SAML/OAuth IdP.
     pub fn new(user_id: String) -> UserIdentity {
         UserIdentity {
             user_id,

@@ -20,11 +20,11 @@ pub struct AuthressSettings {
 }
 
 impl AuthressSettings {
-    pub fn new(base_url: String, service_client_access_key: String) -> AuthressSettings {
+    pub fn new(authress_api_url: String, service_client_access_key: String) -> AuthressSettings {
         AuthressSettings {
             client: reqwest::Client::new(),
 
-            base_url: base_url.to_owned(),
+            base_url: authress_api_url.to_owned(),
             service_client_access_key: service_client_access_key            
         }
     }

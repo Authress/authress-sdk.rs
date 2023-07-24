@@ -31,8 +31,9 @@ podman stop $CID && podman rm $CID
 ```
 
 ### Common review items
+* [ ] Inputs to Constructor are (string: authress_api_url, string: service_client_access_key)
 * [ ] Add authentication to the configuration class.
-* [ ] Change configuration class name to be consistent
+* [ ] Change configuration class name to be `AuthressSettings`
   * Specify all the inputs to be consistent across languages
 * [ ] Update documentation
   * Make sure markdown is valid
@@ -42,5 +43,6 @@ podman stop $CID && podman rm $CID
 * [ ] Remove any unnecessary validations from object and parameter injection, often there are some even when properties are allowed to be null
 * [ ] The service client code to generate a JWT from private key needs to be added
 * [ ] Add UnauthorizedError type to the authorizeUser function
+* [ ] GET SearchParameters should be an object
 * [ ] Top level tags from the API should accessible from the base class: `authressClient.accessRecords.getRecords(...)`
 * [ ] Test

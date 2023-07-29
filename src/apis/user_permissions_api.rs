@@ -106,7 +106,7 @@ impl UserPermissionsApi {
     }
 
     /// Get the users resources. This result is a list of resource uris that a user has an permission to. By default only the top level matching resources are returned. To get a user's list of deeply nested resources, set the `collectionConfiguration` to be `INCLUDE_NESTED`. This collection is paginated.
-    pub async fn get_user_resources(&self, user_id: String, resource_uri: Option<String>, params: Option<GetUserResourcesParams>) -> Result<crate::models::UserResources, Error<GetUserResourcesError>> {
+    pub async fn get_user_resources(&self, user_id: String, resource_uri: Option<String>, params: Option<GetUserResourcesParams>) -> Result<crate::models::UserResourcesCollection, Error<GetUserResourcesError>> {
         let local_var_configuration = &self.configuration;
         let local_var_client = &local_var_configuration.client;
 

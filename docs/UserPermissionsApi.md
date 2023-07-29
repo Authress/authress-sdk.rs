@@ -57,7 +57,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_resources
 
-> crate::models::UserResources get_user_resources(user_id, resource_uri, collection_configuration, permissions, limit, cursor)
+> crate::models::UserResourcesCollection get_user_resources(user_id, resource_uri, collection_configuration, permissions, limit, cursor)
 List user resources
 
 Get the users resources. This result is a list of resource uris that a user has an permission to. By default only the top level matching resources are returned. To get a user's list of deeply nested resources, set the `collectionConfiguration` to be `INCLUDE_NESTED`. This collection is paginated.
@@ -76,7 +76,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::UserResources**](UserResources.md)
+[**crate::models::UserResourcesCollection**](UserResourcesCollection.md)
 
 
 ---

@@ -15,8 +15,8 @@ pub struct AccessRequest {
     pub status: Option<Status>,
     #[serde(rename = "access")]
     pub access: Box<crate::models::AccessTemplate>,
-    #[serde(rename = "links")]
-    pub links: Box<crate::models::Links>,
+    #[serde(rename = "links", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub links: Option<Option<Box<crate::models::Links>>>,
     /// The tags associated with this resource, this property is an map. { key1: value1, key2: value2 }
     #[serde(rename = "tags", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Option<::std::collections::HashMap<String, String>>>,
@@ -24,13 +24,13 @@ pub struct AccessRequest {
 
 impl AccessRequest {
     /// The access requested by a user.
-    pub fn new(request_id: String, access: crate::models::AccessTemplate, links: crate::models::Links) -> AccessRequest {
+    pub fn new(request_id: String, access: crate::models::AccessTemplate) -> AccessRequest {
         AccessRequest {
             request_id,
             last_updated: None,
             status: None,
             access: Box::new(access),
-            links: Box::new(links),
+            links: None,
             tags: None,
         }
     }

@@ -34,8 +34,8 @@ pub struct AccessRecord {
     /// A list of statements which match roles to resources.
     #[serde(rename = "statements")]
     pub statements: Vec<crate::models::Statement>,
-    #[serde(rename = "links")]
-    pub links: Box<crate::models::Links>,
+    #[serde(rename = "links", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub links: Option<Option<Box<crate::models::Links>>>,
     /// The tags associated with this resource, this property is an map. { key1: value1, key2: value2 }
     #[serde(rename = "tags", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Option<::std::collections::HashMap<String, String>>>,
@@ -43,7 +43,7 @@ pub struct AccessRecord {
 
 impl AccessRecord {
     /// The access record which links users to roles.
-    pub fn new(name: String, statements: Vec<crate::models::Statement>, links: crate::models::Links) -> AccessRecord {
+    pub fn new(name: String, statements: Vec<crate::models::Statement>) -> AccessRecord {
         AccessRecord {
             record_id: None,
             name,
@@ -55,7 +55,7 @@ impl AccessRecord {
             admins: None,
             groups: None,
             statements,
-            links: Box::new(links),
+            links: None,
             tags: None,
         }
     }

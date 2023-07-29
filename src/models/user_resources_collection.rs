@@ -1,9 +1,9 @@
-/// UserResources : A collect of permissions that the user has to a resource.
+/// UserResourcesCollection : A collect of permissions that the user has to a resource.
 
 
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-pub struct UserResources {
+pub struct UserResourcesCollection {
     #[serde(rename = "userId")]
     pub user_id: String,
     /// A list of the resources the user has some permission to.
@@ -12,17 +12,17 @@ pub struct UserResources {
     #[serde(rename = "pagination", skip_serializing_if = "Option::is_none")]
     pub pagination: Option<Box<crate::models::Pagination>>,
     #[serde(rename = "links")]
-    pub links: Box<crate::models::CollectionLinks>,
+    pub links: Option<Box<crate::models::CollectionLinks>>,
 }
 
-impl UserResources {
+impl UserResourcesCollection {
     /// A collect of permissions that the user has to a resource.
-    pub fn new(user_id: String, links: crate::models::CollectionLinks) -> UserResources {
-        UserResources {
+    pub fn new(user_id: String) -> UserResourcesCollection {
+        UserResourcesCollection {
             user_id,
             resources: None,
             pagination: None,
-            links: Box::new(links),
+            links: None,
         }
     }
 }

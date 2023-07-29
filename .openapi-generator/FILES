@@ -72,7 +72,7 @@ docs/UserConnectionCredentials.md
 docs/UserIdentity.md
 docs/UserIdentityCollection.md
 docs/UserPermissionsApi.md
-docs/UserResources.md
+docs/UserResourcesCollection.md
 docs/UserRole.md
 docs/UserRoleCollection.md
 docs/UserToken.md
@@ -154,7 +154,7 @@ src/models/user.rs
 src/models/user_connection_credentials.rs
 src/models/user_identity.rs
 src/models/user_identity_collection.rs
-src/models/user_resources.rs
+src/models/user_resources_collection.rs
 src/models/user_role.rs
 src/models/user_role_collection.rs
 src/models/user_token.rs

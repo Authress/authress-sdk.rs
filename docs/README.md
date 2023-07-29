@@ -133,7 +133,7 @@ Class | Method | HTTP request | Description
  - [UserConnectionCredentials](./UserConnectionCredentials.md)
  - [UserIdentity](./UserIdentity.md)
  - [UserIdentityCollection](./UserIdentityCollection.md)
- - [UserResources](./UserResources.md)
+ - [UserResourcesCollection](./UserResourcesCollection.md)
  - [UserRole](./UserRole.md)
  - [UserRoleCollection](./UserRoleCollection.md)
  - [UserToken](./UserToken.md)

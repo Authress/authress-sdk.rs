@@ -11,18 +11,18 @@ pub struct UserResources {
     pub resources: Option<Vec<crate::models::Resource>>,
     #[serde(rename = "pagination", skip_serializing_if = "Option::is_none")]
     pub pagination: Option<Box<crate::models::Pagination>>,
-    #[serde(rename = "links")]
-    pub links: Box<crate::models::CollectionLinks>,
+    #[serde(rename = "links", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub links: Option<Option<Box<crate::models::CollectionLinks>>>,
 }
 
 impl UserResources {
     /// A collect of permissions that the user has to a resource.
-    pub fn new(user_id: String, links: crate::models::CollectionLinks) -> UserResources {
+    pub fn new(user_id: String) -> UserResources {
         UserResources {
             user_id,
             resources: None,
             pagination: None,
-            links: Box::new(links),
+            links: None,
         }
     }
 }

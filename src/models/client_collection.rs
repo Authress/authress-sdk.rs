@@ -9,17 +9,17 @@ pub struct ClientCollection {
     pub clients: Vec<crate::models::Client>,
     #[serde(rename = "pagination", skip_serializing_if = "Option::is_none")]
     pub pagination: Option<Box<crate::models::Pagination>>,
-    #[serde(rename = "links")]
-    pub links: Box<crate::models::CollectionLinks>,
+    #[serde(rename = "links", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub links: Option<Option<Box<crate::models::CollectionLinks>>>,
 }
 
 impl ClientCollection {
     /// The collection of a list of clients
-    pub fn new(clients: Vec<crate::models::Client>, links: crate::models::CollectionLinks) -> ClientCollection {
+    pub fn new(clients: Vec<crate::models::Client>) -> ClientCollection {
         ClientCollection {
             clients,
             pagination: None,
-            links: Box::new(links),
+            links: None,
         }
     }
 }

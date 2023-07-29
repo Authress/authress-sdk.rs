@@ -9,17 +9,17 @@ pub struct AccessRequestCollection {
     pub records: Option<Vec<crate::models::AccessRequest>>,
     #[serde(rename = "pagination", skip_serializing_if = "Option::is_none")]
     pub pagination: Option<Box<crate::models::Pagination>>,
-    #[serde(rename = "links")]
-    pub links: Box<crate::models::CollectionLinks>,
+    #[serde(rename = "links", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub links: Option<Option<Box<crate::models::CollectionLinks>>>,
 }
 
 impl AccessRequestCollection {
     /// A collection of access requests
-    pub fn new(links: crate::models::CollectionLinks) -> AccessRequestCollection {
+    pub fn new() -> AccessRequestCollection {
         AccessRequestCollection {
             records: None,
             pagination: None,
-            links: Box::new(links),
+            links: None,
         }
     }
 }

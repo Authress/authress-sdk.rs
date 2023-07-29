@@ -9,17 +9,17 @@ pub struct UserIdentityCollection {
     pub users: Vec<crate::models::UserIdentity>,
     #[serde(rename = "pagination", skip_serializing_if = "Option::is_none")]
     pub pagination: Option<Box<crate::models::Pagination>>,
-    #[serde(rename = "links")]
-    pub links: Box<crate::models::CollectionLinks>,
+    #[serde(rename = "links", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub links: Option<Option<Box<crate::models::CollectionLinks>>>,
 }
 
 impl UserIdentityCollection {
     /// A collection of user identities
-    pub fn new(users: Vec<crate::models::UserIdentity>, links: crate::models::CollectionLinks) -> UserIdentityCollection {
+    pub fn new(users: Vec<crate::models::UserIdentity>) -> UserIdentityCollection {
         UserIdentityCollection {
             users,
             pagination: None,
-            links: Box::new(links),
+            links: None,
         }
     }
 }

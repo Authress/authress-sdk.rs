@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **users** | Vec<**[crate::models::UserRoleCollection](UserRoleCollection.md)**> | A list of users | 
 **pagination** | Option<[**crate::models::Pagination**](Pagination.md)> |  | [optional]
-**links** | [**crate::models::CollectionLinks**](CollectionLinks.md) |  | 
+**links** | Option<[**crate::models::CollectionLinks**](CollectionLinks.md)> |  |
 
 [[API Models]](./README.md#documentation-for-models) ☆ [[API Endpoints]](./README.md#documentation-for-api-endpoints) ☆ [[Back to Repo]](./README.md)
 

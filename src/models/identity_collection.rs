@@ -1,7 +1,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct IdentityCollection {
     #[serde(rename = "identities")]
     pub identities: Vec<crate::models::Identity>,

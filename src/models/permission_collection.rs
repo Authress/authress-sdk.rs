@@ -2,7 +2,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PermissionCollection {
     #[serde(rename = "userId")]
     pub user_id: String,

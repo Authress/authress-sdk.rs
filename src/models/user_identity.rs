@@ -1,6 +1,6 @@
 /// UserIdentity : The composite user identity stored in Authress sourced by the customer SSO/SAML/OAuth IdP.
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UserIdentity {
     /// The user identifier.
     #[serde(rename = "userId")]

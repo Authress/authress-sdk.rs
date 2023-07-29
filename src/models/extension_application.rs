@@ -2,7 +2,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ExtensionApplication {
     /// The unique ID of the application.
     #[serde(rename = "applicationId")]

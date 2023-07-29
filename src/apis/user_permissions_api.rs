@@ -4,7 +4,7 @@ use reqwest;
 use crate::{apis::ResponseContent, AuthressSettings};
 use super::{Error};
 /// struct for passing parameters to the method [`get_user_resources`]
-#[derive(Clone, Debug)]
+#[derive(Default, Clone, Debug)]
 pub struct GetUserResourcesParams {
     /// `TOP_LEVEL_ONLY` - returns only directly nested resources under the resourceUri. A query to `resourceUri=Collection` will return `Collection/resource_1`.<br>`INCLUDE_NESTED` - will return all sub-resources as well as deeply nested resources that the user has the specified permission to. A query to `resourceUri=Collection` will return `Collection/namespaces/ns/resources/resource_1`.<br><br>To return matching resources for nested resources, set this parameter to `INCLUDE_NESTED`.
     pub collection_configuration: Option<String>,

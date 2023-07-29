@@ -2,10 +2,10 @@
 use reqwest;
 
 use crate::{apis::ResponseContent, AuthressSettings};
-use super::{Error};
+use super::Error;
 
 /// struct for passing parameters to the method [`get_records`]
-#[derive(Clone, Debug)]
+#[derive(Default, Clone, Debug)]
 pub struct GetRecordsParams {
     /// Max number of results to return
     pub limit: Option<u32>,
@@ -18,7 +18,7 @@ pub struct GetRecordsParams {
 }
 
 /// struct for passing parameters to the method [`get_requests`]
-#[derive(Clone, Debug)]
+#[derive(Default, Clone, Debug)]
 pub struct GetRequestsParams {
     /// Max number of results to return
     pub limit: Option<u32>,
@@ -29,12 +29,12 @@ pub struct GetRequestsParams {
 }
 
 /// struct for passing parameters to the method [`respond_to_invite`]
-#[derive(Clone, Debug)]
+#[derive(Default, Clone, Debug)]
 pub struct RespondToInviteParams {
 }
 
 /// struct for passing parameters to the method [`update_record`]
-#[derive(Clone, Debug)]
+#[derive(Default, Clone, Debug)]
 pub struct UpdateRecordParams {
     /// The expected last time the record was modified. (<a href=\"https://tools.ietf.org/html/rfc7231#section-7.1.1.1\" target=\"_blank\">format</a>)
     pub if_unmodified_since: Option<String>

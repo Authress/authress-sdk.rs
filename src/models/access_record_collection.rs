@@ -2,7 +2,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AccessRecordCollection {
     /// A list of access records
     #[serde(rename = "records")]

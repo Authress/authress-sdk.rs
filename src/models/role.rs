@@ -2,7 +2,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Role {
     /// Unique identifier for the role, can be specified on creation, and used by records to map to permissions.
     #[serde(rename = "roleId")]

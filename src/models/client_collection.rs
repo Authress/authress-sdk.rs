@@ -2,7 +2,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ClientCollection {
     /// A list of clients
     #[serde(rename = "clients")]

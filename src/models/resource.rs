@@ -1,7 +1,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Resource {
     /// A resource path which can be top level, fully qualified, or end with a *. Parent resources imply permissions to sub-resources.
     #[serde(rename = "resourceUri")]

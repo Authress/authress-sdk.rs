@@ -1,7 +1,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Connection {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     pub r#type: Option<Type>,
@@ -50,8 +50,9 @@ impl Connection {
 }
 
 /// 
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default, Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Type {
+    #[default]
     #[serde(rename = "OAUTH2")]
     Oauth2,
     #[serde(rename = "SAML2")]
@@ -59,10 +60,3 @@ pub enum Type {
     #[serde(rename = "WebAuthN")]
     WebAuthN,
 }
-
-impl Default for Type {
-    fn default() -> Type {
-        Self::Oauth2
-    }
-}
-

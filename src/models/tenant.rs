@@ -1,7 +1,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Tenant {
     #[serde(rename = "tenantId")]
     pub tenant_id: String,

@@ -5,7 +5,7 @@ use crate::{apis::ResponseContent, AuthressSettings};
 use super::{Error};
 
 /// struct for passing parameters to the method [`get_accounts`]
-#[derive(Clone, Debug)]
+#[derive(Default, Clone, Debug)]
 pub struct GetAccountsParams {
     /// Ensure the accounts list is not cached before this time.
     pub earliest_cache_time: Option<String>

@@ -2,7 +2,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AccessRequestResponse {
     /// New result, either approve or deny the request
     #[serde(rename = "status")]
@@ -19,17 +19,11 @@ impl AccessRequestResponse {
 }
 
 /// New result, either approve or deny the request
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default, Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Status {
     #[serde(rename = "APPROVED")]
     Approved,
+    #[default]
     #[serde(rename = "DENIED")]
     Denied,
 }
-
-impl Default for Status {
-    fn default() -> Status {
-        Self::Approved
-    }
-}
-

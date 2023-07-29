@@ -2,7 +2,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TenantCollection {
     #[serde(rename = "tenants")]
     pub tenants: Vec<crate::models::Tenant>,

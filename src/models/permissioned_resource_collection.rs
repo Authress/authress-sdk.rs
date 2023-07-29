@@ -2,7 +2,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PermissionedResourceCollection {
     #[serde(rename = "resources")]
     pub resources: Vec<crate::models::PermissionedResource>,

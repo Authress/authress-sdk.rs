@@ -5,7 +5,7 @@ use crate::{apis::ResponseContent, AuthressSettings};
 use super::{Error};
 
 /// struct for passing parameters to the method [`login`]
-#[derive(Clone, Debug)]
+#[derive(Default, Clone, Debug)]
 pub struct LoginParams {
     /// The client identifier to constrain the token to.
     pub client_id: String,
@@ -18,7 +18,7 @@ pub struct LoginParams {
 }
 
 /// struct for passing parameters to the method [`request_token`]
-#[derive(Clone, Debug)]
+#[derive(Default, Clone, Debug)]
 pub struct RequestTokenParams {
     /// The contents of an OAuth token request.
     pub oauth_token_request: crate::models::OAuthTokenRequest

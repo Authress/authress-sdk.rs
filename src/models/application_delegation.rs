@@ -2,7 +2,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApplicationDelegation {
     /// Redirect the user to this url to automatically log them into a third-party application.
     #[serde(rename = "authenticationUrl")]

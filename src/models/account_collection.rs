@@ -1,7 +1,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AccountCollection {
     #[serde(rename = "accounts")]
     pub accounts: Box<crate::models::Account>,

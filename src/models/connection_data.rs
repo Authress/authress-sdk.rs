@@ -1,7 +1,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ConnectionData {
     #[serde(rename = "tenantId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub tenant_id: Option<Option<String>>,
@@ -22,17 +22,11 @@ impl ConnectionData {
 }
 
 /// 
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default, Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum SupportedContentType {
+    #[default]
     #[serde(rename = "application/json")]
     Json,
     #[serde(rename = "application/x-www-form-urlencoded")]
     FormUrlEncoded,
 }
-
-impl Default for SupportedContentType {
-    fn default() -> SupportedContentType {
-        Self::Json
-    }
-}
-

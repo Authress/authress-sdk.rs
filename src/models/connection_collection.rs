@@ -2,7 +2,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ConnectionCollection {
     #[serde(rename = "connections")]
     pub connections: Vec<crate::models::Connection>,

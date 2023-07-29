@@ -1,7 +1,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ClaimRequest {
     /// The parent resource to add a sub-resource to. The resource must have a resource configuration that add the permission CLAIM for this to work.
     #[serde(rename = "collectionResource")]

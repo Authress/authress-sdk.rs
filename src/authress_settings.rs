@@ -2,7 +2,7 @@ use reqwest::RequestBuilder;
 
 
 
-#[derive(Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct AuthressSettings {
     pub base_path: String,
     pub client: reqwest::Client,

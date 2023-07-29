@@ -1,7 +1,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ResourcePermission {
     #[serde(rename = "action")]
     pub action: Action,
@@ -19,17 +19,12 @@ impl ResourcePermission {
 }
 
 /// 
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default, Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Action {
+    #[default]
     #[serde(rename = "CLAIM")]
     Claim,
     #[serde(rename = "PUBLIC")]
     Public,
-}
-
-impl Default for Action {
-    fn default() -> Action {
-        Self::Claim
-    }
 }
 

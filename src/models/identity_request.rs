@@ -2,7 +2,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct IdentityRequest {
     /// A valid JWT OIDC compliant token which will still pass authentication requests to the identity provider. Must contain a unique audience and issuer.
     #[serde(rename = "jwt", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]

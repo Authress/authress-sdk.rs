@@ -2,7 +2,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ClientOptions {
     /// Grant the client access to verify authorization on behalf of any user.
     #[serde(rename = "grantUserPermissionsAccess", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]

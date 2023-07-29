@@ -11,7 +11,7 @@ pub mod models;
 
 use reqwest::RequestBuilder;
 
-#[derive(Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct AuthressSettings {
     pub client: reqwest::Client,
 

@@ -2,7 +2,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Invite {
     /// The unique identifier for the invite. Use this ID to accept the invite.
     #[serde(rename = "inviteId")]

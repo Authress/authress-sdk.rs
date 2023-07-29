@@ -4,7 +4,7 @@ use reqwest;
 use crate::{apis::ResponseContent, AuthressSettings};
 use super::{Error};
 /// struct for passing parameters to the method [`get_users`]
-#[derive(Clone, Debug)]
+#[derive(Default, Clone, Debug)]
 pub struct GetUsersParams {
     /// Max number of results to return
     pub limit: Option<u32>,

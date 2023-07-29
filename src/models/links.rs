@@ -1,7 +1,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Links {
     #[serde(rename = "self", deserialize_with = "Option::deserialize")]
     pub self_link: Option<Box<crate::models::Link>>,

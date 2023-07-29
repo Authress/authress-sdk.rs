@@ -2,7 +2,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AccessRequest {
     /// Unique identifier for the request.
     #[serde(rename = "requestId")]
@@ -37,8 +37,9 @@ impl AccessRequest {
 }
 
 /// Current status of the access request.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default, Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Status {
+    #[default]
     #[serde(rename = "OPEN")]
     Open,
     #[serde(rename = "APPROVED")]
@@ -48,10 +49,3 @@ pub enum Status {
     #[serde(rename = "DELETED")]
     Deleted,
 }
-
-impl Default for Status {
-    fn default() -> Status {
-        Self::Open
-    }
-}
-

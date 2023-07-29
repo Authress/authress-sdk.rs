@@ -2,7 +2,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct OAuthTokenRequest {
     /// The client identifier to constrain the token to.
     #[serde(rename = "client_id")]
@@ -43,8 +43,9 @@ impl OAuthTokenRequest {
 }
 
 /// A suggestion to the token generation which type of credentials are being provided.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default, Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum GrantType {
+    #[default]
     #[serde(rename = "client_credentials")]
     ClientCredentials,
     #[serde(rename = "authorization_code")]
@@ -53,23 +54,14 @@ pub enum GrantType {
     Password,
 }
 
-impl Default for GrantType {
-    fn default() -> GrantType {
-        Self::ClientCredentials
-    }
-}
 /// Enables additional configuration of the grant_type. In the case of user password grant_type, set this to **signup**, to enable the creation of users. Set this to **update**, force update the password associated with the user.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default, Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Type {
+    #[default]
+    #[serde(rename = "")]
+    Default,
     #[serde(rename = "signup")]
     Signup,
     #[serde(rename = "update")]
     Update,
 }
-
-impl Default for Type {
-    fn default() -> Type {
-        Self::Signup
-    }
-}
-

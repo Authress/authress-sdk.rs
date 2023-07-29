@@ -5,7 +5,7 @@ use crate::{apis::ResponseContent, AuthressSettings};
 use super::{Error};
 
 /// struct for passing parameters to the method [`get_groups`]
-#[derive(Clone, Debug)]
+#[derive(Default, Clone, Debug)]
 pub struct GetGroupsParams {
     /// Max number of results to return
     pub limit: Option<u32>,

@@ -2,7 +2,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AccessRecord {
     /// Unique identifier for the record, can be specified on record creation.
     #[serde(rename = "recordId", skip_serializing_if = "Option::is_none")]
@@ -62,17 +62,11 @@ impl AccessRecord {
 }
 
 /// Current status of the access record.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default, Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Status {
+    #[default]
     #[serde(rename = "ACTIVE")]
     Active,
     #[serde(rename = "DELETED")]
     Deleted,
 }
-
-impl Default for Status {
-    fn default() -> Status {
-        Self::Active
-    }
-}
-

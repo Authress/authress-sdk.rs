@@ -35,6 +35,7 @@ podman stop $CID && podman rm $CID
 * [ ] Add authentication to the configuration class.
 * [ ] Change configuration class name to be `AuthressSettings`
   * Specify all the inputs to be consistent across languages
+* [ ] constructors for classes should only have relevant input properties, for instances `links` are not required.
 * [ ] Update documentation
   * Make sure markdown is valid
   * Remove unnecessary links

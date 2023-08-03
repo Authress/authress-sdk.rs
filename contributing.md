@@ -44,6 +44,9 @@ podman stop $CID && podman rm $CID
 * [ ] Remove any unnecessary validations from object and parameter injection, often there are some even when properties are allowed to be null
 * [ ] The service client code to generate a JWT from private key needs to be added
 * [ ] Add UnauthorizedError type to the authorizeUser function
-* [ ] GET SearchParameters should be an object
+* [ ] GET query parameters should be an object
 * [ ] Top level tags from the API should accessible from the base class: `authressClient.accessRecords.getRecords(...)`
+* [ ] Automatic Retry
+* [ ] In memory caching for authorization checks - memoize
+* [ ] Unsigned int for all limits
 * [ ] Test

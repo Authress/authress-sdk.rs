@@ -40,7 +40,7 @@ podman stop $CID && podman rm $CID
   * Make sure markdown is valid
   * Remove unnecessary links
   * Add first class examples to readme.md + api documentation
-* [ ] Url encode all url inputs, frequently the generator doesn't do that
+  * Find failed UserId, RoleId, TenantId, GroupId, Action properties and convert them to strings
 * [ ] Remove any unnecessary validations from object and parameter injection, often there are some even when properties are allowed to be null
 * [ ] The service client code to generate a JWT from private key needs to be added
 * [ ] Add UnauthorizedError type to the authorizeUser function
@@ -52,4 +52,5 @@ podman stop $CID && podman rm $CID
 * [ ] Unsigned int for all limits
 * [ ] Update Documentation for the API
 * [ ] Validate all enums are enums and can be null when they should be.
+* [ ] Remove LocalHost from the docs
 * [ ] Tests

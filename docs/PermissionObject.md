@@ -9,6 +9,6 @@ Name | Type | Description | Notes
 **grant** | **bool** | Allows the user to give the permission to others without being able to execute the action. | 
 **delegate** | **bool** | Allows delegating or granting the permission to others without being able to execute the action. | 
 
-[[API Models]](./README.md#documentation-for-models) ☆ [[API Endpoints]](./README.md#documentation-for-api-endpoints) ☆ [[Back to Repo]](./README.md)
+[[API Models]](./README.md#documentation-for-models) ☆ [[API Endpoints]](./README.md#documentation-for-api-endpoints) ☆ [[Back to Repo]](../README.md)
 
 

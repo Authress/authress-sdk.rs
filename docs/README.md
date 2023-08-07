@@ -43,6 +43,10 @@ Class | Method | HTTP request | Description
 `authress.groups` | [**get_group**](./GroupsApi.md#get_group) | **GET** /v1/groups/{groupId} | Retrieve group
 `authress.groups` | [**get_groups**](./GroupsApi.md#get_groups) | **GET** /v1/groups | List groups
 `authress.groups` | [**update_group**](./GroupsApi.md#update_group) | **PUT** /v1/groups/{groupId} | Update a group
+`authress.invites` | [**create_invite**](./InvitesApi.md#create_invite) | **POST** /v1/invites | Create user invite
+`authress.invites` | [**delete_invite**](./InvitesApi.md#delete_invite) | **DELETE** /v1/invites/{inviteId} | Delete invite
+`authress.invites` | [**get_invite**](./InvitesApi.md#get_invite) | **GET** /v1/invites/{inviteId} | Retrieve invite
+`authress.invites` | [**respond_to_invite**](./InvitesApi.md#respond_to_invite) | **PATCH** /v1/invites/{inviteId} | Accept invite
 `authress.resourcePermissions` | [**get_permissioned_resource**](./ResourcePermissionsApi.md#get_permissioned_resource) | **GET** /v1/resources/{resourceUri} | Retrieve resource configuration
 `authress.resourcePermissions` | [**get_permissioned_resources**](./ResourcePermissionsApi.md#get_permissioned_resources) | **GET** /v1/resources | List all resource configurations
 `authress.resourcePermissions` | [**get_resource_users**](./ResourcePermissionsApi.md#get_resource_users) | **GET** /v1/resources/{resourceUri}/users | List users with resource access
@@ -72,7 +76,6 @@ Class | Method | HTTP request | Description
 `authress.users` | [**get_user**](./UsersApi.md#get_user) | **GET** /v1/users/{userId} | Retrieve a user
 `authress.users` | [**get_users**](./UsersApi.md#get_users) | **GET** /v1/users | List users
 
-
 ## Documentation For Models
 
  - [AccessRecord](./AccessRecord.md)
@@ -83,7 +86,6 @@ Class | Method | HTTP request | Description
  - [AccessTemplate](./AccessTemplate.md)
  - [Account](./Account.md)
  - [AccountCollection](./AccountCollection.md)
- - [Links](./Links.md)
  - [ApplicationDelegation](./ApplicationDelegation.md)
  - [ClaimRequest](./ClaimRequest.md)
  - [Client](./Client.md)
@@ -107,6 +109,7 @@ Class | Method | HTTP request | Description
  - [Invite](./Invite.md)
  - [Link](./Link.md)
  - [LinkedGroup](./LinkedGroup.md)
+ - [Links](./Links.md)
  - [MetadataObject](./MetadataObject.md)
  - [MetadataObjectAccount](./MetadataObjectAccount.md)
  - [OAuthAuthorizeResponse](./OAuthAuthorizeResponse.md)

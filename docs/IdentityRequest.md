@@ -8,6 +8,6 @@ Name | Type | Description | Notes
 **issuer** | Option<**String**> | The issuer of the OAuth OIDC provider's JWTs. This value should match the `iss` claim in the provided tokens exactly. | [optional]
 **preferred_audience** | Option<**String**> | If the `jwt` token contains more than one valid audience, then the single audience that should associated with Authress. If more than one audience is preferred, repeat this call with each one. | [optional][default to *]
 
-[[API Models]](./README.md#documentation-for-models) ☆ [[API Endpoints]](./README.md#documentation-for-api-endpoints) ☆ [[Back to Repo]](./README.md)
+[[API Models]](./README.md#documentation-for-models) ☆ [[API Endpoints]](./README.md#documentation-for-api-endpoints) ☆ [[Back to Repo]](../README.md)
 
 

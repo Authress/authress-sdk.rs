@@ -9,6 +9,6 @@ Name | Type | Description | Notes
 **description** | Option<**String**> | A description for when to the user as well as additional information. | [optional]
 **permissions** | Vec<**[crate::models::PermissionObject](PermissionObject.md)**> | A list of the permissions | 
 
-[[API Models]](./README.md#documentation-for-models) ☆ [[API Endpoints]](./README.md#documentation-for-api-endpoints) ☆ [[Back to Repo]](./README.md)
+[[API Models]](./README.md#documentation-for-models) ☆ [[API Endpoints]](./README.md#documentation-for-api-endpoints) ☆ [[Back to Repo]](../README.md)
 
 

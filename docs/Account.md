@@ -10,6 +10,6 @@ Name | Type | Description | Notes
 **company** | **serde_json::Value** |  | 
 **links** | Option<[**crate::models::Links**](Links.md)> |  |
 
-[[API Models]](./README.md#documentation-for-models) ☆ [[API Endpoints]](./README.md#documentation-for-api-endpoints) ☆ [[Back to Repo]](./README.md)
+[[API Models]](./README.md#documentation-for-models) ☆ [[API Endpoints]](./README.md#documentation-for-api-endpoints) ☆ [[Back to Repo]](../README.md)
 
 

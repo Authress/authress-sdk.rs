@@ -8,6 +8,6 @@ Name | Type | Description | Notes
 **statements** | Vec<**[crate::models::Statement](Statement.md)**> | A list of statements which match roles to resources. The invited user will all statements apply to them | 
 **links** | Option<[**crate::models::Links**](Links.md)> |  |
 
-[[API Models]](./README.md#documentation-for-models) ☆ [[API Endpoints]](./README.md#documentation-for-api-endpoints) ☆ [[Back to Repo]](./README.md)
+[[API Models]](./README.md#documentation-for-models) ☆ [[API Endpoints]](./README.md#documentation-for-api-endpoints) ☆ [[Back to Repo]](../README.md)
 
 

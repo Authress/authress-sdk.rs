@@ -47,6 +47,9 @@ podman stop $CID && podman rm $CID
 * [ ] GET query parameters should be an object
 * [ ] Top level tags from the API should accessible from the base class: `authressClient.accessRecords.getRecords(...)`
 * [ ] Automatic Retry
+  * [ ] Automatic fallback to cache
 * [ ] In memory caching for authorization checks - memoize
 * [ ] Unsigned int for all limits
-* [ ] Test
+* [ ] Update Documentation for the API
+* [ ] Validate all enums are enums and can be null when they should be.
+* [ ] Tests

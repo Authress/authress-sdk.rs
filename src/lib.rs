@@ -34,7 +34,7 @@ impl AuthressSettings {
         
         return self.client
             .request(method, local_var_uri_str)
-            .header(reqwest::header::USER_AGENT, "Authress Rust SDK")
+            .header(reqwest::header::USER_AGENT, "Authress SDK; Rust; ;")
             .bearer_auth(self.service_client_access_key.to_owned());
     }
 }

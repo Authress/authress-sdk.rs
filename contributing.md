@@ -51,6 +51,7 @@ podman stop $CID && podman rm $CID
   * [ ] Automatic fallback to cache
 * [ ] In memory caching for authorization checks - memoize
 * [ ] Unsigned int for all limits
+* [ ] readonly properties are never specified as required for request bodies
 * [ ] Update Documentation for the API
 * [ ] Validate all enums are enums and can be null when they should be.
 * [ ] Remove LocalHost from the docs

@@ -56,3 +56,4 @@ podman stop $CID && podman rm $CID
 * [ ] Validate all enums are enums and can be null when they should be.
 * [ ] Remove LocalHost from the docs
 * [ ] Tests
+* [ ] If-unmodified-since should accept string or dateTime and convert this to an ISO String

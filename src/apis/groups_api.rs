@@ -60,6 +60,7 @@ pub enum UpdateGroupError {
     Status401(),
     Status403(),
     Status404(),
+    Status412(),
     UnknownValue(serde_json::Value),
 }
 

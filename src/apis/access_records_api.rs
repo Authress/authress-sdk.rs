@@ -36,8 +36,8 @@ pub struct RespondToInviteParams {
 /// struct for passing parameters to the method [`update_record`]
 #[derive(Default, Clone, Debug)]
 pub struct UpdateRecordParams {
-    /// The expected last time the record was modified. (<a href=\"https://tools.ietf.org/html/rfc7231#section-7.1.1.1\" target=\"_blank\">format</a>)
-    pub if_unmodified_since: Option<String>
+    /// The expected last time the record was modified.
+    pub expected_last_modified_time: Option<String>
 }
 
 
@@ -532,7 +532,7 @@ impl AccessRecordApi {
         let local_var_configuration = &self.configuration;
 
         // unbox the parameters
-        let if_unmodified_since = params.if_unmodified_since;
+        let expected_last_modified_time = params.expected_last_modified_time;
 
 
         let local_var_client = &local_var_configuration.client;
@@ -540,7 +540,7 @@ impl AccessRecordApi {
         let local_var_uri_str = format!("{}/v1/records/{recordId}", "", recordId=crate::apis::urlencode(record_id));
         let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::PUT, local_var_uri_str);
 
-        if let Some(local_var_param_value) = if_unmodified_since {
+        if let Some(local_var_param_value) = expected_last_modified_time {
             local_var_req_builder = local_var_req_builder.header("If-Unmodified-Since", local_var_param_value.to_string());
         }
         local_var_req_builder = local_var_req_builder.json(&access_record);

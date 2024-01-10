@@ -9,7 +9,7 @@ pub struct Extension {
     #[serde(rename = "name", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub name: Option<Option<String>>,
     #[serde(rename = "createdTime")]
-    pub created_time: String,
+    pub created_time: Option<chrono::DateTime<chrono::Utc>>,
     #[serde(rename = "application", skip_serializing_if = "Option::is_none")]
     pub application: Option<Box<crate::models::ExtensionApplication>>,
     #[serde(rename = "client")]
@@ -20,11 +20,11 @@ pub struct Extension {
 }
 
 impl Extension {
-    pub fn new(extension_id: String, created_time: String, client: crate::models::ExtensionClient) -> Extension {
+    pub fn new(extension_id: String, client: crate::models::ExtensionClient) -> Extension {
         Extension {
             extension_id,
             name: None,
-            created_time,
+            created_time: None,
             application: None,
             client: Box::new(client),
             tags: None,

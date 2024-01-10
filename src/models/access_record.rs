@@ -18,7 +18,7 @@ pub struct AccessRecord {
     pub capacity: Option<f32>,
     /// The expected last time the record was updated
     #[serde(rename = "lastUpdated", skip_serializing_if = "Option::is_none")]
-    pub last_updated: Option<String>,
+    pub last_updated: Option<chrono::DateTime<chrono::Utc>>,
     /// Current status of the access record.
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<Status>,

@@ -12,7 +12,7 @@ pub struct Tenant {
     #[serde(rename = "connection", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub connection: Option<Option<Box<crate::models::TenantConnection>>>,
     #[serde(rename = "createdTime", skip_serializing_if = "Option::is_none")]
-    pub created_time: Option<String>,
+    pub created_time: Option<chrono::DateTime<chrono::Utc>>,
 }
 
 impl Tenant {

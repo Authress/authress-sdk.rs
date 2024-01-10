@@ -1,4 +1,5 @@
 
+use chrono::{DateTime, Utc};
 use reqwest;
 
 use crate::{apis::ResponseContent, AuthressSettings};
@@ -37,7 +38,7 @@ pub struct RespondToInviteParams {
 #[derive(Default, Clone, Debug)]
 pub struct UpdateRecordParams {
     /// The expected last time the record was modified.
-    pub expected_last_modified_time: Option<String>
+    pub expected_last_modified_time: Option<DateTime<Utc>>
 }
 
 
@@ -531,17 +532,13 @@ impl AccessRecordApi {
     pub async fn update_record(&self, record_id: String, access_record: crate::models::AccessRecord, params: UpdateRecordParams) -> Result<(), Error<UpdateRecordError>> {
         let local_var_configuration = &self.configuration;
 
-        // unbox the parameters
-        let expected_last_modified_time = params.expected_last_modified_time;
-
-
         let local_var_client = &local_var_configuration.client;
 
         let local_var_uri_str = format!("{}/v1/records/{recordId}", "", recordId=crate::apis::urlencode(record_id));
         let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::PUT, local_var_uri_str);
 
-        if let Some(local_var_param_value) = expected_last_modified_time {
-            local_var_req_builder = local_var_req_builder.header("If-Unmodified-Since", local_var_param_value.to_string());
+        if let Some(local_var_param_value) = params.expected_last_modified_time {
+            local_var_req_builder = local_var_req_builder.header("If-Unmodified-Since", local_var_param_value.to_rfc3339_opts(chrono::SecondsFormat::Millis, true));
         }
         local_var_req_builder = local_var_req_builder.json(&access_record);
 

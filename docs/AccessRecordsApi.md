@@ -307,7 +307,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_record
 
-> update_record(record_id, access_record, expected_last_modified_time)
+> update_record(record_id, access_record, { expected_last_modified_time })
 Update access record
 
 Updates an access record adding or removing user permissions to resources. (Records have a maximum size of ~100KB)
@@ -319,7 +319,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **record_id** | **String** | The identifier of the access record. | [required] |
 **access_record** | [**AccessRecord**](AccessRecord.md) |  | [required] |
-**expected_last_modified_time** | Option<**String**> | The expected last time the record was modified. |  |
+**expected_last_modified_time** | Option<**DateTime**> | The expected last time the record was modified. |  |
 
 ### Return type
 

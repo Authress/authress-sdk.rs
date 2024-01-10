@@ -15,6 +15,13 @@ pub struct GetGroupsParams {
     pub filter: Option<String>
 }
 
+/// struct for passing parameters to the method [`update_group`]
+#[derive(Default, Clone, Debug)]
+pub struct UpdateGroupParams {
+    /// The expected last time the group was modified.
+    pub expected_last_modified_time: Option<chrono::DateTime<chrono::Utc>>
+}
+
 /// struct for typed errors of method [`create_group`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -178,13 +185,18 @@ impl GroupsApi {
     }
 
     /// Updates a group adding or removing user. Change a group updates the permissions and roles the users have access to. (Groups have a maximum size of ~100KB)
-    pub async fn update_group(&self, group_id: String, group: crate::models::Group) -> Result<crate::models::Group, Error<UpdateGroupError>> {
+    pub async fn update_group(&self, group_id: String, group: crate::models::Group, params: UpdateGroupParams) -> Result<crate::models::Group, Error<UpdateGroupError>> {
         let local_var_configuration = &self.configuration;
         
         let local_var_client = &local_var_configuration.client;
 
         let local_var_uri_str = format!("{}/v1/groups/{groupId}", "", groupId=crate::apis::urlencode(group_id));
         let mut local_var_req_builder = local_var_configuration.get_request_builder(reqwest::Method::PUT, local_var_uri_str);
+
+        if let Some(local_var_param_value) = params.expected_last_modified_time {
+            local_var_req_builder = local_var_req_builder.header("If-Unmodified-Since", local_var_param_value.to_rfc3339_opts(chrono::SecondsFormat::Millis, true));
+        }
+
         local_var_req_builder = local_var_req_builder.json(&group);
 
         let local_var_req = local_var_req_builder.build()?;

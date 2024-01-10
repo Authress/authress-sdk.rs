@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **request_id** | **String** | Unique identifier for the request. | [readonly]
-**last_updated** | Option<**String**> | The expected last time the request was updated | [optional][readonly]
+**last_updated** | Option<**DateTime**> | The expected last time the request was updated | [optional][readonly]
 **status** | Option<**String**> | Current status of the access request. | [optional][readonly]
 **access** | [**crate::models::AccessTemplate**](AccessTemplate.md) |  | 
 **links** | Option<[**crate::models::Links**](Links.md)> |  |

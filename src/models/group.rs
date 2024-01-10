@@ -12,7 +12,7 @@ pub struct Group {
     pub name: String,
     /// The expected last time the group was updated
     #[serde(rename = "lastUpdated", skip_serializing_if = "Option::is_none")]
-    pub last_updated: Option<String>,
+    pub last_updated: Option<chrono::DateTime<chrono::Utc>>,
     /// The list of users in this group
     #[serde(rename = "users")]
     pub users: Vec<crate::models::User>,

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **name** | **String** | A helpful name for this record | 
 **description** | Option<**String**> | More details about this record | [optional]
 **capacity** | Option<**f32**> | Percentage capacity of record that is filled. | [optional][readonly]
-**last_updated** | Option<**String**> | The expected last time the record was updated | [optional][readonly]
+**last_updated** | Option<**DateTime**> | The expected last time the record was updated | [optional][readonly]
 **status** | Option<**String**> | Current status of the access record. | [optional][readonly]
 **users** | Option<Vec<**[crate::models::User](User.md)**>> | The list of users this record applies to | [optional]
 **admins** | Option<Vec<**[crate::models::User](User.md)**>> | The list of admin that can edit this record even if they do not have global record edit permissions. | [optional]

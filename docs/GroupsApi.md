@@ -100,7 +100,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_group
 
-> crate::models::Group update_group(group_id, group)
+> crate::models::Group update_group(group_id, group, { expected_last_modified_time })
 Update a group
 
 Updates a group adding or removing user. Change a group updates the permissions and roles the users have access to. (Groups have a maximum size of ~100KB)
@@ -112,6 +112,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **String** | The identifier of the group. | [required] |
 **group** | [**Group**](Group.md) |  | [required] |
+**expected_last_modified_time** | Option<**DateTime**> | The expected last time the group was modified. |  |
 
 ### Return type
 

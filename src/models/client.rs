@@ -8,7 +8,7 @@ pub struct Client {
     #[serde(rename = "clientId")]
     pub client_id: String,
     #[serde(rename = "createdTime")]
-    pub created_time: String,
+    pub created_time: Option<chrono::DateTime<chrono::Utc>>,
     /// The name of the client
     #[serde(rename = "name", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub name: Option<Option<String>>,
@@ -24,10 +24,10 @@ pub struct Client {
 
 impl Client {
     /// A client configuration.
-    pub fn new(client_id: String, created_time: String) -> Client {
+    pub fn new(client_id: String) -> Client {
         Client {
             client_id,
-            created_time,
+            created_time: None,
             name: None,
             options: None,
             verification_keys: None,

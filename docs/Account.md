@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account_id** | **String** |  | 
-**created_time** | **String** |  | [readonly]
+**created_time** | **DateTime** |  | [readonly]
 **name** | Option<**String**> |  | [optional]
 **company** | **serde_json::Value** |  | 
 **links** | Option<[**crate::models::Links**](Links.md)> |  |

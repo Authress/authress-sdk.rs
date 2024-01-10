@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **client_id** | **String** | The unique ID of the client. | [readonly]
-**created_time** | **String** |  | [readonly]
+**created_time** | **DateTime** |  | [readonly]
 **name** | Option<**String**> | The name of the client | [optional]
 **options** | Option<[**crate::models::ClientOptions**](Client_options.md)> |  | [optional]
 **verification_keys** | Option<Vec<**[crate::models::ClientAccessKey](ClientAccessKey.md)**>> | A list of the service client access keys. | [optional][readonly]

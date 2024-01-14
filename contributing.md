@@ -49,6 +49,7 @@ podman stop $CID && podman rm $CID
 * [ ] Top level tags from the API should accessible from the base class: `authressClient.accessRecords.getRecords(...)`
 * [ ] Automatic Retry
   * [ ] Automatic fallback to cache
+* [ ] `OptimisticPerformanceHandler` - Automatic fallback to cache on timeout reached
 * [ ] In memory caching for authorization checks - memoize
 * [ ] Unsigned int for all limits
 * [ ] readonly properties are never specified as required for request bodies
@@ -57,3 +58,4 @@ podman stop $CID && podman rm $CID
 * [ ] Remove LocalHost from the docs
 * [ ] Tests
 * [x] If-unmodified-since should called `expectedLastModifiedTime`, accept string or dateTime and convert this to an ISO String
+* [ ] Update OAuth2 openapi authentication references in the documentation

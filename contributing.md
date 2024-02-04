@@ -31,7 +31,7 @@ podman stop $CID && podman rm $CID
 ```
 
 ### Common review items
-* [ ] Inputs to Constructor are (string: authress_api_url, string: service_client_access_key)
+* [x] Inputs to Constructor are (string: authress_api_url, string: service_client_access_key)
 * [ ] authress_api_url should sanitize https:// prefix and remove trailing `/`s
 * [ ] Add authentication to the configuration class.
 * [ ] Change configuration class name to be `AuthressSettings`

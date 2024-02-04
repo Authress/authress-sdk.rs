@@ -15,7 +15,7 @@ use reqwest::RequestBuilder;
 pub struct AuthressSettings {
     pub client: reqwest::Client,
 
-    pub base_url: String,
+    pub authress_api_url: String,
     pub service_client_access_key: String
 }
 
@@ -24,13 +24,13 @@ impl AuthressSettings {
         AuthressSettings {
             client: reqwest::Client::new(),
 
-            base_url: authress_api_url.to_owned(),
+            authress_api_url: authress_api_url.to_owned(),
             service_client_access_key: service_client_access_key            
         }
     }
 
     pub fn get_request_builder(&self, method: reqwest::Method, path_uri: String) -> RequestBuilder {
-        let local_var_uri_str = format!("{}{}", self.base_url, path_uri);
+        let local_var_uri_str = format!("{}{}", self.authress_api_url, path_uri);
         
         return self.client
             .request(method, local_var_uri_str)

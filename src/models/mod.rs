@@ -56,6 +56,8 @@ pub mod identity_request;
 pub use self::identity_request::IdentityRequest;
 pub mod invite;
 pub use self::invite::Invite;
+pub mod invite_statement;
+pub use self::invite::InviteStatement;
 pub mod link;
 pub use self::link::Link;
 pub mod linked_group;

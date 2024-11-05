@@ -505,7 +505,7 @@ impl AccessRecordApi {
     }
 
     /// Accepts an invite by claiming this invite by this user. The user access token used for this request will gain the permissions associated with the invite.
-    pub async fn respond_to_invite(&self, invite_id: String) -> Result<crate::models::Account, Error<RespondToInviteError>> {
+    pub async fn respond_to_invite(&self, invite_id: String) -> Result<(), Error<RespondToInviteError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
